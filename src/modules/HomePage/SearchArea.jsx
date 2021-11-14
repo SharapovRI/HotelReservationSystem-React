@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import ComboBox from './ComboBox';
 import DatePickerRange from './DatePickerRange';
-import SearchButton from './SearchButton';
 import TimePickerIn from './TimePickerIn';
 import TimePickerOut from './TimePickerOut';
-import axios from "axios";
 import getHotels from '../../api/apiRequests/getHotels';
 import './styles/HomePage.css'
 
@@ -44,7 +42,12 @@ const SearchArea = ({setFilter, setContent, setPageCount}) => {
 
     return(
         <div className='searchArea'>
-            <ComboBox className='cbLocates' city={city} setCity={(newValue) => setCity(newValue)}/>
+            <ComboBox className='cbLocates' option={city} 
+                setOption={(newValue) => setCity(newValue) } 
+                boxText={(option) => (option.country) + ', ' + option.city}
+                getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
+                labelText='Locates'
+            />
             <DatePickerRange date={date} setDate={(newValue) => setDate(newValue)}/>
             <TimePickerIn timeIn={timeIn} setTimeIn={(newValue) => setTimeIn(newValue)}/>
             <TimePickerOut timeOut={timeOut} setTimeOut={(newValue) => setTimeOut(newValue)}/>

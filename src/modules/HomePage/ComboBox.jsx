@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 
-const ComboBox = ( {city, setCity} ) => {
+const ComboBox = ( {option, setOption, getOptionLabel, boxText, labelText} ) => {
 
     const navigate = useNavigate();
     const [appState, setAppState] = useState();
@@ -32,18 +32,18 @@ const ComboBox = ( {city, setCity} ) => {
       sx={{ width: 300 }}
 
       onChange={(event, newValue) => {
-        setCity(newValue.id)
+        setOption(newValue.id)
       }
       }
-      defaultValue={city}
+      defaultValue={option}
 
-      getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
+      getOptionLabel={getOptionLabel}
       renderOption={(props, option) => (
         <Box component="li" {...props} key={option.id}>
-          ({option.country}) {option.city}
+          {boxText(option)}
         </Box>
       )}
-      renderInput={(params) => <TextField {...params} label="Locates" />}
+      renderInput={(params) => <TextField {...params} label={labelText} />}
     />
 
   );
