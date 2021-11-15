@@ -16,7 +16,6 @@ const LoginPage = () => {
     {
       localStorage.setItem("jwtToken", response.jwtToken);
       localStorage.setItem("refreshToken", response.refreshToken);
-      console.log("Bearer " + localStorage.getItem("jwtToken"));
       navigate('/');
     }
   }

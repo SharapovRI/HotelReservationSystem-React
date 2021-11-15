@@ -11,9 +11,9 @@ function App() {
     <Router>
       <div>
           <Routes>
-              <Route path="/Login" element={<LoginPage />} /> 
+              <Route path="/" element={<LoginPage />} /> 
               <Route path="/Registration" element={<RegistrationPage />} />             
-              <Route path="/" element={<HomePage />} /> 
+              <Route path="/Hotels/*" element={<HomePage />}/>
           </Routes>
       </div>
     </Router>

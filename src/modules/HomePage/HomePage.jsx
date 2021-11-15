@@ -3,6 +3,10 @@ import ContentBlock from './Contentik';
 import SearchArea from './SearchArea';
 import './styles/HomePage.css'
 
+import { Route } from 'react-router-dom'
+import { Routes } from 'react-router-dom'
+import HotelPage from './HotelPage/HotelPage';
+
 
 const HomePage = () => {
   const [filter, setFilter] = useState(null);
@@ -19,7 +23,10 @@ const HomePage = () => {
         <div className='homeBody'>
               <SearchArea setFilter={setFilter} setContent={setContent} setPageCount={setPageCount}/>
             <div className='resultArea'>
-              <ContentBlock pageCount={pageCount} content={content} filter={filter} setContent={setContent}/>
+              <Routes>
+                <Route path="/" element={<ContentBlock pageCount={pageCount} content={content} filter={filter} setContent={setContent}/>}/>
+                <Route path="/:id" element={<HotelPage filter={filter}/>}/>
+              </Routes>
             </div>
         </div>
     </div>

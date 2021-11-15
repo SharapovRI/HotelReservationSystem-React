@@ -1,9 +1,8 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import getHotels from '../../api/apiRequests/getHotels';
-import { DialogContentText } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 const ContentBlock = ({ pageCount, content, filter, setContent }) => {
   const [page, setPage] = React.useState(1);
@@ -32,10 +31,12 @@ export default ContentBlock;
 function NumberList(props) {
   const content = props.content;
   const listItems = content.map((content) =>
-    <li key={content.id}>
-      <h3>{content.name}</h3>
-      <p>{content.city}, {content.country}, {content.address}</p>
+    <NavLink to={`/Hotels/${content.id}`}>
+      <li key={content.id}>        
+          <h3>{content.name}</h3>
+          <p>{content.city}, {content.country}, {content.address}</p>
       </li>
+    </NavLink>
   );
   return (
     <ul>{listItems}</ul>
