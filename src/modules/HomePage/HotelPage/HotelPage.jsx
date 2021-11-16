@@ -11,12 +11,15 @@ const HotelPage = ({filter}) => {
     const [hotel, setHotel] = useState();
     const [pageCount, setPageCount] = useState(0);
 
-    useEffect(async () => {
-        const data = await getHotelRooms(hotelId, { ...filter, index: 0});
-        setRooms(data.result);
-        setHotel(data.hotel);
-        setPageCount(data.pageCount);
-        console.log(data);
+    useEffect(() => {
+        async function fetchHotelRooms(){
+            const data = await getHotelRooms(hotelId, { ...filter, index: 0});
+            setRooms(data.result);
+            setHotel(data.hotel);
+            setPageCount(data.pageCount);
+        }
+
+        fetchHotelRooms();
     }, [])
 
     return(

@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 
 const ComboBox = ( {option, setOption, getOptionLabel, boxText, labelText} ) => {
 
-    const navigate = useNavigate();
     const [appState, setAppState] = useState();
   
     useEffect(() => {
