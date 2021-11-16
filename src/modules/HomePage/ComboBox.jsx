@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 
 const ComboBox = ( {option, setOption, getOptionLabel, boxText, labelText} ) => {
 
-    const navigate = useNavigate();
     const [appState, setAppState] = useState();
   
     useEffect(() => {
@@ -32,7 +31,14 @@ const ComboBox = ( {option, setOption, getOptionLabel, boxText, labelText} ) => 
       sx={{ width: 300 }}
 
       onChange={(event, newValue) => {
-        setOption(newValue.id)
+        console.log(newValue);
+        if (newValue !== null)
+        {
+          setOption(newValue.id)
+        }
+        else {
+          setOption('');
+        }
       }
       }
       defaultValue={option}

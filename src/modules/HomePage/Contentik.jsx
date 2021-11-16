@@ -1,18 +1,21 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
+import React, { useEffect, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import getHotels from '../../api/apiRequests/getHotels';
-import { DialogContentText } from '@mui/material';
+import HotelListItems from './HotelListItems';
 
 const ContentBlock = ({ pageCount, content, filter, setContent }) => {
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = useState(1);
 
-  React.useEffect(async () => {
-    if (filter) {
-      const data = await getHotels({ ...filter, index: page - 1 });
-      setContent(data.result);
-    }
+  useEffect(() => {
+    async function fetchHotels(){
+      if (filter) {
+        const data = await getHotels({ ...filter, index: page - 1 });
+        setContent(data.result);
+      }
+    } 
+
+    fetchHotels();
   }, [page])
 
   const handleChange = (event, value) => {
@@ -21,23 +24,10 @@ const ContentBlock = ({ pageCount, content, filter, setContent }) => {
 
   return (
     <Stack spacing={2}>
-      <NumberList content={content} />
+      <HotelListItems content={content} />
       <Pagination count={pageCount} page={page} onChange={handleChange} />
     </Stack>
   );
 }
 
 export default ContentBlock;
-
-function NumberList(props) {
-  const content = props.content;
-  const listItems = content.map((content) =>
-    <li key={content.id}>
-      <h3>{content.name}</h3>
-      <p>{content.city}, {content.country}, {content.address}</p>
-      </li>
-  );
-  return (
-    <ul>{listItems}</ul>
-  );
-}
