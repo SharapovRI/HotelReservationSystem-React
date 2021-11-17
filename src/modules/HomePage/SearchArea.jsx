@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import getHotels from '../../api/apiRequests/getHotels';
 import './styles/HomePage.css'
 import { Link } from 'react-router-dom';
+import { setCheckInDate, setCheckOutDate } from '../../redux/CurrentOrder/OrderActions';
 
 const SearchArea = ({setFilter, setContent, setPageCount}) => {
     const [date, setDate] = useState([new Date(), new Date()]);
@@ -23,12 +24,15 @@ const SearchArea = ({setFilter, setContent, setPageCount}) => {
 
         setFilter(payload);
 
-        const data = await getHotels({...payload, index:0});        
+        const data = await getHotels({...payload, index:0});      
+        
         setContent(data.result);
         setPageCount(data.pageCount);
+        setCheckInDate(date[0].toJSON());
+        setCheckOutDate(date[1].toJSON());
     }
 
-    const onSeatsChange = (event, value) =>{
+    const onSeatsChange = (event) =>{
         setSeatsCount(event.target.value);
     }
 

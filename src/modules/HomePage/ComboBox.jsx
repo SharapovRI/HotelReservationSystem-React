@@ -31,7 +31,6 @@ const ComboBox = ( {option, setOption, getOptionLabel, boxText, labelText} ) => 
       sx={{ width: 300 }}
 
       onChange={(event, newValue) => {
-        console.log(newValue);
         if (newValue !== null)
         {
           setOption(newValue.id)
