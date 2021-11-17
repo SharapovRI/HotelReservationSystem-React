@@ -3,6 +3,8 @@ import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import postAuthenticate from '../../api/apiRequests/authentication';
 import checkLoginData from '../../services/Validation/loginDataValidation';
+import { setJwt, getJwt } from '../../redux/Tokens/JWTactions';
+import { setRefresh, getRefresh } from '../../redux/Tokens/RefreshActions';
 
 
 const LoginPage = () => {
@@ -14,9 +16,11 @@ const LoginPage = () => {
 
     if (response)
     {
+      setJwt(response.jwtToken);
+      setRefresh(response.refreshToken);
       localStorage.setItem("jwtToken", response.jwtToken);
       localStorage.setItem("refreshToken", response.refreshToken);
-      navigate('/');
+      navigate('/Hotels');
     }
   }
 
