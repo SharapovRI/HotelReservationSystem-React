@@ -6,9 +6,7 @@ import RoomInfo from './RoomInfo';
 
 const RoomPage = () => {
     const [room, setRoom] = useState();
-    const params = useParams();
-    const roomId = params.roomId;
-    const hotelId = params.id;
+    const {roomId, hotelId} = useParams();
 
     const navigate = useNavigate();
 
@@ -20,7 +18,7 @@ const RoomPage = () => {
         }
 
         fetchRoom();
-    }, [])
+    }, [roomId, hotelId, setRoom])
 
     function orderCreation(){
         setHotelId(hotelId);
@@ -32,7 +30,7 @@ const RoomPage = () => {
     return(
         <div>
             <div>
-                {room !== undefined && room !== null && <RoomInfo room={room}/>}
+                {room && room !== null && <RoomInfo room={room}/>}
             </div>
             <div>
                 <button onClick={orderCreation}>Book</button>

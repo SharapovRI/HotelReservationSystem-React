@@ -1,9 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const RoomListItems = (props) => {
-    const content = props.content;
-    const hotelId = props.hotelId;
+const RoomListItems = ( {content, hotelId} ) => {
     const listItems = content.map((content) =>
         <NavLink to={`/Hotels/${hotelId}/Rooms/${content.id}`}>
             <li key={content.id}>
