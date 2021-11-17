@@ -6,6 +6,7 @@ import './styles/HomePage.css'
 import { Route } from 'react-router-dom'
 import { Routes } from 'react-router-dom'
 import HotelPage from './HotelPage/HotelPage';
+import RoomPage from './RoomPage/RoomPage';
 
 
 const HomePage = () => {
@@ -26,6 +27,7 @@ const HomePage = () => {
               <Routes>
                 <Route path="/" element={<ContentBlock pageCount={pageCount} content={content} filter={filter} setContent={setContent}/>}/>
                 <Route path="/:id" element={<HotelPage filter={filter}/>}/>
+                <Route path="/:id/Rooms/:roomId" element={<RoomPage/>}/>
               </Routes>
             </div>
         </div>
