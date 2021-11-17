@@ -11,9 +11,9 @@ const OrderPage = () => {
     useEffect(() =>{
         async function GetData()
         {
-            const hotelData = getHotelId();
-            const roomData = getRoomId();
-            const costData = getCost();
+            const hotelData = 1     //  getHotelId();
+            const roomData = 2      //getRoomId();
+            const costData = 300    //getCost();
 
             if (hotelData !== null && roomData !== null && costData !== null)
             {

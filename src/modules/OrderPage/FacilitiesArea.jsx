@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useDebounce } from "use-debounce/lib";
 import getHotelFacilities from "../../api/apiRequests/getHotelFacilities";
 import CostSlider from "./CostSlider";
 import FacilitiesList from "./FacilitiesList";
+
 
 
 const FacilitiesArea = ( { hotelId } ) => {
@@ -9,25 +11,25 @@ const FacilitiesArea = ( { hotelId } ) => {
     const [maxCost, setMaxCost] = useState(9999);
     const [facilities, setFacilities] = useState([]);
 
+    const debouncedMinCost = useDebounce(minCost, 500);
+    const debouncedMaxCost = useDebounce(maxCost, 500);
+
     useEffect(() => {
-        const timer1 = setTimeout(() => {
-            async function fetchFacilities() {
+        async function fetchFacilities() {
 
-                const data = await getHotelFacilities(hotelId, {
-                    minCost: minCost,
-                    maxCost: maxCost,
-                    index: 0,
-                    size: 200
-                });
+            const data = await getHotelFacilities(2, {
+                minCost: debouncedMinCost[0],
+                maxCost: debouncedMaxCost[0],
+                index: 0,
+                size: 200
+            });
 
-                setFacilities(data);
-            }
+            setFacilities(data);
+        }
 
-            fetchFacilities();
-        }, 1000);
+        fetchFacilities();
 
-        return () => clearTimeout(timer1);
-    }, [minCost, maxCost])
+    }, [debouncedMinCost[0], debouncedMaxCost[0]])
 
     return(
         <div>
