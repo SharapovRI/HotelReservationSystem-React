@@ -9,7 +9,7 @@ const OrderPage = () => {
     const [cost, setCost] = useState(0);
 
     useEffect(() =>{
-        async function GetData()
+        async function getData()
         {
             const hotelData = 1     //  getHotelId();
             const roomData = 2      //getRoomId();
@@ -22,8 +22,8 @@ const OrderPage = () => {
                 setCost(costData);
             }
         }
-        GetData();
-    }, [])
+        getData();
+    }, [setHotelId, setRoomId, setCost])
 
     return(
         <div>
