@@ -11,15 +11,15 @@ const FacilitiesArea = ( { hotelId } ) => {
     const [maxCost, setMaxCost] = useState(9999);
     const [facilities, setFacilities] = useState([]);
 
-    const debouncedMinCost = useDebounce(minCost, 500);
-    const debouncedMaxCost = useDebounce(maxCost, 500);
+    const [debouncedMinCost] = useDebounce(minCost, 500);
+    const [debouncedMaxCost] = useDebounce(maxCost, 500);
 
     useEffect(() => {
         async function fetchFacilities() {
 
             const data = await getHotelFacilities(2, {
-                minCost: debouncedMinCost[0],
-                maxCost: debouncedMaxCost[0],
+                minCost: debouncedMinCost,
+                maxCost: debouncedMaxCost,
                 index: 0,
                 size: 200
             });
@@ -29,7 +29,7 @@ const FacilitiesArea = ( { hotelId } ) => {
 
         fetchFacilities();
 
-    }, [debouncedMinCost[0], debouncedMaxCost[0]])
+    }, [debouncedMinCost, debouncedMaxCost])
 
     return(
         <div>
