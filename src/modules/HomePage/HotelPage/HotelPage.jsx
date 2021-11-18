@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import getHotelRooms from '../../../api/apiRequests/getHotelRooms';
 import InfoBlock from './InfoBlock';
-import RoomList from './RoomList';
+//import RoomList from './RoomList';
 
 const HotelPage = ({filter}) => {
     const params = useParams();
@@ -28,13 +28,13 @@ const HotelPage = ({filter}) => {
                 <InfoBlock hotel={hotel}/>
             </div>
             <div>
-                <RoomList 
+                {/* <RoomList 
                     rooms={rooms} 
                     pageCount={pageCount} 
                     filter={filter}
                     hotelId={hotelId}
                     setRooms={setRooms}
-                />
+                /> */}
             </div>
         </div>
     )
