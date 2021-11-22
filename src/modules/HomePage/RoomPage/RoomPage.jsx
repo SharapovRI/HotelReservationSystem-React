@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import getRoom from '../../../api/apiRequests/getRoom';
-import { getCheckInDate, setCost, setHotelId, setRoomId } from '../../../redux/CurrentOrder/OrderActions';
+import setOrderDataStorage from '../../../services/Order/setOrderDataStorage';
 import RoomInfo from './RoomInfo';
 
 const RoomPage = () => {
@@ -20,10 +20,14 @@ const RoomPage = () => {
         fetchRoom();
     }, [roomId, hotelId, setRoom])
 
-    function orderCreation(){
-        setHotelId(hotelId);
-        setRoomId(roomId);
-        setCost(room.cost);
+    function orderCreation() {
+        const orderData = {
+            hotelId: hotelId,
+            roomId: roomId,
+            cost: room.cost
+        }
+        
+        setOrderDataStorage(orderData);
         navigate("/Order");
     }
 

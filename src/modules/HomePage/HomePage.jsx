@@ -26,8 +26,8 @@ const HomePage = () => {
             <div className='resultArea'>
               <Routes>
                 <Route path="/" element={<ContentBlock pageCount={pageCount} content={content} filter={filter} setContent={setContent}/>}/>
-                <Route path="/:id" element={<HotelPage filter={filter}/>}/>
-                <Route path="/:id/Rooms/:roomId" element={<RoomPage/>}/>
+                <Route path="/:hotelId" element={<HotelPage filter={filter}/>}/>
+                <Route path="/:hotelId/Rooms/:roomId" element={<RoomPage/>}/>
               </Routes>
             </div>
         </div>
