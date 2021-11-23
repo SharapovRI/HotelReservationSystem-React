@@ -3,12 +3,14 @@ import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import postAuthenticate from '../../api/apiRequests/authentication';
 import checkLoginData from '../../services/Validation/loginDataValidation';
-import { setJwt, getJwt } from '../../redux/Tokens/JWTactions';
-import { setRefresh, getRefresh } from '../../redux/Tokens/RefreshActions';
+import { useDispatch } from 'react-redux';
+import { addJwt } from '../../redux/Reducers/JWTreducer';
+import { addRefresh } from '../../redux/Reducers/RefreshReducer';
 
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   async function authorizeClick({login, password})
   {    
@@ -16,11 +18,11 @@ const LoginPage = () => {
 
     if (response)
     {
-      setJwt(response.jwtToken);
-      setRefresh(response.refreshToken);
+      dispatch(addJwt(response.jwtToken));
+      dispatch(addRefresh(response.refreshToken));
       localStorage.setItem("jwtToken", response.jwtToken);
       localStorage.setItem("refreshToken", response.refreshToken);
-      navigate('/Hotels');
+      navigate(`/Hotels`);
     }
   }
 

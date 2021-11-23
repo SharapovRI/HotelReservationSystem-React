@@ -6,15 +6,15 @@ const refreshSlice = createSlice({
         value: ''
     },
     reducers: {
-        add: (state, newValue) => {
+        addRefresh: (state, newValue) => {
             state.value = newValue
         },
-        remove: (state) => {
+        removeRefresh: (state) => {
             state.value = ''
         }
     }
 })
 
-export const { add, remove } = refreshSlice.actions
+export const { addRefresh, removeRefresh } = refreshSlice.actions
 
-export default refreshSlice
+export default refreshSlice.reducer

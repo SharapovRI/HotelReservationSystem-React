@@ -17,7 +17,7 @@ const FacilitiesArea = ( { hotelId } ) => {
     useEffect(() => {
         async function fetchFacilities() {
 
-            const data = await getHotelFacilities(2, {
+            const data = await getHotelFacilities(hotelId, {
                 minCost: debouncedMinCost,
                 maxCost: debouncedMaxCost,
                 index: 0,

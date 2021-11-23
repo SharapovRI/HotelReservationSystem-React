@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getCost, getHotelId, getRoomId } from "../../redux/CurrentOrder/OrderActions";
+import getFilterStorage from "../../services/Order/getFilterStorage";
+import getOrderDataStorage from "../../services/Order/getOrderDataStorage";
 import FacilitiesArea from "./FacilitiesArea";
 
 
@@ -11,9 +12,12 @@ const OrderPage = () => {
     useEffect(() =>{
         async function getData()
         {
-            const hotelData = 1     //  getHotelId();
-            const roomData = 2      //getRoomId();
-            const costData = 300    //getCost();
+            const data = getOrderDataStorage();
+            const filter = getFilterStorage();
+
+            const hotelData = data.hotelId // getHotelId();
+            const roomData = data.roomId // getRoomId();
+            const costData = data.cost // getCost();
 
             if (hotelData !== null && roomData !== null && costData !== null)
             {
@@ -25,9 +29,14 @@ const OrderPage = () => {
         getData();
     }, [setHotelId, setRoomId, setCost])
 
-    return(
+    return (
         <div>
-            {hotelId !== undefined && <FacilitiesArea hotelId={hotelId}/>}
+            <div>
+                <h2>{cost}</h2>
+            </div>
+            <div>
+                {hotelId !== undefined && <FacilitiesArea hotelId={hotelId} />}
+            </div>
         </div>
     )
 }

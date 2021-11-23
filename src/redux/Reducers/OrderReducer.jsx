@@ -56,4 +56,4 @@ export const {
     removeCost
 } = orderSlice.actions
 
-export default orderSlice
+export default orderSlice.reducer
