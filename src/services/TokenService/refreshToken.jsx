@@ -6,6 +6,5 @@ async function refresh() {
   if (response) {
     localStorage.setItem("jwtToken", response.jwtToken);
     localStorage.setItem("refreshToken", response.refreshToken);
-    window.location.reload();
   }
 }

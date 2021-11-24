@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import getRoom from '../../../api/apiRequests/getRoom';
+import { addRoom } from '../../../redux/Reducers/OrderReducer';
 import setOrderDataStorage from '../../../services/Order/setOrderDataStorage';
 import RoomInfo from './RoomInfo';
 
@@ -9,6 +11,7 @@ const RoomPage = () => {
     const {roomId, hotelId} = useParams();
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         async function fetchRoom()
@@ -28,6 +31,7 @@ const RoomPage = () => {
         }
         
         setOrderDataStorage(orderData);
+        dispatch(addRoom(room));
         navigate("/Order");
     }
 

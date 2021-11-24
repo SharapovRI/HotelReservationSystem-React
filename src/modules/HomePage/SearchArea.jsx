@@ -24,6 +24,7 @@ const SearchArea = ({setFilter, setContent, setPageCount}) => {
 
         const data = await getHotels({...payload, index:0});      
         
+        console.log(data);
         setContent(data.result);
         setPageCount(data.pageCount);
         // setCheckInDate(date[0].toJSON());

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Typography from '@mui/material/Typography';
-import { getLogin } from "../../../services/TokenService/getLogin";
+import { getId } from "../../../services/TokenService/getId";
 import { useSelector, useDispatch } from "react-redux";
 
 
@@ -12,7 +12,7 @@ const UserName = () => {
     const [role, setRole] = useState('User');
 
     useEffect(() => {
-        setUserLogin(getLogin(token));
+        setUserLogin(getId(token));
     }, [token]);
 
     return (

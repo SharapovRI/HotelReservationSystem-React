@@ -1,4 +1,4 @@
-const getLogin = (token) => {
+const getId = (token) => {
     try {
         return JSON.parse(atob(token.split('.')[1])).Name;
     } catch {
@@ -6,4 +6,4 @@ const getLogin = (token) => {
     }
 };
 
-export {getLogin}
+export {getId}

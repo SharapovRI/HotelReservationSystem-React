@@ -25,6 +25,7 @@ const FacilitiesArea = ( { hotelId } ) => {
             });
 
             setFacilities(data);
+            console.log(data);
         }
 
         fetchFacilities();
