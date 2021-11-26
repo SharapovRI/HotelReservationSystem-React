@@ -46,10 +46,10 @@ const orderSlice = createSlice({
             state.room = room.payload
         },
         addFacilities: (state, facility) => {
-            state.facilities.push(facility.payload)
+            state.facilities.unshift(facility.payload)
         },
         removeFacility: (state, facility) => {
-            const index = state.facilities.indexOf(facility);
+            const index = state.facilities.findIndex((facil) => facil.id === facility.payload.id);
             state.facilities.splice(index, 1);
         }
     }

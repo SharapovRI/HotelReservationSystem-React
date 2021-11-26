@@ -4,7 +4,6 @@ import { addFacilities } from '../../redux/Reducers/OrderReducer';
 import { useDispatch } from 'react-redux';
 
 const FacilitiesList = ( {facilities} ) => {
-    const [data, setData] = useState();
     const dispatch = useDispatch();
 
 
@@ -46,7 +45,7 @@ const FacilitiesList = ( {facilities} ) => {
 
 
     return (        
-        <div style={{ height: 520, width: '100%' }}>
+        <div style={{ height: 520, width: 330 }}>
             <DataGridPro
                 columns={columns}
                 rows={facilities}

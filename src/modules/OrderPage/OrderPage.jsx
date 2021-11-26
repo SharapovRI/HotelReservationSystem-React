@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import getRoom from "../../api/apiRequests/getRoom";
+import createOrder from "../../services/Order/createOrder";
 import getFilterStorage from "../../services/Order/getFilterStorage";
 import getOrderDataStorage from "../../services/Order/getOrderDataStorage";
+import getSavedData from "../../services/Order/getSavedData";
 import { getId } from "../../services/TokenService/getId";
 import FacilitiesArea from "./FacilitiesArea";
 import OrderTable from "./OrderTable";
@@ -23,48 +25,44 @@ const OrderPage = () => {
     const [checkInDate, setCheckInDate] = useState();
     const [checkOutDate, setCheckOutDate] = useState();
 
-    const[checkInTime, setCheckInTime] = useState(new Date(0, 0, 0, 12));
+    const [checkInTime, setCheckInTime] = useState(new Date(0, 0, 0, 12));
 
-    useEffect(() =>{
-        async function getData()
-        {
-            const data = getOrderDataStorage();
-            const filter = getFilterStorage();
-
-            const hotelData = data.hotelId 
-            const roomData = data.roomId 
-            const costData = data.cost 
-
-            const id = getId(localStorage.getItem("jwtToken")); 
-
-            if (hotelData && roomData && costData && id)
-            {
-                setHotelId(hotelData);
-                setRoomId(roomData);
-                setCost(costData);
-                setUserId(id);
-            }
-        }
-        getData();
-    }, [setHotelId, setRoomId, setCost])
+    const [facilitiesIds, setFacilitiesIds] = useState([]);
 
     useEffect(() => {
-        async function fetchRoom()
-        {
+        getSavedData(setUserId, setHotelId, setRoomId, setCost, setCityId, setCheckInDate, setCheckOutDate)
+    }, [roomSt])
+
+    useEffect(() => {
+        async function fetchRoom() {
             const data = await getRoom(roomId, hotelId);
             setRoom(data);
         }
-        {!roomSt && roomId && hotelId && fetchRoom()};
+        { !roomSt && roomId && hotelId && fetchRoom() };
+        { roomSt && setRoom(roomSt)}
     }, [roomSt, roomId, hotelId])
+
+    const style = {
+        float: 'right',
+    }
+
+    const left = {
+        float: 'left',
+    }
+
+    const doOrder = () => {
+        createOrder(roomId, userId, checkInDate, checkOutDate, cost, facilitiesIds, checkInTime)
+    }
 
     return (
         <div>
             <h2>Order page</h2>
             {room && <h2>{room.id}</h2>}
-            <div>
-                <OrderTable />
+            <div style={left}>
+                <OrderTable room={room} cost={cost} setCost={setCost} setFacilitiesIds={setFacilitiesIds} />
+                <button onClick={doOrder}>Create order</button>
             </div>
-            <div>
+            <div style={style}>
                 {hotelId !== undefined && <FacilitiesArea hotelId={hotelId} />}
                 <TimePickerIn timeIn={checkInTime} setTimeIn={setCheckInTime} />
             </div>
