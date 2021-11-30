@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import getRoom from "../../api/apiRequests/getRoom";
 import createOrder from "../../services/Order/createOrder";
-import getFilterStorage from "../../services/Order/getFilterStorage";
-import getOrderDataStorage from "../../services/Order/getOrderDataStorage";
 import getSavedData from "../../services/Order/getSavedData";
-import { getId } from "../../services/TokenService/getId";
 import FacilitiesArea from "./FacilitiesArea";
 import OrderTable from "./OrderTable";
 import TimePickerIn from "./TimePickerIn";
@@ -29,6 +27,8 @@ const OrderPage = () => {
 
     const [facilitiesIds, setFacilitiesIds] = useState([]);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         getSavedData(setUserId, setHotelId, setRoomId, setCost, setCityId, setCheckInDate, setCheckOutDate)
     }, [roomSt])
@@ -51,7 +51,8 @@ const OrderPage = () => {
     }
 
     const doOrder = () => {
-        createOrder(roomId, userId, checkInDate, checkOutDate, cost, facilitiesIds, checkInTime)
+        createOrder(roomId, userId, checkInDate, checkOutDate, cost, facilitiesIds, checkInTime);
+        navigate('/AllOrders')
     }
 
     return (

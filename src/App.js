@@ -8,6 +8,7 @@ import OrderPage from './modules/OrderPage/OrderPage';
 import RegistrationPage from './modules/RegistrationPage/RegistrationPage';
 import Footer from './modules/Shared/Footer/Footer';
 import Header from './modules/Shared/Header/Header';
+import AllOrdersPage from './modules/AllOrdersPage/AllOrdersPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/Registration" element={<RegistrationPage />} />
             <Route path="/Hotels/*" element={<HomePage />} />
             <Route path="/Order" element={<OrderPage />} />
+            <Route path="/AllOrders" element={<AllOrdersPage />} />
           </Routes>
         </div>
         <Footer/> 

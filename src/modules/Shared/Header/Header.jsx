@@ -10,6 +10,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Link } from '@mui/material';
 import LogOutMenuItem from '../LogOut/LogOutMenuItem';
 import UserName from './UserName';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -42,10 +43,12 @@ const Header = () => {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-            <LogOutMenuItem handleMenuClose={handleMenuClose}/>
+            <NavLink to={'/AllOrders'}>
+                <MenuItem onClick={handleMenuClose}>My orders</MenuItem>
+            </NavLink>
+            <LogOutMenuItem handleMenuClose={handleMenuClose} />
         </Menu>
-    );    
+    );
 
     const style = {
         color: 'white',
@@ -70,7 +73,7 @@ const Header = () => {
 
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <UserName/>
+                        <UserName />
 
                         <IconButton
                             size="large"
