@@ -25,6 +25,8 @@ const CostSlider = ( { minCost, setMinCost, maxCost, setMaxCost } ) => {
     return (
         <div>
             <Slider
+            min={0}
+            max={999}
                 getAriaLabel={() => 'Minimum distance'}
                 value={value}
                 onChange={handleChange}

@@ -6,13 +6,9 @@ const getSavedData = (setUserId, setHotelId, setRoomId, setCost, setCityId, setC
     const data = getOrderDataStorage();
     const filter = getFilterStorage();
 
-    const hotelData = data.hotelId
-    const roomData = data.roomId
-    const costData = data.cost
+    const { hotelId: hotelData, roomId: roomData, cost: costData } = data;
 
-    const cityId = filter.id
-    const checkInDate = filter.checkIn
-    const checkOutDate = filter.checkOut
+    const { id: cityId, checkIn: checkInDate, checkOut: checkOutDate } = filter;
 
     const id = getId(localStorage.getItem("jwtToken"));
 
