@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const orderSlice = createSlice({
     name: 'order',
     initialState: {
+        room: null,
         CheckInDate: null,
         CheckOutDate: null,
         hotelId: '',
         roomId: '',
-        cost: null
+        cost: null,
+        facilities: [],
     },
     reducers: {
         addCheckInDate: (state, newValue) => {
@@ -39,6 +41,16 @@ const orderSlice = createSlice({
         },
         removeCost: (state) => {
             state.cost = null
+        },
+        addRoom: (state, room) => {
+            state.room = room.payload
+        },
+        addFacilities: (state, facility) => {
+            state.facilities.unshift(facility.payload)
+        },
+        removeFacility: (state, facility) => {
+            const index = state.facilities.findIndex((facil) => facil.id === facility.payload.id);
+            state.facilities.splice(index, 1);
         }
     }
 })
@@ -53,7 +65,10 @@ export const {
     addRoomId,
     removeRoomId,
     addCost,
-    removeCost
+    removeCost,
+    addRoom,
+    addFacilities,
+    removeFacility,
 } = orderSlice.actions
 
 export default orderSlice.reducer

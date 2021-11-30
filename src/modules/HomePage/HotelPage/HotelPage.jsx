@@ -21,6 +21,7 @@ const HotelPage = ({filter}) => {
         }
 
         {filter && setFilterStorage(filter)}
+        console.log(filter);
         fetchHotelRooms();
     }, [filter])
 
