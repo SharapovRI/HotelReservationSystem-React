@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import ComboBox from './ComboBox';
 import DatePickerRange from './DatePickerRange';
 import TextField from '@mui/material/TextField';
 import getHotels from '../../api/apiRequests/getHotels';
 import './styles/HomePage.css'
 import { Link } from 'react-router-dom';
+import ComboBox from '../Shared/ComboBox/ComboBox';
 
 const SearchArea = ({setFilter, setContent, setPageCount}) => {
     const [date, setDate] = useState([new Date(), new Date()]);
@@ -14,7 +14,7 @@ const SearchArea = ({setFilter, setContent, setPageCount}) => {
     async function searchHotels()
     {    
         const payload = {
-            id:city,
+            cityId:city,
             checkIn: new Date(date[0]).toJSON(),
             checkOut: new Date(date[1]).toJSON(),
             freeSeatsCount:seatsCount,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ContentBlock from './Contentik';
+import HotelList from './HotelList';
 import SearchArea from './SearchArea';
 import './styles/HomePage.css'
 
@@ -25,7 +25,7 @@ const HomePage = () => {
               <SearchArea setFilter={setFilter} setContent={setContent} setPageCount={setPageCount}/>
             <div className='resultArea'>
               <Routes>
-                <Route path="/" element={<ContentBlock pageCount={pageCount} content={content} filter={filter} setContent={setContent}/>}/>
+                <Route path="/" element={<HotelList pageCount={pageCount} content={content} filter={filter} setContent={setContent}/>}/>
                 <Route path="/:hotelId" element={<HotelPage filter={filter}/>}/>
                 <Route path="/:hotelId/Rooms/:roomId" element={<RoomPage/>}/>
               </Routes>

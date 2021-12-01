@@ -9,6 +9,8 @@ import RegistrationPage from './modules/RegistrationPage/RegistrationPage';
 import Footer from './modules/Shared/Footer/Footer';
 import Header from './modules/Shared/Header/Header';
 import AllOrdersPage from './modules/AllOrdersPage/AllOrdersPage';
+import AdminPage from './modules/AdminPage/AdminPage';
+import HotelCreationPage from './modules/AdminPage/HotelCreation/HotelCreationPage';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
             <Route path="/Hotels/*" element={<HomePage />} />
             <Route path="/Order" element={<OrderPage />} />
             <Route path="/AllOrders" element={<AllOrdersPage />} />
+            <Route path="/Admin" element={<AdminPage />} />
+            <Route path="/HotelCreation" element={<HotelCreationPage/>} />
           </Routes>
         </div>
         <Footer/> 

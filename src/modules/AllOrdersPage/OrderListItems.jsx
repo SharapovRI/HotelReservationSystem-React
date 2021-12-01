@@ -29,6 +29,7 @@ const OrderListItems = ({ content }) => {
                     Cost:
                     {content && content.cost}
                     Time:
+                    {content && content.checkInTime}
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
