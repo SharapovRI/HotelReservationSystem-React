@@ -11,6 +11,7 @@ import Header from './modules/Shared/Header/Header';
 import AllOrdersPage from './modules/AllOrdersPage/AllOrdersPage';
 import AdminPage from './modules/AdminPage/AdminPage';
 import HotelCreationPage from './modules/AdminPage/HotelCreation/HotelCreationPage';
+import HotelUpdatingPage from './modules/AdminPage/HotelUpdating/HotelUpdatingPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/AllOrders" element={<AllOrdersPage />} />
             <Route path="/Admin" element={<AdminPage />} />
             <Route path="/HotelCreation" element={<HotelCreationPage/>} />
+            <Route path="/HotelUpdating/:hotelId" element={<HotelUpdatingPage />} />
           </Routes>
         </div>
         <Footer/> 

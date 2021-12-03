@@ -9,6 +9,7 @@ const OrderFilterArea = ( { setFilter } ) => {
     const token = useSelector((state) => state.jwtReducer?.token);
     const [userId, setUserId] = useState();
     const [city, setCity] = useState(null);
+    const [country, setCountry] = useState(null);
     const [time, setTime] = useState(true);
 
     useEffect(() => {
@@ -27,6 +28,7 @@ const OrderFilterArea = ( { setFilter } ) => {
         <>
             <ComboBox className='cbLocates' option={city}
                 setOption={(newValue) => setCity(newValue)}
+                setCountry={(newValue => setCountry(newValue))}
                 boxText={(option) => (option.country) + ', ' + option.city}
                 getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
                 labelText='Locates'

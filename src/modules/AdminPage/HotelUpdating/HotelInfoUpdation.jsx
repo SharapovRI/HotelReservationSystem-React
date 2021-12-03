@@ -1,31 +1,38 @@
+import { TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import ComboBox from "../../Shared/ComboBox/ComboBox";
-import TextField from '@mui/material/TextField';
 
-const HotelDataArea = ({setHotelData}) => {
+const HotelInfoUpdating = ({ setHotelData, hotel }) => {
+    const { city: cityName, address: address, name: name } = hotel;
     const [city, setCity] = useState(null);
     const [country, setCountry] = useState(null);
-    const [address, setAddress] = useState('');
-    const [hotelName, setHotelName] = useState('');
+    const [newAddress, setAddress] = useState('');
+    const [newName, setName] = useState('');
+
+    useEffect(() => {
+        setAddress(address);
+        setName(name);
+    }, [address, name])
 
     const onAddressChange = (event) => {
         setAddress(event.target.value);
     }
     const onNameChange = (event) => {
-        setHotelName(event.target.value);
+        setName(event.target.value);
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setHotelData({
-            cityId:city,
-            address:address,
-            name:hotelName,
-            countryId:country,
+            cityId: city,
+            address: newAddress,
+            name: newName,
+            countryId: country,
         })
-    }, [city, address, hotelName])
+    }, [city, newAddress, newName])
+
     return (
         <>
-            <ComboBox className='cbLocates' option={city}
+            <ComboBox className='cbLocates' filter={cityName}
                 setOption={(newValue) => setCity(newValue)}
                 setCountry={(newValue => setCountry(newValue))}
                 boxText={(option) => (option.country) + ', ' + option.city}
@@ -34,14 +41,15 @@ const HotelDataArea = ({setHotelData}) => {
             />
             <TextField id="outlined-basic"
                 type={'text'}
-                defaultValue={address}
+                value={newAddress}
                 onInput={onAddressChange}
                 label="Address"
                 variant="outlined"
             />
             <TextField id="outlined-basic"
                 type={'text'}
-                defaultValue={hotelName}
+                defaultValue={newName}
+                value={newName}
                 onInput={onNameChange}
                 label="Hotel Name"
                 variant="outlined"
@@ -50,4 +58,4 @@ const HotelDataArea = ({setHotelData}) => {
     )
 }
 
-export default HotelDataArea;
+export default HotelInfoUpdating;

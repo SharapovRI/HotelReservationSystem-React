@@ -4,23 +4,31 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import axios from 'axios';
 
-const ComboBox = ( {option, setOption, getOptionLabel, boxText, labelText} ) => {
+const ComboBox = ({ filter, setOption, setCountry, getOptionLabel, boxText, labelText }) => {
 
-    const [appState, setAppState] = useState();
-  
-    useEffect(() => {
-        const apiUrl = 'https://localhost:44382/Locates';
-        axios.get(apiUrl)
-        .then((resp) => {
-            const allPersons = resp.data;
-            setAppState(allPersons);
-        })
-        .catch(async function (error) {
-            if (error.response) {
+  const [appState, setAppState] = useState([]);
 
-            }
-        });
-    }, [setAppState]);
+  useEffect(() => {
+    const apiUrl = 'https://localhost:44382/Locates';
+    axios.get(apiUrl)
+      .then((resp) => {
+        const allPersons = resp.data;
+        setAppState(allPersons);
+      })
+      .catch(async function (error) {
+        if (error.response) {
+
+        }
+      });
+  }, [setAppState]);
+
+  useEffect(() => {
+    if (filter && appState.length > 0) {
+      const currentLocate = appState[appState.findIndex((locate) => locate.city === filter)];
+      setOption(currentLocate.id);
+      setCountry(currentLocate.countryId);
+    }
+  }, [appState])
 
   return (
     <Autocomplete
@@ -30,16 +38,17 @@ const ComboBox = ( {option, setOption, getOptionLabel, boxText, labelText} ) => 
       sx={{ width: 300 }}
 
       onChange={(event, newValue) => {
-        if (newValue !== null)
-        {
-          setOption(newValue.id) /////////////TODO country id
+        if (newValue !== null) {
+          setOption(newValue.id);
+          setCountry(newValue.countryId);
         }
         else {
           setOption('');
+          setCountry('');
         }
       }
       }
-      defaultValue={option}
+      value={filter && appState.length > 0 && appState[appState.findIndex((locate) => locate.city === filter)]}
 
       getOptionLabel={getOptionLabel}
       renderOption={(props, option) => (
@@ -54,6 +63,3 @@ const ComboBox = ( {option, setOption, getOptionLabel, boxText, labelText} ) => 
 }
 
 export default ComboBox;
-
-
-  

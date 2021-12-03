@@ -9,6 +9,7 @@ import ComboBox from '../Shared/ComboBox/ComboBox';
 const SearchArea = ({setFilter, setContent, setPageCount}) => {
     const [date, setDate] = useState([new Date(), new Date()]);
     const [city, setCity] = useState(null);
+    const [country, setCountry] = useState(null);
     const [seatsCount, setSeatsCount] = useState(0);
 
     async function searchHotels()
@@ -38,6 +39,7 @@ const SearchArea = ({setFilter, setContent, setPageCount}) => {
         <div className='searchArea'>
             <ComboBox className='cbLocates' option={city} 
                 setOption={(newValue) => setCity(newValue) } 
+                setCountry={(newValue => setCountry(newValue))}
                 boxText={(option) => (option.country) + ', ' + option.city}
                 getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
                 labelText='Locates'

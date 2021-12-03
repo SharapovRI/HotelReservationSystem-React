@@ -22,7 +22,7 @@ const PhotoListItem = ({ item, index, removePhoto }) => {
     return (
         <>
             <li key={index} onClick={handleOpen}>
-                <img src={item} width="100" height="100" />
+                <img src={`data:${item.extension};base64,${item.data}`} width="100" height="100" />
                 </li>
                 <Modal
                     open={open}
@@ -32,7 +32,7 @@ const PhotoListItem = ({ item, index, removePhoto }) => {
                 >
                     <Box sx={style}>
                         <div>
-                            <img src={item} width="400" height="400" />
+                            <img src={`data:${item.extension};base64,${item.data}`} width="400" height="400" />
                         </div>
                         <div>
                             <button onClick={() => {

@@ -5,12 +5,14 @@ import TextField from '@mui/material/TextField';
 
 const AdminFilterArea = ({ setFilter, setContent, setPageCount }) => {
     const [city, setCity] = useState(null);
+    const [country, setCountry] = useState(null);
     const [hotelName, setHotelName] = useState('');
 
     async function searchHotels()
     {    
         const payload = {
             cityId:city,
+            countryId:country,
             checkIn: null,
             checkOut: null,
             freeSeatsCount:0,
@@ -34,6 +36,7 @@ const AdminFilterArea = ({ setFilter, setContent, setPageCount }) => {
         <div>
             <ComboBox className='cbLocates' option={city}
                 setOption={(newValue) => setCity(newValue)}
+                setCountry={(newValue => setCountry(newValue))}
                 boxText={(option) => (option.country) + ', ' + option.city}
                 getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
                 labelText='Locates'

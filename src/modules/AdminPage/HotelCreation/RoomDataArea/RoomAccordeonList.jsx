@@ -1,15 +1,22 @@
-import RoomAccordeonListItems from "./RoomAccordeonListItems";
-import Stack from '@mui/material/Stack';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import AccordionItem from "./AccordionItem";
 
-const RoomAccordeonList = ({ rooms }) => {
+const RoomAccordeonList = ({ content, createdRooms, setCreatedRooms, removeRoomType }) => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        setData(Array.from(content));
+    }, [content])
+
+    const listItems = data.map((content, index) =>
+        <AccordionItem content={content} index={index} createdRooms={createdRooms} setCreatedRooms={setCreatedRooms} removeRoomType={removeRoomType}/>
+    );
+
     return (
-        <>
-            <Stack spacing={2}>
-                <RoomAccordeonListItems content={rooms} />
-            </Stack>
-        </>
-    )
+        <div>
+            <ul>{listItems}</ul>
+        </div>
+    );
 }
 
 export default RoomAccordeonList;

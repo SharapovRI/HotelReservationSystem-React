@@ -3,29 +3,28 @@ import AddPhotoItem from "./AddPhotoItem";
 import PhotoListItem from "./PhotoListItem";
 import './ul_style.css'
 
-const PhotoList = () => {
-    const [itemSource, setItemSource] = useState([]);
+const PhotoList = ( { photos, setPhotos } ) => {
 
     const listItems = () => {
         const list = [];
-        if (itemSource.length > 0) {
-            itemSource.map((item, index) =>
+        if (photos.length > 0) {
+            photos.map((item, index) =>
                 list.push(
                     <PhotoListItem item={item} index={index} removePhoto={removePhoto} />
                 )
             );
         }
         list.push(
-            <AddPhotoItem itemSource={itemSource} setItemSource={setItemSource} />
+            <AddPhotoItem itemSource={photos} setItemSource={setPhotos} />
         );
 
         return list;
     }
 
     function removePhoto(index) {
-        const newSource = Array.from(itemSource);
+        const newSource = Array.from(photos);
         newSource.splice(index, 1);
-        setItemSource(newSource);
+        setPhotos(newSource);
     }
 
     return (
