@@ -15,7 +15,7 @@ const FacilityCreation = ( { facilities, setFacilities } ) => {
 
     const addItem = () => {
         const newItem = {
-            facilityName : facilityName,
+            name : facilityName,
             cost: Number(cost),
         }        
         setFacilities([...facilities, newItem]);

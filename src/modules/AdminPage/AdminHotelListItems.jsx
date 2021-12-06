@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const AdminHotelListItems = (props) => {
     const content = props.content;
 
-    const [image, setImage] = useState('');
+    const navigate = useNavigate();
+
     const extension = "";
     const listItems = content.map((content) =>
         <li key={content.id}>
-            <NavLink to={`/Hotels/${content.id}`}>
+            <NavLink to={`/Admin/Hotels/${content.id}`}>
                 <div>
                     <h3>{content.name}</h3>
                     {console.log(content.photos[0])}
@@ -17,7 +18,7 @@ const AdminHotelListItems = (props) => {
                 </div>
             </NavLink>
             <div>
-                <button>Edit</button>
+                <button onClick={() => navigate(`/HotelUpdating/${content.id}`)}>Edit</button>
                 <button>Delete</button>
             </div>
         </li>

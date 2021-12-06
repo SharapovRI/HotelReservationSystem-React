@@ -3,7 +3,7 @@ function convertingToDataGridData(facilities, setData) {
     facilities.map((facility, index) =>
         list.push({
             id:index,
-            facilityName: facility.facilityName,
+            name: facility.name,
             cost:facility.cost
         })
     );

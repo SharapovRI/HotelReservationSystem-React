@@ -16,7 +16,8 @@ const OrderList = ({filter, pageCount, setPageCount}) => {
         async function fetchOrders() {
             if (filter) {
                 const data = await getUserOrders({ ...filter, index: page - 1 });
-                setContent(data);
+                console.log(data);
+                setContent(data.result);
                 setPageCount(data.pageCount);
             }
         }

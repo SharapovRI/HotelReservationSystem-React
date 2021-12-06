@@ -12,6 +12,8 @@ import AllOrdersPage from './modules/AllOrdersPage/AllOrdersPage';
 import AdminPage from './modules/AdminPage/AdminPage';
 import HotelCreationPage from './modules/AdminPage/HotelCreation/HotelCreationPage';
 import HotelUpdatingPage from './modules/AdminPage/HotelUpdating/HotelUpdatingPage';
+import AdminRoomList from './modules/AdminPage/RoomUpdating/AdminRoomList';
+import AdminRoomPage from './modules/AdminPage/RoomUpdating/AdminRoomPage';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
             <Route path="/Order" element={<OrderPage />} />
             <Route path="/AllOrders" element={<AllOrdersPage />} />
             <Route path="/Admin" element={<AdminPage />} />
+            <Route path="/Admin/Hotels/:hotelId" element={<AdminRoomList />} />
+            <Route path="/Admin/Hotels/:hotelId/Rooms/:roomId" element={<AdminRoomPage />} />
             <Route path="/HotelCreation" element={<HotelCreationPage/>} />
             <Route path="/HotelUpdating/:hotelId" element={<HotelUpdatingPage />} />
           </Routes>

@@ -8,6 +8,8 @@ import FacilitiesArea from "./FacilitiesArea";
 import OrderTable from "./OrderTable";
 import TimePickerIn from "./TimePickerIn";
 
+import {styles} from '../HomePage/styles/styles'
+
 
 const OrderPage = () => {
     const roomSt = useSelector((state) => state.orderReducer?.room)
@@ -42,14 +44,6 @@ const OrderPage = () => {
         { roomSt && setRoom(roomSt)}
     }, [roomSt, roomId, hotelId])
 
-    const style = {
-        float: 'right',
-    }
-
-    const left = {
-        float: 'left',
-    }
-
     const doOrder = () => {
         createOrder(roomId, userId, checkInDate, checkOutDate, cost, facilitiesIds, checkInTime);
         navigate('/AllOrders')
@@ -59,11 +53,11 @@ const OrderPage = () => {
         <div>
             <h2>Order page</h2>
             {room && <h2>{room.id}</h2>}
-            <div style={left}>
+            <div className='orderTable' style={styles.OrderTable}>
                 <OrderTable room={room} cost={cost} setCost={setCost} setFacilitiesIds={setFacilitiesIds} />
                 <button onClick={doOrder}>Create order</button>
             </div>
-            <div style={style}>
+            <div className='facilitiesArea' style={styles.FacilitiesArea}>
                 {hotelId !== undefined && <FacilitiesArea hotelId={hotelId} />}
                 <TimePickerIn timeIn={checkInTime} setTimeIn={setCheckInTime} />
             </div>

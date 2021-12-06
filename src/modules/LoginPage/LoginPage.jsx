@@ -6,18 +6,17 @@ import checkLoginData from '../../services/Validation/loginDataValidation';
 import { useDispatch } from 'react-redux';
 import { addJwt } from '../../redux/Reducers/JWTreducer';
 import { addRefresh } from '../../redux/Reducers/RefreshReducer';
+import './styles.css';
 
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  async function authorizeClick({login, password})
-  {    
+  async function authorizeClick({ login, password }) {
     const response = await postAuthenticate(login, password);
 
-    if (response)
-    {
+    if (response) {
       dispatch(addJwt(response.jwtToken));
       dispatch(addRefresh(response.refreshToken));
       localStorage.setItem("jwtToken", response.jwtToken);
@@ -26,29 +25,44 @@ const LoginPage = () => {
     }
   }
 
-  return(
-    <div>
-      <h1>SignIn</h1>
-      <Formik
-        initialValues={{
-          password: '',
-          login: '',
-        }}
-        validate={checkLoginData}
-        onSubmit={authorizeClick}        
-      >
-        {({ errors }) => (
-          <Form>
-            <Field name="login" />
-            {errors.login  && <div>{errors.login}</div>}
+  return (
+    <div class="container">
+    <div class="transparent">
+      <div class="row align-items-start">
+        <div class="col"></div>
+        <div class="col">
+          <h1>SignIn</h1>
+          <Formik
+            initialValues={{
+              password: '',
+              login: '',
+            }}
+            validate={checkLoginData}
+            onSubmit={authorizeClick}
+          >
+            {({ errors }) => (
+              <Form>
+                <div class="mb-3">
+                  <label for="inputLogin">Login</label>
+                  <Field name="login" id="inputLogin" />
+                  {errors.login && <div>{errors.login}</div>}
+                </div>
 
-            <Field name="password" />
-            {errors.password  && <div>{errors.password}</div>}
-
-            <button type="submit" >Submit</button>
-          </Form>
-        )}
-      </Formik>
+                <div class="mb-3">
+                  <label for="inputLogin">Password</label>
+                  <Field name="password" />
+                  {errors.password && <div>{errors.password}</div>}
+                </div>
+                <div>
+                  <button type="submit">Submit</button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
     </div>
   )
 };

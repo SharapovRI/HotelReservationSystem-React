@@ -3,6 +3,8 @@ import { DataGridPro } from '@mui/x-data-grid-pro';
 import { addFacilities } from '../../redux/Reducers/OrderReducer';
 import { useDispatch } from 'react-redux';
 
+import {styles} from '../HomePage/styles/styles'
+
 const FacilitiesList = ({ facilities }) => {
     const dispatch = useDispatch();
 

@@ -23,6 +23,7 @@ const RoomList = ({ rooms, pageCount, filter, hotelId, setRooms}) => {
 
     return(
         <Stack spacing={2}>
+            <h2>Rooms:</h2>
             <RoomListItems content={rooms} hotelId={hotelId}/>
             <Pagination count={pageCount} page={page} onChange={handleChange} />
         </Stack>

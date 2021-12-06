@@ -5,7 +5,6 @@ import CostSlider from "./CostSlider";
 import FacilitiesList from "./FacilitiesList";
 
 
-
 const FacilitiesArea = ( { hotelId } ) => {
     const [minCost, setMinCost] = useState(0);
     const [maxCost, setMaxCost] = useState(9999);

@@ -9,6 +9,7 @@ const postHotel = async (hotelData, createdRooms, facilities) => {
         name: hotelData.name,
         rooms: createdRooms,
         facilities: facilities,
+        hotelPhotos: hotelData.hotelPhotos,
     }
     console.log(payload);
     return await axios.post(`${baseURL}Hotel/Create`, payload).then(response => response.data).catch(error => console.log(error));

@@ -6,7 +6,7 @@ function getFacilityTableColumns(removeFacility) {
             hide: true,
         },
         {
-            field: 'facilityName',
+            field: 'name',
             headerName: 'Name',
         },
         {

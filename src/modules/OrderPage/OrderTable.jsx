@@ -4,6 +4,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import { getDatagridColumns } from './datagridColumns';
 import { convertingToDataGridData } from './convertingToDataGridData';
 
+import {styles} from '../HomePage/styles/styles'
+
 const OrderTable = ({ room, cost, setCost, setFacilitiesIds }) => {
     const dispatch = useDispatch();
 
@@ -18,7 +20,7 @@ const OrderTable = ({ room, cost, setCost, setFacilitiesIds }) => {
 
     return (
         <>
-            <DataGrid style={{ height: 520, width: 520 }}
+            <DataGrid style={styles.OrderTableGrid}
                 hideFooterPagination={true}
                 hideFooterSelectedRowCount={true}
                 rows={data}

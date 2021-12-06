@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import ComboBox from "../../Shared/ComboBox/ComboBox";
 import TextField from '@mui/material/TextField';
+import PhotoList from "../../Shared/PhotoList/PhotoList";
 
 const HotelDataArea = ({setHotelData}) => {
     const [city, setCity] = useState(null);
     const [country, setCountry] = useState(null);
     const [address, setAddress] = useState('');
     const [hotelName, setHotelName] = useState('');
+    const [hotelPhotos, setHotelPhotos] = useState([]);
 
     const onAddressChange = (event) => {
         setAddress(event.target.value);
@@ -21,10 +23,12 @@ const HotelDataArea = ({setHotelData}) => {
             address:address,
             name:hotelName,
             countryId:country,
+            hotelPhotos:hotelPhotos,
         })
-    }, [city, address, hotelName])
+    }, [city, address, hotelName, hotelPhotos])
     return (
         <>
+        <div>
             <ComboBox className='cbLocates' option={city}
                 setOption={(newValue) => setCity(newValue)}
                 setCountry={(newValue => setCountry(newValue))}
@@ -46,6 +50,10 @@ const HotelDataArea = ({setHotelData}) => {
                 label="Hotel Name"
                 variant="outlined"
             />
+        </div>
+        <div>
+            <PhotoList photos={hotelPhotos} setPhotos={setHotelPhotos}/>
+        </div>
         </>
     )
 }
