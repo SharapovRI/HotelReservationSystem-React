@@ -23,10 +23,16 @@ const OrderTable = ({ room, cost, setCost, setFacilitiesIds }) => {
             <DataGrid style={styles.OrderTableGrid}
                 hideFooterPagination={true}
                 hideFooterSelectedRowCount={true}
+                disableColumnFilter={true}
+                disableColumnMenu={true}
+                disableColumnReorder={true}
+                disableChildrenSorting={true}
                 rows={data}
                 columns={columns}
             />
+            <div className='totalCost' style={styles.TotalCost}>
             Total cost: {cost}
+            </div>
         </>
     )
 }

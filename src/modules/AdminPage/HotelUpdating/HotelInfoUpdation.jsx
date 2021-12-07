@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material";
 import { useEffect, useState } from "react";
+import { styles } from "../../HomePage/styles/styles";
 import ComboBox from "../../Shared/ComboBox/ComboBox";
 
 const HotelInfoUpdating = ({ setHotelData, hotel }) => {
@@ -31,30 +32,36 @@ const HotelInfoUpdating = ({ setHotelData, hotel }) => {
     }, [city, newAddress, newName])
 
     return (
-        <>
-            <ComboBox className='cbLocates' filter={cityName}
-                setOption={(newValue) => setCity(newValue)}
-                setCountry={(newValue => setCountry(newValue))}
-                boxText={(option) => (option.country) + ', ' + option.city}
-                getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
-                labelText='Locates'
-            />
-            <TextField id="outlined-basic"
-                type={'text'}
-                value={newAddress}
-                onInput={onAddressChange}
-                label="Address"
-                variant="outlined"
-            />
-            <TextField id="outlined-basic"
-                type={'text'}
-                defaultValue={newName}
-                value={newName}
-                onInput={onNameChange}
-                label="Hotel Name"
-                variant="outlined"
-            />
-        </>
+        <div className='textArea' style={styles.AdminHotelCreationTextArea}>
+            <div style={styles.SearchAreaElement}>
+                <ComboBox className='cbLocates' filter={cityName}
+                    setOption={(newValue) => setCity(newValue)}
+                    setCountry={(newValue => setCountry(newValue))}
+                    boxText={(option) => (option.country) + ', ' + option.city}
+                    getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
+                    labelText='Locates'
+                />
+            </div>
+            <div style={styles.SearchAreaElement}>
+                <TextField id="outlined-basic"
+                    type={'text'}
+                    value={newAddress}
+                    onInput={onAddressChange}
+                    label="Address"
+                    variant="outlined"
+                />
+            </div>
+            <div style={styles.SearchAreaElement}>
+                <TextField id="outlined-basic"
+                    type={'text'}
+                    defaultValue={newName}
+                    value={newName}
+                    onInput={onNameChange}
+                    label="Hotel Name"
+                    variant="outlined"
+                />
+            </div>
+        </div>
     )
 }
 

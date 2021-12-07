@@ -15,12 +15,14 @@ import HotelUpdatingPage from './modules/AdminPage/HotelUpdating/HotelUpdatingPa
 import AdminRoomList from './modules/AdminPage/RoomUpdating/AdminRoomList';
 import AdminRoomPage from './modules/AdminPage/RoomUpdating/AdminRoomPage';
 
+import {styles} from './modules/HomePage/styles/styles'
+
 function App() {
   return (
     <>
       <Router>
         <Header />
-        <div>
+        <div className='bodyArea' style={styles.BodyArea}>
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/Registration" element={<RegistrationPage />} />

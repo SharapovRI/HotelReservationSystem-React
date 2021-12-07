@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { styles } from "../../HomePage/styles/styles";
 import PhotoList from "../../Shared/PhotoList/PhotoList";
 
 const HotelPhotoUpdating = ( {hotel, setHotelPhotos} ) => {
@@ -13,7 +14,7 @@ const HotelPhotoUpdating = ( {hotel, setHotelPhotos} ) => {
     },[photos])
 
     return(
-        <div>
+        <div className='photoArea' style={styles.AdminHotelCreationPhotoArea}>
             <PhotoList photos={photos} setPhotos={setPhotos} />
         </div>
     )

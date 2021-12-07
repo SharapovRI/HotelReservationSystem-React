@@ -4,8 +4,9 @@ import getHotelFacilities from "../../api/apiRequests/getHotelFacilities";
 import CostSlider from "./CostSlider";
 import FacilitiesList from "./FacilitiesList";
 
+import { styles } from '../HomePage/styles/styles'
 
-const FacilitiesArea = ( { hotelId } ) => {
+const FacilitiesArea = ({ hotelId }) => {
     const [minCost, setMinCost] = useState(0);
     const [maxCost, setMaxCost] = useState(9999);
     const [facilities, setFacilities] = useState([]);
@@ -31,11 +32,15 @@ const FacilitiesArea = ( { hotelId } ) => {
 
     }, [debouncedMinCost, debouncedMaxCost])
 
-    return(
-        <div>
-            <FacilitiesList facilities={facilities} />
-            <CostSlider minCost={minCost} setMinCost={setMinCost} maxCost={maxCost} setMaxCost={setMaxCost} setTimeout={setTimeout}/>
-        </div>
+    return (
+        <>
+            <div className='facilitiesList' style={styles.FacilitiesList}>
+                <FacilitiesList facilities={facilities} />
+            </div>
+            <div className='costSlider' style={styles.CostSlider}>
+                <CostSlider minCost={minCost} setMinCost={setMinCost} maxCost={maxCost} setMaxCost={setMaxCost} setTimeout={setTimeout} />
+            </div>
+        </>
     )
 
 }

@@ -13,11 +13,14 @@ const HomePage = {
 const ResultArea = {
     float: 'right',
     height: '100%',
+    width: '60%',
 }
 
 const SearchArea = {
     float: "left",
-    height: "600px",
+    position: 'absolute',
+    height: '100%',
+    width: '30%',
 }
 
 const SearchAreaElement = {
@@ -29,26 +32,193 @@ const RoomList = {
 }
 
 const OrderTable = {
-    float: "right",
-    width: "50%",
     position: 'absolute',
-    right: "5px",
+    height: '100%',
+    width: '90%',
 }
 
 const FacilitiesArea = {
-    float: "left",
-    width: "45%",
-    position: 'absolute',
-    left: "5px",
+    height: '100%',
 }
 
 const OrderTableGrid = {
-    minHeight: "50vh",
+    // minHeight: "50vh",
+}
+
+const BodyArea = {
+    position: 'absolute',
+    height: '90%',
+    width: '100%',
+}
+
+const OrderPageDiv = {
+    position: 'relative',
+    minHeight: '100%',
+    gridTemplateColumns: '50px 50px',
+}
+
+const TimePickerDiv = {
+    position: 'absolute',
+    bottom: 0,
+    width: '50%',
+    height: '10%',
+}
+
+const FacilityTable = {
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: '90%',
+}
+
+const FacilitiesList = {
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: '90%',
+}
+
+const CostSlider = {
+    position: 'absolute',
+    bottom: 0,
+    width: '90%',
+    height: '10%',
+    marginLeft: '5%',
+}
+
+const DoOrderButton = {
+    position: 'absolute',
+    right: 0,
+}
+
+const TotalCost = {
+    position: 'absolute',
+    right: 0,
+    marginTop: '-30px',
+    marginRight: '30px',
+}
+
+const AllOrdersPage = {
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: '100%',
+}
+
+const AllOrderPageHeader = {
+    height: '10%',
+    padding: 20,
+}
+
+const OrderList = {
+    position: 'absolute',
+    right: 0,
+    height: '100%',
+    width: '65%',
+    marginRight: '5%'
+}
+
+const AdminPageHeader = {
+    height: '10%',
+    padding: 20,
+}
+
+const AdminFilterArea = {
+    float: "left",
+    position: 'absolute',
+    height: '90%',
+    width: '30%',
+}
+
+const AdminHotelListDiv = {
+    position: 'absolute',
+    right: 0,
+    height: '90%',
+    width: '65%',
+    marginRight: '5%'
+}
+
+const AddHotelButton = {
+    position: 'absolute',
+    bottom: 0,
+    margin: 20,
+}
+
+const AdminHotelCreationFilterArea = {
+    float: "left",
+    position: 'absolute',
+    height: '50%',
+    width: '100%',
+}
+
+const AdminHotelCreationPhotoArea = {
+    position: 'absolute',
+    right: 0,
+    width: '65%',
+}
+
+const AdminHotelCreationTextArea = {
+    position: 'absolute',
+    left: 0,
+    width: '35%',
+}
+
+const HotelCreationRoomArea = {
+    position: 'absolute',
+    width: '100%',
+    height: '50%',
+    marginTop: '30%',
+}
+
+const RoomAccordeonList = {
+    position: 'absolute',
+    left: 0,
+    width: '65%',
+}
+
+const RoomTypeCreation = {
+    position: 'absolute',
+    right: 0,
+    width: '35%',
+}
+
+const HotelCreationFacilitiesArea = {
+    position: 'relative',
+    width: '100%',
+    height: '50%',
+    marginTop: '60%',
+}
+
+const HotelCreationFacilityTable = {
+    position: 'absolute',
+    right: 0,
+    width: '65%',
+    height: '100%',
+}
+
+const FacilityCreation = {
+    position: 'absolute',
+    left: 0,
+    width: '35%',
+}
+
+const HotelCreationButton = {
+    position: 'relative',
+    bottom: 0,
+    padding: 20,
+}
+
+const HotelUpdatingFacilitiesArea = {
+    position: 'relative',
+    width: '100%',
+    height: '50%',
+    marginTop: '30%',
 }
 
 const styles = {
     HeaderDiv: HeaderDiv,
     Header: Header,
+    BodyArea: BodyArea,
     HomePage: HomePage,
     ResultArea: ResultArea,
     SearchAreaDiv: SearchArea,
@@ -57,6 +227,31 @@ const styles = {
     OrderTable: OrderTable,
     FacilitiesArea: FacilitiesArea,
     OrderTableGrid: OrderTableGrid,
+    OrderPage: OrderPageDiv,
+    TimePickerDiv: TimePickerDiv,
+    FacilityTable: FacilityTable,
+    FacilitiesList: FacilitiesList,
+    CostSlider: CostSlider,
+    DoOrderButton: DoOrderButton,
+    TotalCost: TotalCost,
+    AllOrdersPage: AllOrdersPage,
+    AllOrderPageHeader: AllOrderPageHeader,
+    OrderList: OrderList,
+    AdminPageHeader: AdminPageHeader,
+    AdminFilterArea: AdminFilterArea,
+    AdminHotelListDiv: AdminHotelListDiv,
+    AddHotelButton: AddHotelButton,
+    AdminHotelCreationFilterArea: AdminHotelCreationFilterArea,
+    AdminHotelCreationPhotoArea: AdminHotelCreationPhotoArea,
+    AdminHotelCreationTextArea: AdminHotelCreationTextArea,
+    HotelCreationRoomArea: HotelCreationRoomArea,
+    RoomAccordeonList: RoomAccordeonList,
+    RoomTypeCreation: RoomTypeCreation,
+    HotelCreationFacilitiesArea: HotelCreationFacilitiesArea,
+    HotelCreationFacilityTable: HotelCreationFacilityTable,
+    FacilityCreation: FacilityCreation,
+    HotelCreationButton: HotelCreationButton,
+    HotelUpdatingFacilitiesArea: HotelUpdatingFacilitiesArea,
 }
 
-export {styles};
+export { styles };

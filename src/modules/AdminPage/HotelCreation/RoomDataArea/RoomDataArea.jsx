@@ -2,6 +2,7 @@ import { useState } from "react";
 import RoomAccordeonList from "./RoomAccordeonList";
 import RoomTypeCreation from "./RoomTypeCreation";
 import Stack from '@mui/material/Stack';
+import { styles } from "../../../HomePage/styles/styles";
 
 const RoomDataArea = ({createdRooms, setCreatedRooms}) => {
     const [rooms, setRooms] = useState([]);
@@ -17,12 +18,12 @@ const RoomDataArea = ({createdRooms, setCreatedRooms}) => {
 
     return (
         <div>
-            <div style={{ float: 'left' }}>
+            <div style={styles.RoomAccordeonList}>
                 <Stack spacing={2}>
                     <RoomAccordeonList content={rooms} createdRooms={createdRooms} setCreatedRooms={setCreatedRooms} removeRoomType={removeRoomType}/>
                 </Stack>
             </div>
-            <div style={{ float: 'right' }}>
+            <div style={styles.RoomTypeCreation}>
                 <RoomTypeCreation rooms={rooms} setRooms={setRooms} />
             </div>
         </div>

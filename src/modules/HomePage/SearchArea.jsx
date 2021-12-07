@@ -37,7 +37,7 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
     }
 
     return (
-        <div className='searchArea' styles={styles.SearchAreaDiv}>
+        <div className='searchArea' style={styles.SearchAreaDiv}>
             <div className='searchAreaElement' style={styles.SearchAreaElement}>
                 <ComboBox className='cbLocates' option={city}
                     setOption={(newValue) => setCity(newValue)}

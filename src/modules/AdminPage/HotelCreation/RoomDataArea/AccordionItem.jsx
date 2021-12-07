@@ -55,29 +55,28 @@ const AccordionItem = ({ content, index, createdRooms, setCreatedRooms, removeRo
             >
                 <div>
                     <div>
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                            {typeName}
+                        <Typography sx={{ width: '80%', flexShrink: 0 }}>
+                                {`Type: ${typeName}`}
                         </Typography>
                     </div>
                     <div>
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                            {seatsCount} seats
+                        <Typography sx={{ width: '70%', flexShrink: 0 }}>
+                            {`Count of seats: ${seatsCount}`}
                         </Typography>
                     </div>
                     <div>
-                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                            {cost} $
+                        <Typography sx={{ width: '70%', flexShrink: 0 }}>
+                        {`Cost: ${cost}`}
                         </Typography>
                     </div>
                 </div>
-                <div>
-                    Count:
+                <div style={{float: 'right'}}>
                     <TextField id="outlined-basic"
                         type={'text'}
                         defaultValue={roomCount}
                         value={roomCount}
                         onInput={onCountChange}
-                        label=""
+                        label="How many create"
                         variant="outlined"
                     />
                 </div>

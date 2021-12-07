@@ -1,14 +1,15 @@
+import { styles } from "../../../HomePage/styles/styles";
 import FacilitiesTable from "./FacilitiesTable";
 import FacilityCreation from "./FacilityCreation";
 
 const FacilitiesDataArea = ({facilities, setFacilities}) => {
     return(
         <div>
-            <div style={{width: 400}}>
+            <div className='facilitiesTable' style={styles.HotelCreationFacilityTable}>
                 <FacilitiesTable facilities={facilities} setFacilities={setFacilities}/>
 
             </div>
-            <div style={{ float: 'right', width: 900, height: 500, marginTop:150}}>
+            <div style={styles.FacilityCreation}>
                 <FacilityCreation facilities={facilities} setFacilities={setFacilities} />
             </div>
         </div>

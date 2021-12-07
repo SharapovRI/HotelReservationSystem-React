@@ -14,12 +14,9 @@ const FacilitiesList = ({ facilities }) => {
             headerName: '',
             width: 150,
             renderCell: (params) => (
-                <strong>
+                
                     <button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        style={{ marginLeft: 16 }}
+                        style={{ fontSize: 16, paddingLeft: 10, paddingRight:10}}
                         onClick={() => {
                             delete params.row.button;
                             dispatch(addFacilities(params.row));
@@ -27,7 +24,6 @@ const FacilitiesList = ({ facilities }) => {
                     >
                         +
                     </button>
-                </strong>
             ),
         },
         {
@@ -46,13 +42,18 @@ const FacilitiesList = ({ facilities }) => {
 
 
     return (
-        <div style={{ height: 520, width: 330 }}>
             <DataGridPro
+                hideFooterPagination={true}
+                hideFooterRowCount={true}
+                hideFooterSelectedRowCount={true}
+                disableColumnFilter={true}
+                disableColumnMenu={true}
+                disableColumnReorder={true}
+                disableChildrenSorting={true}
                 columns={columns}
                 rows={facilities}
                 rowHeght={38}
             />
-        </div>
     );
 }
 

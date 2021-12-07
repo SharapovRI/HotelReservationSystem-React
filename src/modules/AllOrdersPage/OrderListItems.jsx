@@ -18,23 +18,21 @@ const OrderListItems = ({ content }) => {
         setExpanded(isExpanded ? panel : false);
     };
 
-    const listItems = data.map((content) =>
-        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+    const listItems = data.map((content, index) =>
+        <Accordion expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)} style={{margin: '10px'}}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
             >
-                <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                    Cost:
-                    {content && content.cost}
-                    Time:
-                    {content && content.checkInTime}
+                <Typography sx={{ width: '90%', flexShrink: 0 }}>
+                    {content && `Time: ${content.checkInTime} - ${content.checkOutTime}`}
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
                 <Typography>
-                    Hotel:
+                Cost:
+                    {content && content.cost}
                 </Typography>
             </AccordionDetails>
         </Accordion>

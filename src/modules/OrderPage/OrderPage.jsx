@@ -7,8 +7,9 @@ import getSavedData from "../../services/Order/getSavedData";
 import FacilitiesArea from "./FacilitiesArea";
 import OrderTable from "./OrderTable";
 import TimePickerIn from "./TimePickerIn";
+import Grid from '@mui/material/Grid';
 
-import {styles} from '../HomePage/styles/styles'
+import { styles } from '../HomePage/styles/styles'
 
 
 const OrderPage = () => {
@@ -41,7 +42,7 @@ const OrderPage = () => {
             setRoom(data);
         }
         { !roomSt && roomId && hotelId && fetchRoom() };
-        { roomSt && setRoom(roomSt)}
+        { roomSt && setRoom(roomSt) }
     }, [roomSt, roomId, hotelId])
 
     const doOrder = () => {
@@ -50,17 +51,31 @@ const OrderPage = () => {
     }
 
     return (
-        <div>
-            <h2>Order page</h2>
-            {room && <h2>{room.id}</h2>}
-            <div className='orderTable' style={styles.OrderTable}>
-                <OrderTable room={room} cost={cost} setCost={setCost} setFacilitiesIds={setFacilitiesIds} />
-                <button onClick={doOrder}>Create order</button>
+        <div className='orderPage' style={styles.OrderPage}>
+            <div className='orderPageHeader'>
+                <h2>Order page</h2>
+                {room && <h2>{room.id}</h2>}
             </div>
-            <div className='facilitiesArea' style={styles.FacilitiesArea}>
-                {hotelId !== undefined && <FacilitiesArea hotelId={hotelId} />}
-                <TimePickerIn timeIn={checkInTime} setTimeIn={setCheckInTime} />
-            </div>
+            <Grid container spacing={2} sx={{ position: 'absolute', height: '90%' }}>
+                <Grid item xs={6} sx={{ position: 'absolute', width: '50%', float: 'left', height: '90%' }}>
+                    <div className='facilitiesArea' style={styles.FacilitiesArea}>
+                        <div className='facilityTable' style={styles.FacilityTable}>
+                            {hotelId !== undefined && <FacilitiesArea hotelId={hotelId} />}
+                        </div>
+                        <div className='timePicker' style={styles.TimePickerDiv}>
+                            <TimePickerIn timeIn={checkInTime} setTimeIn={setCheckInTime} />
+                        </div>
+                    </div>
+                </Grid>
+                <Grid item xs={6} sx={{ position: 'absolute', width: '50%', right: 0, height: '90%' }}>
+                    <div className='orderTable' style={styles.OrderTable}>
+                        <OrderTable room={room} cost={cost} setCost={setCost} setFacilitiesIds={setFacilitiesIds} />
+                        <div className='doOrderButton' style={styles.DoOrderButton}>
+                            <button onClick={doOrder}>Create order</button>
+                        </div>
+                    </div>
+                </Grid>
+            </Grid>
         </div>
     )
 }
