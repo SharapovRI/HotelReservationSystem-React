@@ -1,11 +1,7 @@
-import { useState } from "react";
 import TextField from '@mui/material/TextField';
-import { styles } from "../../../HomePage/styles/styles";
+import './RoomInfoArea.scss'
 
-const RoomTypeCreation = ({ rooms, setRooms }) => {
-    const [typeName, setTypeName] = useState('');
-    const [seatsCount, setSeatsCount] = useState(1);
-    const [cost, setCost] = useState(1);
+const RoomInfoArea = ({ typeName, setTypeName, seatsCount, setSeatsCount, cost, setCost, roomCount, setRoomCount }) => {
 
     const onNameChange = (event) => {
         setTypeName(event.target.value);
@@ -19,24 +15,13 @@ const RoomTypeCreation = ({ rooms, setRooms }) => {
         setCost(event.target.value);
     }
 
-    const addItem = () => {
-        const newItem = {
-            typeName: typeName,
-            seatsCount: seatsCount,
-            cost: cost,
-        }
-
-
-        setRooms([...rooms, newItem]);
-
-        setTypeName('');
-        setSeatsCount(1);
-        setCost(1);
+    const onRoomCountChange = (event) => {
+        setRoomCount(event.target.value);
     }
 
     return (
-        <div>
-            <div style={styles.SearchAreaElement}>
+        <div className='roomInfoArea'>
+            <div className='infoItem'>
                 <TextField id="outlined-basic"
                     type={'text'}
                     defaultValue={typeName}
@@ -46,7 +31,7 @@ const RoomTypeCreation = ({ rooms, setRooms }) => {
                     variant="outlined"
                 />
             </div>
-            <div style={styles.SearchAreaElement}>
+            <div className='infoItem'>
                 <TextField id="outlined-basic"
                     type={'number'}
                     defaultValue={seatsCount}
@@ -57,7 +42,7 @@ const RoomTypeCreation = ({ rooms, setRooms }) => {
                     min={1}
                 />
             </div>
-            <div style={styles.SearchAreaElement}>
+            <div className='infoItem'>
                 <TextField id="outlined-basic"
                     type={'number'}
                     defaultValue={cost}
@@ -68,12 +53,18 @@ const RoomTypeCreation = ({ rooms, setRooms }) => {
                     min={1}
                 />
             </div>
-            <div style={styles.SearchAreaElement}>
-                <button onClick={addItem}>Add</button>
+            <div className='infoItem'>
+                <TextField id="outlined-basic"
+                    type={'number'}
+                    defaultValue={roomCount}
+                    value={roomCount}
+                    onInput={onRoomCountChange}
+                    label="Room count"
+                    variant="outlined"
+                />
             </div>
         </div>
-
     )
 }
 
-export default RoomTypeCreation;
+export default RoomInfoArea;

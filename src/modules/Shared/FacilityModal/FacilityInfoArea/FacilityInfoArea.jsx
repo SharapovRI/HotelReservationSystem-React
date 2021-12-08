@@ -1,33 +1,22 @@
-import { useState } from "react";
 import TextField from '@mui/material/TextField';
-import { styles } from "../../../HomePage/styles/styles";
+import './FacilityInfoArea.scss'
 
-const FacilityCreation = ({ facilities, setFacilities }) => {
-    const [facilityName, setFacilityName] = useState('');
-    const [cost, setCost] = useState(1);
+const FacilityInfoArea = ({ facilityName, setTypeName, cost, setCost }) => {
 
     const onNameChange = (event) => {
-        setFacilityName(event.target.value);
+        setTypeName(event.target.value);
     }
 
     const onCostChange = (event) => {
         setCost(event.target.value);
     }
 
-    const addItem = () => {
-        const newItem = {
-            name: facilityName,
-            cost: Number(cost),
-        }
-        setFacilities([...facilities, newItem]);
-
-        setFacilityName('');
-        setCost(1);
-    }
-
     return (
-        <div>
-            <div style={styles.SearchAreaElement}>
+        <div className='facilityInfoArea'>
+            <div className='facilityInfoItem'>
+                <h3>Facility creation</h3>
+            </div>
+            <div className='facilityInfoItem'>
                 <TextField id="outlined-basic"
                     type={'text'}
                     defaultValue={facilityName}
@@ -37,7 +26,7 @@ const FacilityCreation = ({ facilities, setFacilities }) => {
                     variant="outlined"
                 />
             </div>
-            <div style={styles.SearchAreaElement}>
+            <div className='facilityInfoItem'>
                 <TextField id="outlined-basic"
                     type={'number'}
                     defaultValue={cost}
@@ -48,11 +37,8 @@ const FacilityCreation = ({ facilities, setFacilities }) => {
                     min={1}
                 />
             </div>
-            <div style={styles.SearchAreaElement}>
-                <button onClick={addItem}>Add</button>
-            </div>
         </div>
     )
 }
 
-export default FacilityCreation;
+export default FacilityInfoArea;

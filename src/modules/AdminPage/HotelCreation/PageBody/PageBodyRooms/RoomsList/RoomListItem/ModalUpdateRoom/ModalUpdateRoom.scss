@@ -1,0 +1,21 @@
+.modalBody {
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+}
+
+.modelUpdateButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.cancelButtonDiv {
+    text-align: start;
+}
+
+.updateButtonDiv {
+    text-align: end;
+}
+
+.deleteButtonDiv {
+    text-align: center;
+}

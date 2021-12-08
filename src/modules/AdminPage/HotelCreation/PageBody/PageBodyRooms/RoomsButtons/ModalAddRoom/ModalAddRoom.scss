@@ -1,0 +1,17 @@
+.modalBody {
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+}
+
+.modelAddButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cancelButtonDiv {
+    text-align: start;
+}
+
+.addButtonDiv {
+    text-align: end;
+}

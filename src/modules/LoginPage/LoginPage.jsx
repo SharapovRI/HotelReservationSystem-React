@@ -6,7 +6,7 @@ import checkLoginData from '../../services/Validation/loginDataValidation';
 import { useDispatch } from 'react-redux';
 import { addJwt } from '../../redux/Reducers/JWTreducer';
 import { addRefresh } from '../../redux/Reducers/RefreshReducer';
-import './styles.css';
+// import './styles.css';
 
 
 const LoginPage = () => {

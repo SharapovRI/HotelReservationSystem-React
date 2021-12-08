@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import axios from 'axios';
+import instance from "../../../services/API/API";
 
 const ComboBox = ({ filter, setOption, setCountry, getOptionLabel, boxText, labelText }) => {
 
@@ -10,7 +11,7 @@ const ComboBox = ({ filter, setOption, setCountry, getOptionLabel, boxText, labe
 
   useEffect(() => {
     const apiUrl = 'https://localhost:44382/Locates';
-    axios.get(apiUrl)
+    instance.get(apiUrl)
       .then((resp) => {
         const allPersons = resp.data;
         setAppState(allPersons);

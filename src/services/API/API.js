@@ -1,7 +1,5 @@
 import axios from "axios";
 import baseURL from "../../api/consts";
-import JWTreducer from "../../redux/Reducers/JWTreducer";
-import TokenService from "./token.service";
 
 const instance = axios.create({
   baseURL: baseURL,
@@ -13,6 +11,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("jwtToken");
+    console.log(token);
     if (token) {
       config.headers["Authorization"] = 'Bearer ' + token;  // for Spring Boot back-end
       //config.headers["x-access-token"] = token; // for Node.js Express back-end
