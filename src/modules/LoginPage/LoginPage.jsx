@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import postAuthenticate from '../../api/apiRequests/authentication';
 import checkLoginData from '../../services/Validation/loginDataValidation';
 import { useDispatch } from 'react-redux';
@@ -55,6 +55,11 @@ const LoginPage = () => {
                 </div>
                 <div>
                   <button type="submit">Submit</button>
+                </div>
+                <div>
+                  <NavLink to='/Registration'>
+                    <label>Registration</label>
+                  </NavLink>
                 </div>
               </Form>
             )}

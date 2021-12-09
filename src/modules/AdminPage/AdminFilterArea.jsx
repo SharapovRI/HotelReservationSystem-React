@@ -48,7 +48,7 @@ const AdminFilterArea = ({ setFilter, setContent, setPageCount }) => {
                     type={'text'}
                     defaultValue={hotelName}
                     onInput={onTextChange}
-                    label="Seats Count"
+                    label="Hotel name"
                     variant="outlined"
                 />
             </div>

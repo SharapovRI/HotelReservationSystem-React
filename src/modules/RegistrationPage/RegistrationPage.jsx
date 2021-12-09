@@ -18,32 +18,48 @@ const RegistrationPage = () => {
     }
 
     return (
-        <div>
-            <h1>Sign up</h1>
-            <Formik
-                initialValues={{
-                    password: '',
-                    repeatedPassword: '',
-                    login: '',
-                }}
-                validate={checkRegistrationData}
-                onSubmit={registrateClick}
-            >
-                {({ errors }) => (
-                    <Form>
-                        <Field name="login" />
-                        {errors.login && <div>{errors.login}</div>}
-
-                        <Field name="password" />
-                        {errors.password && <div>{errors.password}</div>}
-
-                        <Field name="repeatPassword" />
-                        {errors.repeatedPassword && <div>{errors.repeatedPassword}</div>}
-
-                        <button type="submit" >Submit</button>
-                    </Form>
-                )}
-            </Formik>
+        <div class="container">
+            <div class="transparent">
+                <div class="row align-items-start">
+                    <div class="col"></div>
+                    <div class="col">
+                        <h1>Sign up</h1>
+                        <Formik
+                            initialValues={{
+                                password: '',
+                                repeatedPassword: '',
+                                login: '',
+                            }}
+                            validate={checkRegistrationData}
+                            onSubmit={registrateClick}
+                        >
+                            {({ errors }) => (
+                                <Form>
+                                    <div class="mb-3">
+                                        <h2>Login: </h2>
+                                        <Field name="login" />
+                                        {errors.login && <div>{errors.login}</div>}
+                                    </div>
+                                    <div class="mb-3">
+                                        <h2>Password: </h2>
+                                        <Field name="password" />
+                                        {errors.password && <div>{errors.password}</div>}
+                                    </div>
+                                    <div class="mb-3">
+                                        <h2>Repeat password: </h2>
+                                        <Field name="repeatPassword" />
+                                        {errors.repeatedPassword && <div>{errors.repeatedPassword}</div>}
+                                    </div>
+                                    <div>
+                                        <button type="submit" >Submit</button>
+                                    </div>
+                                </Form>
+                            )}
+                        </Formik>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
         </div>
     )
 };
