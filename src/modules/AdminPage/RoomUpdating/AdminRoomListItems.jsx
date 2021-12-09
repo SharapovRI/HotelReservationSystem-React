@@ -6,6 +6,7 @@ const AdminRoomListItems = ({ content, hotelId }) => {
 
     const listItems = content.map((content) =>
         <li key={content.id}>
+            <div className='hotelListItemContent'>
             <div>
                 <h3>{content.type}</h3>
                 <p>Seats count: {content.seatsCount}, Cost: {content.cost}</p>
@@ -14,10 +15,11 @@ const AdminRoomListItems = ({ content, hotelId }) => {
                 <button onClick={() => navigate(`/Admin/Hotels/${hotelId}/Rooms/${content.id}`)}>Edit</button>
                 <button>Delete</button>
             </div>
+            </div>
         </li>
     );
     return (
-        <ul>{listItems}</ul>
+        <ul className='hotelListUl'>{listItems}</ul>
     );
 }
 

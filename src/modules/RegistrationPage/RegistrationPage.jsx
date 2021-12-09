@@ -18,11 +18,12 @@ const RegistrationPage = () => {
     }
 
     return (
-        <div class="container">
-            <div class="transparent">
-                <div class="row align-items-start">
-                    <div class="col"></div>
-                    <div class="col">
+        <>
+            <div></div>
+            <div class="container">
+                <div class="col"></div>
+                <div class="colCenter">
+                    <div class="rowCenter">
                         <h1>Sign up</h1>
                         <Formik
                             initialValues={{
@@ -35,32 +36,35 @@ const RegistrationPage = () => {
                         >
                             {({ errors }) => (
                                 <Form>
-                                    <div class="mb-3">
-                                        <h2>Login: </h2>
+                                    <div className='registrationInfoArea'>
+                                    <div className='infoBlock'>
+                                        <label>Login: </label>
                                         <Field name="login" />
                                         {errors.login && <div>{errors.login}</div>}
                                     </div>
-                                    <div class="mb-3">
-                                        <h2>Password: </h2>
+                                    <div className='infoBlock'>
+                                        <label>Password: </label>
                                         <Field name="password" />
                                         {errors.password && <div>{errors.password}</div>}
                                     </div>
-                                    <div class="mb-3">
-                                        <h2>Repeat password: </h2>
+                                    <div className='infoBlock'>
+                                        <label>Repeat password: </label>
                                         <Field name="repeatPassword" />
                                         {errors.repeatedPassword && <div>{errors.repeatedPassword}</div>}
                                     </div>
-                                    <div>
+                                    <div className='infoBlock'>
                                         <button type="submit" >Submit</button>
+                                    </div>
                                     </div>
                                 </Form>
                             )}
                         </Formik>
-                    </div>
-                    <div class="col"></div>
+                        </div>
+                    <div class="row"></div>
                 </div>
+                <div class="col"></div>
             </div>
-        </div>
+        </>
     )
 };
 export default RegistrationPage;

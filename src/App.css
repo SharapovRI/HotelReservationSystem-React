@@ -16,3 +16,17 @@
 .App-link {
   color: #61dafb;
 }
+
+.wrapper {
+  display: grid; /* flex || inline-flex */
+  grid-template-columns: 1fr 5fr 1fr;
+}
+
+.pageColumns {
+    background-color: azure;
+}
+
+.page {
+  display: grid;
+  grid-template-rows: 1fr 5fr;
+}

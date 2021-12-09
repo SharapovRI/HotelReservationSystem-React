@@ -74,17 +74,13 @@ const HotelUpdatingPage = () => {
     }, [hotelId])
 
     return (
-        <div class='wrapper'>
-            <div className='first' />
-            <div className='page'>
-                <div className='pageHeader'>
-                    <PageHeader headerText={headerText} />
-                </div>
-                {step === 1 && <PageBodyHotel setHotelData={setHotelData} hotel={hotel} hotelPhotos={hotelPhotos} setHotelPhotos={setHotelPhotos} step={step} setStep={setStep} />}
-                {step === 2 && <PageBodyFacilities facilities={facilities} setFacilities={setFacilities} step={step} setStep={setStep} />}
+        <>
+            <div className='pageHeader'>
+                <PageHeader headerText={headerText} />
             </div>
-            <div className='first' />
-        </div>
+            {step === 1 && <PageBodyHotel setHotelData={setHotelData} hotel={hotel} hotelPhotos={hotelPhotos} setHotelPhotos={setHotelPhotos} step={step} setStep={setStep} />}
+            {step === 2 && <PageBodyFacilities facilities={facilities} setFacilities={setFacilities} step={step} setStep={setStep} />}
+        </>
     )
 }
 

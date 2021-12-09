@@ -1,8 +1,9 @@
 import { useState } from "react";
-import getHotels from "../../api/apiRequests/getHotels";
-import ComboBox from "../Shared/ComboBox/ComboBox";
 import TextField from '@mui/material/TextField';
-import { styles } from "../HomePage/styles/styles";
+import getHotels from "../../../api/apiRequests/getHotels";
+import ComboBox from "../../Shared/ComboBox/ComboBox";
+
+import './AdminFilterArea.scss';
 
 const AdminFilterArea = ({ setFilter, setContent, setPageCount }) => {
     const [city, setCity] = useState(null);
@@ -17,7 +18,7 @@ const AdminFilterArea = ({ setFilter, setContent, setPageCount }) => {
             checkOut: null,
             freeSeatsCount: 0,
             namePart: hotelName,
-            size: 1
+            size: 5
         };
         setFilter(payload);
 
@@ -33,8 +34,8 @@ const AdminFilterArea = ({ setFilter, setContent, setPageCount }) => {
 
 
     return (
-        <>
-            <div style={styles.SearchAreaElement}>
+        <div className='adminInfoArea'>
+            <div className='adminInfoItem'>
                 <ComboBox className='cbLocates' option={city}
                     setOption={(newValue) => setCity(newValue)}
                     setCountry={(newValue => setCountry(newValue))}
@@ -43,7 +44,7 @@ const AdminFilterArea = ({ setFilter, setContent, setPageCount }) => {
                     labelText='Locates'
                 />
             </div>
-            <div style={styles.SearchAreaElement}>
+            <div className='adminInfoItem'>
                 <TextField id="outlined-basic"
                     type={'text'}
                     defaultValue={hotelName}
@@ -52,10 +53,10 @@ const AdminFilterArea = ({ setFilter, setContent, setPageCount }) => {
                     variant="outlined"
                 />
             </div>
-            <div style={styles.SearchAreaElement}>
+            <div className='adminInfoItem'>
                 <button onClick={searchHotels}>Search</button>
             </div>
-        </>
+        </div>
     )
 }
 

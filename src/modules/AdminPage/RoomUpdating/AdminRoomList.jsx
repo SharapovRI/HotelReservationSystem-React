@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import getHotelRooms from '../../../api/apiRequests/getHotelRooms';
 import AdminRoomListItems from './AdminRoomListItems';
 import { useParams } from 'react-router';
+import AdminRoomListHeader from './AdminRoomListHeader/AdminRoomListHeader';
 
 const AdminRoomList = () => {
     const [page, setPage] = useState(1);
@@ -26,10 +27,13 @@ const AdminRoomList = () => {
     };
 
     return (
-        <Stack spacing={2}>
+        <>
+            <AdminRoomListHeader />
+        <div>
             {rooms && <AdminRoomListItems content={rooms} hotelId={hotelId} />}
             <Pagination count={pageCount} page={page} onChange={handleChange} />
-        </Stack>
+        </div>
+        </>
     )
 }
 

@@ -4,6 +4,9 @@ import getRoom from '../../../api/apiRequests/getRoom';
 import TextField from '@mui/material/TextField';
 import PhotoList from '../../Shared/PhotoList/PhotoList';
 import putRoom from '../../../api/apiRequests/putRoom';
+import AdminRoomPageHeader from './AdminRoomPageHeader/AdminRoomPageHeader';
+
+import './AdminRoomPage.scss';
 
 const AdminRoomPage = () => {
     const [room, setRoom] = useState();
@@ -47,42 +50,53 @@ const AdminRoomPage = () => {
     }
 
     return (
-        <div>
-            <div>
-                <TextField id="outlined-basic"
-                    type={'text'}
-                    defaultValue={typeName}
-                    value={typeName}
-                    onInput={onNameChange}
-                    label="Type name"
-                    variant="outlined"
-                />
-                <TextField id="outlined-basic"
-                    type={'number'}
-                    defaultValue={seatsCount}
-                    value={seatsCount}
-                    onInput={onSeatsChange}
-                    label="Seats count"
-                    variant="outlined"
-                    min={1}
-                />
-                <TextField id="outlined-basic"
-                    type={'number'}
-                    defaultValue={cost}
-                    value={cost}
-                    onInput={onCostChange}
-                    label="Cost"
-                    variant="outlined"
-                    min={1}
-                />
+        <>
+            <div className='adminRoomPageHeader'>
+                <AdminRoomPageHeader hotelId={hotelId} />
             </div>
-            <div>
-                <PhotoList photos={photos} setPhotos={setPhotos} />
+            <div className='adminRoomPageBody'>
+                <div className='adminRoomInfoArea'>
+                    <div className='adminRoomInfoItem'>
+                        <TextField id="outlined-basic"
+                            type={'text'}
+                            defaultValue={typeName}
+                            value={typeName}
+                            onInput={onNameChange}
+                            label="Type name"
+                            variant="outlined"
+                        />
+                    </div>
+                    <div className='adminRoomInfoItem'>
+                        <TextField id="outlined-basic"
+                            type={'number'}
+                            defaultValue={seatsCount}
+                            value={seatsCount}
+                            onInput={onSeatsChange}
+                            label="Seats count"
+                            variant="outlined"
+                            min={1}
+                        />
+                    </div>
+                    <div className='adminRoomInfoItem'>
+                        <TextField id="outlined-basic"
+                            type={'number'}
+                            defaultValue={cost}
+                            value={cost}
+                            onInput={onCostChange}
+                            label="Cost"
+                            variant="outlined"
+                            min={1}
+                        />
+                    </div>
+                </div>
+                
+                    <PhotoList photos={photos} setPhotos={setPhotos} />
+                
+                <div>
+                    <button onClick={() => saveChanges()}>Save</button>
+                </div>
             </div>
-            <div>
-                <button onClick={() => saveChanges()}>Save</button>
-            </div>
-        </div>
+        </>
     )
 }
 

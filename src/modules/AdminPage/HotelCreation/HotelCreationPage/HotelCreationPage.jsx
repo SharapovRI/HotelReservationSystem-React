@@ -40,18 +40,14 @@ const HotelCreationPage = () => {
     }, [step])
 
     return (
-        <div class='wrapper'>
-            <div className='first' />
-            <div className='page'>
+        <>
                 <div className='pageHeader'>
                     <PageHeader headerText={headerText} />
                 </div>
                     {step === 1 && <PageBodyHotel setHotelData={setHotelData} hotelPhotos={hotelPhotos} setHotelPhotos={setHotelPhotos} step={step} setStep={setStep}/>}
                     {step === 2 && <PageBodyRooms rooms={rooms} setRooms={setRooms} step={step} setStep={setStep}/>}
                     {step === 3 && <PageBodyFacilities facilities={facilities} setFacilities={setFacilities} step={step} setStep={setStep}/>}
-            </div>
-            <div className='first' />
-        </div>
+            </>
     )
 }
 

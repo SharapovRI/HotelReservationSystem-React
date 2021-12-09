@@ -1,7 +1,7 @@
 import { useState } from "react"
 import AddPhotoItem from "./AddPhotoItem";
 import PhotoListItem from "./PhotoListItem";
-import './ul_style.css'
+import './PhotoList.scss'
 
 const PhotoList = ( { photos, setPhotos } ) => {
 
@@ -28,7 +28,7 @@ const PhotoList = ( { photos, setPhotos } ) => {
     }
 
     return (
-        <div>
+        <div className='photoListArea'>
             <ul className="images">{listItems()}</ul>
         </div>
     )

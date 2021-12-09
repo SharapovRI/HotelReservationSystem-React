@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './AddPhotoItem.scss';
 
 const AddPhotoItem = ({ itemSource, setItemSource }) => {
 
@@ -20,10 +21,10 @@ const AddPhotoItem = ({ itemSource, setItemSource }) => {
 
                 const name = img.name;
 
-                const photo ={
+                const photo = {
                     title: name,
-                    data:data,
-                    extension:extension,
+                    data: data,
+                    extension: extension,
                 }
                 setItemSource([...itemSource, photo]);
             }
@@ -31,7 +32,18 @@ const AddPhotoItem = ({ itemSource, setItemSource }) => {
     };
 
     return (
-        <li>
+        <li className='attach'>
+            {/* <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+            <div class="example-1">
+                <div class="form-group">
+                    <label class="label">
+                        <i class="material-icons">attach_file</i>
+                        <span class="title">Добавить файл</span>
+                        <input type="file" name="myImage" onChange={onImageChange}/>
+                    </label>
+                </div>
+            </div> */}
             <input type="file" name="myImage" onChange={onImageChange} />
         </li>
     );
