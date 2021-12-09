@@ -11,12 +11,12 @@ import Header from './modules/Shared/Header/Header';
 import AllOrdersPage from './modules/AllOrdersPage/AllOrdersPage';
 import AdminPage from './modules/AdminPage/AdminPage';
 import HotelCreationPage from './modules/AdminPage/HotelCreation/HotelCreationPage/HotelCreationPage';
-import HotelUpdatingPage from './modules/AdminPage/HotelUpdating/HotelUpdatingPage';
 import AdminRoomList from './modules/AdminPage/RoomUpdating/AdminRoomList';
 import AdminRoomPage from './modules/AdminPage/RoomUpdating/AdminRoomPage';
 
 import {styles} from './modules/HomePage/styles/styles'
 import TestPage from './modules/TestPage/TestPage/TestPage';
+import HotelUpdatingPage from './modules/AdminPage/HotelUpdating/HotelUpdatingPage/HotelUpdatingPage';
 
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
             <Route path="/Admin/Hotels/:hotelId/Rooms/:roomId" element={<AdminRoomPage />} />
             <Route path="/HotelCreation" element={<HotelCreationPage/>} />
             <Route path="/HotelUpdating/:hotelId" element={<HotelUpdatingPage />} />
-            <Route path="/Test" element = {<TestPage />}/>
+            <Route path="/Test/:hotelId" element = {<TestPage />}/>
           </Routes>
         {/* </div> */}
         <Footer/> 

@@ -1,0 +1,10 @@
+.hotelInfoArea {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.infoItem {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
