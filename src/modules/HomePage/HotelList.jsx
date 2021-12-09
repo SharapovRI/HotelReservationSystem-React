@@ -23,11 +23,10 @@ const HotelList = ({ pageCount, content, filter, setContent }) => {
   };
 
   return (
-    <Stack spacing={2}>
-      <h3>Hotels:</h3>
+    <>
       <HotelListItems content={content} />
       <Pagination count={pageCount} page={page} onChange={handleChange} />
-    </Stack>
+    </>
   );
 }
 

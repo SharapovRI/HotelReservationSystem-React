@@ -6,6 +6,8 @@ import { styles } from '../styles/styles';
 import InfoBlock from './InfoBlock';
 import RoomList from './RoomList';
 
+import './HotelPage.scss';
+
 const HotelPage = ({filter}) => {
     const params = useParams();
     const hotelId = params.hotelId;
@@ -22,13 +24,12 @@ const HotelPage = ({filter}) => {
         }
 
         {filter && setFilterStorage(filter)}
-        console.log(filter);
         fetchHotelRooms();
     }, [filter])
 
     return(
-        <div>
-            <div>
+        <>
+            <div className='infoAboutHotel'>
                 <InfoBlock hotel={hotel}/>
             </div>
             <div className='roomList' style={styles.RoomList}>
@@ -40,7 +41,7 @@ const HotelPage = ({filter}) => {
                     setRooms={setRooms}
                 />
             </div>
-        </div>
+        </>
     )
 }
 

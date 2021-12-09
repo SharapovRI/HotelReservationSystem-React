@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import DatePickerRange from './DatePickerRange';
+import DatePickerRange from '../DatePickerRange';
 import TextField from '@mui/material/TextField';
-import getHotels from '../../api/apiRequests/getHotels';
-import './styles/HomePage.css'
 import { Link } from 'react-router-dom';
-import ComboBox from '../Shared/ComboBox/ComboBox';
+import ComboBox from '../../Shared/ComboBox/ComboBox';
+import getHotels from '../../../api/apiRequests/getHotels';
 
-import { styles } from './styles/styles'
+import './SearchArea.scss';
 
 const SearchArea = ({ setFilter, setContent, setPageCount }) => {
     const [date, setDate] = useState([new Date(), new Date()]);
@@ -20,7 +19,7 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
             checkIn: new Date(date[0]).toJSON(),
             checkOut: new Date(date[1]).toJSON(),
             freeSeatsCount: seatsCount,
-            size: 1,
+            size: 5,
         };
         setFilter(payload);
 
@@ -37,8 +36,8 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
     }
 
     return (
-        <div className='searchArea' style={styles.SearchAreaDiv}>
-            <div className='searchAreaElement' style={styles.SearchAreaElement}>
+        <div className='searchArea'>
+            <div className='searchAreaElement'>
                 <ComboBox className='cbLocates' option={city}
                     setOption={(newValue) => setCity(newValue)}
                     setCountry={(newValue => setCountry(newValue))}
@@ -47,10 +46,10 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
                     labelText='Locates'
                 />
             </div>
-            <div className='searchAreaElement' style={styles.SearchAreaElement}>
+            <div className='searchAreaElement'>
                 <DatePickerRange date={date} setDate={(newValue) => setDate(newValue)} />
             </div>
-            <div className='searchAreaElement' style={styles.SearchAreaElement}>
+            <div className='searchAreaElement'>
                 <TextField id="outlined-basic"
                     type={'number'}
                     defaultValue={seatsCount}
@@ -59,7 +58,7 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
                     variant="outlined"
                 />
             </div>
-            <div className='searchAreaElement' style={styles.SearchAreaElement}>
+            <div className='searchAreaElement'>
                 <Link to={{ pathname: '/Hotels' }}>
                     <button onClick={searchHotels}>Search</button>
                 </Link>

@@ -45,7 +45,7 @@ const AdminRoomPage = () => {
     }
 
     const saveChanges = () => {
-        putRoom(roomId, photos);
+        putRoom(roomId, hotelId, typeName, seatsCount, cost, photos);
         navigate(`/Admin/Hotels/${hotelId}`)
     }
 

@@ -11,7 +11,7 @@ const AdminRoomList = () => {
     const [rooms, setRooms] = useState();
     const [pageCount, setPageCount] = useState(1);
 
-    const {hotelId} = useParams();
+    const { hotelId } = useParams();
 
     useEffect(() => {
         async function fetchHotelRooms() {
@@ -29,10 +29,10 @@ const AdminRoomList = () => {
     return (
         <>
             <AdminRoomListHeader />
-        <div>
-            {rooms && <AdminRoomListItems content={rooms} hotelId={hotelId} />}
-            <Pagination count={pageCount} page={page} onChange={handleChange} />
-        </div>
+            <div>
+                {rooms && <AdminRoomListItems content={rooms} hotelId={hotelId} />}
+                <Pagination count={pageCount} page={page} onChange={handleChange} />
+            </div>
         </>
     )
 }

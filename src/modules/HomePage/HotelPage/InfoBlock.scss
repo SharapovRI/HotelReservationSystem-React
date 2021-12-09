@@ -1,0 +1,21 @@
+.hotelPhotos img{
+    margin: 5px;
+    max-height: 40%;
+    max-width: 40%;
+}
+
+.topnav {
+    display: inline-block;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto; 
+    zoom: 1;
+    list-style: none;
+  }
+  .topnav li {
+    height: auto;
+    padding: 0;
+    margin: 0;
+    float: left;
+  }

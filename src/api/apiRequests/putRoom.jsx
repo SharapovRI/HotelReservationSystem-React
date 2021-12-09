@@ -1,9 +1,13 @@
 import axios from "axios";
 import baseURL from "../consts";
 
-const putRoom = async (roomId, photos) => {
+const putRoom = async (roomId, hotelId, typeName, seatsCount, cost, photos) => {
     const payload = {
         id: Number(roomId),
+        hotelId: Number(hotelId),
+        typeName: typeName,
+        seatsCount: Number(seatsCount),
+        cost: Number(cost),
         roomPhotos: photos,
     }
     console.log(payload);
