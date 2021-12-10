@@ -6,16 +6,17 @@ import { addRoom } from '../../../redux/Reducers/OrderReducer';
 import setOrderDataStorage from '../../../services/Order/setOrderDataStorage';
 import RoomInfo from './RoomInfo';
 
+import './RoomPage.scss'
+
 const RoomPage = () => {
     const [room, setRoom] = useState();
-    const {roomId, hotelId} = useParams();
+    const { roomId, hotelId } = useParams();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        async function fetchRoom()
-        {
+        async function fetchRoom() {
             const data = await getRoom(roomId, hotelId);
             setRoom(data);
         }
@@ -29,18 +30,16 @@ const RoomPage = () => {
             roomId: roomId,
             cost: room.cost
         }
-        
+
         setOrderDataStorage(orderData);
         dispatch(addRoom(room));
         navigate("/Order");
     }
 
-    return(
-        <div>
-            <div>
-                {room && room !== null && <RoomInfo room={room}/>}
-            </div>
-            <div>
+    return (
+        <div className='roomPage'>
+            {room && room !== null && <RoomInfo room={room} />}
+            <div className='roomPageBookButton'>
                 <button onClick={orderCreation}>Book</button>
             </div>
         </div>

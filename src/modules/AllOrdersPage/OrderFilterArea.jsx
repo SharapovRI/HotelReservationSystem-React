@@ -3,8 +3,8 @@ import RadioTime from "./RadioTime";
 import { useSelector } from "react-redux";
 import { getId } from "../../services/TokenService/getId";
 import ComboBox from "../Shared/ComboBox/ComboBox";
-import { styles } from "../HomePage/styles/styles";
 
+import './OrderFilterArea.scss';
 
 const OrderFilterArea = ( { setFilter } ) => {
     const token = useSelector((state) => state.jwtReducer?.token);
@@ -26,8 +26,7 @@ const OrderFilterArea = ( { setFilter } ) => {
     }, [city, time]);
 
     return (
-        <div className='searchArea' style={styles.SearchAreaDiv}>
-            <div style={styles.SearchAreaElement}>
+        <div className='searchArea'>
             <ComboBox className='cbLocates' option={city}
                 setOption={(newValue) => setCity(newValue)}
                 setCountry={(newValue => setCountry(newValue))}
@@ -35,10 +34,7 @@ const OrderFilterArea = ( { setFilter } ) => {
                 getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
                 labelText='Locates'
             />
-            </div>
-            <div style={styles.SearchAreaElement}>
             <RadioTime time={time} setTime={setTime} />
-            </div>
         </div>
     )
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import getHotelRooms from '../../../api/apiRequests/getHotelRooms';
 import setFilterStorage from '../../../services/Order/setFilterStorage';
-import { styles } from '../styles/styles';
 import InfoBlock from './InfoBlock';
 import RoomList from './RoomList';
 
@@ -32,7 +31,7 @@ const HotelPage = ({filter}) => {
             <div className='infoAboutHotel'>
                 <InfoBlock hotel={hotel}/>
             </div>
-            <div className='roomList' style={styles.RoomList}>
+            <div className='roomList'>
                 <RoomList 
                     rooms={rooms} 
                     pageCount={pageCount} 

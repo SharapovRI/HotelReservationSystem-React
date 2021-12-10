@@ -9,8 +9,7 @@ import OrderTable from "./OrderTable";
 import TimePickerIn from "./TimePickerIn";
 import Grid from '@mui/material/Grid';
 
-import { styles } from '../HomePage/styles/styles'
-
+import './OrderPage.scss';
 
 const OrderPage = () => {
     const roomSt = useSelector((state) => state.orderReducer?.room)
@@ -51,32 +50,28 @@ const OrderPage = () => {
     }
 
     return (
-        <div className='orderPage' style={styles.OrderPage}>
+        <>
             <div className='orderPageHeader'>
                 <h2>Order page</h2>
-                {room && <h2>{room.id}</h2>}
+                {room && <h2>{room.type}</h2>}
             </div>
-            <Grid container spacing={2} sx={{ position: 'absolute', height: '90%' }}>
-                <Grid item xs={6} sx={{ position: 'absolute', width: '50%', float: 'left', height: '90%' }}>
-                    <div className='facilitiesArea' style={styles.FacilitiesArea}>
-                        <div className='facilityTable' style={styles.FacilityTable}>
+            <div className='orderPageBody'>
+                    <div className='facilitiesArea'>
+                        <div className='facilityTable'>
                             {hotelId !== undefined && <FacilitiesArea hotelId={hotelId} />}
                         </div>
-                        <div className='timePicker' style={styles.TimePickerDiv}>
+                        <div className='timePicker'>
                             <TimePickerIn timeIn={checkInTime} setTimeIn={setCheckInTime} />
                         </div>
                     </div>
-                </Grid>
-                <Grid item xs={6} sx={{ position: 'absolute', width: '50%', right: 0, height: '90%' }}>
-                    <div className='orderTable' style={styles.OrderTable}>
+                    <div className='orderTable'>
                         <OrderTable room={room} cost={cost} setCost={setCost} setFacilitiesIds={setFacilitiesIds} />
-                        <div className='doOrderButton' style={styles.DoOrderButton}>
+                        <div className='doOrderButton'>
                             <button onClick={doOrder}>Create order</button>
                         </div>
                     </div>
-                </Grid>
-            </Grid>
-        </div>
+            </div>
+        </>
     )
 }
 

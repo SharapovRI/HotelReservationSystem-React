@@ -3,7 +3,6 @@ import getUserOrders from "../../api/apiRequests/getUserOrders";
 import OrderListItems from "./OrderListItems";
 import Stack from '@mui/material/Stack';
 import Pagination from '@mui/material/Pagination';
-import { styles } from "../HomePage/styles/styles";
 
 const OrderList = ({filter, pageCount, setPageCount}) => {
     const [page, setPage] = useState(1);
@@ -26,11 +25,9 @@ const OrderList = ({filter, pageCount, setPageCount}) => {
     }, [page, filter])
 
     return (
-        <div style={styles.OrderList}>
-            <Stack spacing={2}>
+        <div>
                 {content?.length > 0 && <OrderListItems content={content} />}
                 <Pagination count={pageCount} page={page} onChange={handleChange} />
-            </Stack>
         </div>
     );
 }

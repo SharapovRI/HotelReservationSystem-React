@@ -254,4 +254,4 @@ const styles = {
     HotelUpdatingFacilitiesArea: HotelUpdatingFacilitiesArea,
 }
 
-export { styles };
+// export { styles };

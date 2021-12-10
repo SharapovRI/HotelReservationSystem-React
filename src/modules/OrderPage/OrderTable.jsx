@@ -4,8 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { getDatagridColumns } from './datagridColumns';
 import { convertingToDataGridData } from './convertingToDataGridData';
 
-import {styles} from '../HomePage/styles/styles'
-
+import './OrderTable.scss'
 const OrderTable = ({ room, cost, setCost, setFacilitiesIds }) => {
     const dispatch = useDispatch();
 
@@ -19,8 +18,15 @@ const OrderTable = ({ room, cost, setCost, setFacilitiesIds }) => {
     const columns = getDatagridColumns(dispatch)
 
     return (
-        <>
-            <DataGrid style={styles.OrderTableGrid}
+        <div className='orderTableDiv'>
+            <DataGrid
+                sx={{
+                    height: '100%',
+                    width: '95%',
+                    borderBlockStyle: 'solid',
+                    borderBlockWidth: '3px',
+                    borderBlockColor: 'grey',
+                }}
                 hideFooterPagination={true}
                 hideFooterSelectedRowCount={true}
                 disableColumnFilter={true}
@@ -30,10 +36,10 @@ const OrderTable = ({ room, cost, setCost, setFacilitiesIds }) => {
                 rows={data}
                 columns={columns}
             />
-            <div className='totalCost' style={styles.TotalCost}>
-            Total cost: {cost}
+            <div className='totalCost'>
+                Total cost: {cost}
             </div>
-        </>
+        </div>
     )
 }
 

@@ -24,7 +24,7 @@ const InfoBlock = ({hotel}) => {
             <h5>{hotel !== undefined && hotel.address}</h5> 
         </div>
         <div className='hotelPhotos'>        
-        {hotel?.photos && <InfoBlockPhotos photos={hotel?.photos}/>}
+            {hotel?.photos && <InfoBlockPhotos photos={hotel?.photos}/>}
         </div>
         </>
     )
