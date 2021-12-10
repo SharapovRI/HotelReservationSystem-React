@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Navigate } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import { Routes } from 'react-router-dom'
 import HomePage from './modules/HomePage/HomePage';
@@ -25,11 +25,12 @@ function App() {
         <div style={{ height: '64px' }}>
           <Header />
         </div>
-        <div class='wrapper'>
+        <div class='wrapper1'>
           <div className='pageColumns' />
           <div className='page'>
             <Routes>
-              <Route path="/" element={<LoginPage />} />
+              <Route path="/" element={<Navigate to="/Hotels" />} />
+              <Route path="/Login" element={<LoginPage />} />
               <Route path="/Registration" element={<RegistrationPage />} />
               <Route path="/Hotels/*" element={<HomePage />} />
               <Route path="/Order" element={<OrderPage />} />

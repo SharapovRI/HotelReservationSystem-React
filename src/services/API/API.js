@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import baseURL from "../../api/consts";
 
 const instance = axios.create({
@@ -11,10 +12,8 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("jwtToken");
-    console.log(token);
     if (token) {
-      config.headers["Authorization"] = 'Bearer ' + token;  // for Spring Boot back-end
-      //config.headers["x-access-token"] = token; // for Node.js Express back-end
+      config.headers["Authorization"] = 'Bearer ' + token;  
     }
     return config;
   },
@@ -38,13 +37,21 @@ instance.interceptors.response.use(
         try {
           const rs = await instance.post("/Authorization/refresh-token", {
             refreshToken: localStorage.getItem("refreshToken")
+          }).catch((error) => {
+            if(error.response.status === 400)
+            {
+              localStorage.setItem("LastPath", window.location.href);
+              window.location.href = "/Login"
+              return Promise.reject(error);
+            }
           });
 
           const { accessToken } = rs.data;
           localStorage.setItem("jwtToken", accessToken);
 
           return instance(originalConfig);
-        } catch (_error) {
+        } 
+        catch (_error) {
           return Promise.reject(_error);
         }
       }

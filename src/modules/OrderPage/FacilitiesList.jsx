@@ -14,51 +14,45 @@ const FacilitiesList = ({ facilities }) => {
         {
             field: 'action',
             headerName: '',
-            width: '33%',
+            width: 150,
+            editable: false,
             align:"center",
             renderCell: (params) => (
-                <strong>
-                <div className='facilityCellButton'>
+                <strong style={{ marginLeft: 16, width: '100%', height: '100%', borderRadius: '10px', display: 'block'}}>
                     <button
-                        style={{ fontSize: 16, paddingLeft: 10, paddingRight: 10 }}
+                        style={{ width: 'auto', height: '80%', marginTop: '4%', alignContent: 'stretch', borderRadius: '10px', display: 'block' }}
                         onClick={() => {
                             delete params.row.button;
                             dispatch(addFacilities(params.row));
                         }}
                     >
-                        +
+                        Add
                     </button>
-                </div>
                 </strong>
             ),
         },
         {
             field: 'id',
             hide: true,
+            width: 150,
+            editable: false,
         },
         {
             field: 'name',
             headerName: 'Name',
-            width: '33%',
+            width: 150,
+            editable: false,
         },
         {
             field: 'cost',
             headerName: 'Cost',
-            width: '33%',
+            width: 150,
+            editable: false,
         },
     ];
 
 
     return (
-        <Box
-            sx={{
-                height: '100%',
-                width: '95%',
-                borderBlockStyle: 'solid',
-                borderBlockWidth: '3px',
-                borderBlockColor: 'grey',
-            }}
-        >
             <DataGrid
                 hideFooterPagination={true}
                 hideFooterRowCount={true}
@@ -71,7 +65,6 @@ const FacilitiesList = ({ facilities }) => {
                 rows={facilities}
                 rowHeght={38}
             />
-        </Box>
     );
 }
 

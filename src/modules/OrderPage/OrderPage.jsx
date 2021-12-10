@@ -58,7 +58,7 @@ const OrderPage = () => {
             <div className='orderPageBody'>
                     <div className='facilitiesArea'>
                         <div className='facilityTable'>
-                            {hotelId !== undefined && <FacilitiesArea hotelId={hotelId} />}
+                            {hotelId && <FacilitiesArea hotelId={hotelId} />}
                         </div>
                         <div className='timePicker'>
                             <TimePickerIn timeIn={checkInTime} setTimeIn={setCheckInTime} />

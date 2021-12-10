@@ -21,7 +21,15 @@ const LoginPage = () => {
             dispatch(addRefresh(response.refreshToken));
             localStorage.setItem("jwtToken", response.jwtToken);
             localStorage.setItem("refreshToken", response.refreshToken);
+
+            const path = localStorage.getItem("LastPath");
+            if (path)
+            {
+                window.location.href = path;
+            }
+            else{
             navigate(`/Hotels`);
+            }
         }
     }
 

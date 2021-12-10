@@ -31,9 +31,11 @@ const LogOutMenuItem = ( {handleMenuClose} ) => {
     const logOut = () => {
         dispatch(removeJwt());
         dispatch(removeRefresh());
+        localStorage.removeItem("jwtToken");
+        localStorage.removeItem("refreshToken");
         handleClose();
         handleMenuClose();
-        navigate('/');
+        navigate('/Login');
     }
 
     return (
