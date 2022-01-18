@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { getId } from "../../services/TokenService/getId";
-import FilterArea from "./FilterArea";
-import { useSelector } from "react-redux";
 import OrderList from "./OrderList";
+import OrderFilterArea from "./OrderFilterArea";
 
-const AllOrdersPage = () => {    
+import './AllOrdersPage.scss';
+
+const AllOrdersPage = () => {
     const [filter, setFilter] = useState();
     const [pageCount, setPageCount] = useState(0);
 
     return (
         <>
-            <FilterArea setFilter={setFilter} />
-            <OrderList filter={filter} pageCount={pageCount} setPageCount={setPageCount}/>
+            <div className='allOrderPageHeader'>
+                <h2>My orders</h2>
+            </div>
+            <div className='allOrderPageBody'>
+                <OrderFilterArea setFilter={setFilter} />
+                <OrderList filter={filter} pageCount={pageCount} setPageCount={setPageCount} />
+            </div>
         </>
     )
 }

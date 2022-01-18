@@ -1,0 +1,10 @@
+.adminInfoArea {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 5fr;
+}
+
+.adminInfoItem {
+    margin: 10px;
+    width: auto;
+    text-align: left;
+}

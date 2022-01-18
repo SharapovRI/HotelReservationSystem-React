@@ -16,7 +16,7 @@ const OrderList = ({filter, pageCount, setPageCount}) => {
         async function fetchOrders() {
             if (filter) {
                 const data = await getUserOrders({ ...filter, index: page - 1 });
-                setContent(data);
+                setContent(data.result);
                 setPageCount(data.pageCount);
             }
         }
@@ -24,15 +24,10 @@ const OrderList = ({filter, pageCount, setPageCount}) => {
         fetchOrders();
     }, [page, filter])
 
-    const style= {
-        float:'right',
-    }
     return (
-        <div style={style}>
-            <Stack spacing={2}>
+        <div>
                 {content?.length > 0 && <OrderListItems content={content} />}
                 <Pagination count={pageCount} page={page} onChange={handleChange} />
-            </Stack>
         </div>
     );
 }

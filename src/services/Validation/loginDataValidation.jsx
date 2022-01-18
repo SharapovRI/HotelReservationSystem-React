@@ -1,4 +1,5 @@
 const checkLoginData = (values) => {
+  console.log(values);
     const errors = {};
     if (!values.login) {
       errors.login = 'Required';

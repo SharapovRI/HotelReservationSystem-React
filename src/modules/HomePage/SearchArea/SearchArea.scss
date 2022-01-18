@@ -1,0 +1,10 @@
+.searchArea {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 5fr;
+}
+
+.searchAreaElement {
+    margin: 10px;
+    width: auto;
+    text-align: left;
+}

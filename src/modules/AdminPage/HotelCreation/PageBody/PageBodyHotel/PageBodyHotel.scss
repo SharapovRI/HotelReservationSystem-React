@@ -1,0 +1,18 @@
+.pageBody {
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+    height: 100%;
+}
+
+.hotelCreationButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cancelButtonDiv {
+    text-align: start;
+}
+
+.nextButtonDiv {
+    text-align: end;
+}

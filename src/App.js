@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Navigate } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import { Routes } from 'react-router-dom'
 import HomePage from './modules/HomePage/HomePage';
@@ -9,22 +9,44 @@ import RegistrationPage from './modules/RegistrationPage/RegistrationPage';
 import Footer from './modules/Shared/Footer/Footer';
 import Header from './modules/Shared/Header/Header';
 import AllOrdersPage from './modules/AllOrdersPage/AllOrdersPage';
+import AdminPage from './modules/AdminPage/AdminPage';
+import HotelCreationPage from './modules/AdminPage/HotelCreation/HotelCreationPage/HotelCreationPage';
+import AdminRoomList from './modules/AdminPage/RoomUpdating/AdminRoomList';
+import AdminRoomPage from './modules/AdminPage/RoomUpdating/AdminRoomPage';
+
+import './App.css'
+import TestPage from './modules/TestPage/TestPage/TestPage';
+import HotelUpdatingPage from './modules/AdminPage/HotelUpdating/HotelUpdatingPage/HotelUpdatingPage';
 
 function App() {
   return (
     <>
       <Router>
-        <Header />
-        <div>
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/Registration" element={<RegistrationPage />} />
-            <Route path="/Hotels/*" element={<HomePage />} />
-            <Route path="/Order" element={<OrderPage />} />
-            <Route path="/AllOrders" element={<AllOrdersPage />} />
-          </Routes>
+        <div style={{ height: '64px' }}>
+          <Header />
         </div>
-        <Footer/> 
+        <div class='wrapper1'>
+          <div className='pageColumns' />
+          <div className='page'>
+            <Routes>
+              <Route path="/" element={<Navigate to="/Hotels" />} />
+              <Route path="/Login" element={<LoginPage />} />
+              <Route path="/Registration" element={<RegistrationPage />} />
+              <Route path="/Hotels/*" element={<HomePage />} />
+              <Route path="/Order" element={<OrderPage />} />
+              <Route path="/AllOrders" element={<AllOrdersPage />} />
+              <Route path="/Admin" element={<AdminPage />} />
+              <Route path="/Admin/Hotels/:hotelId" element={<AdminRoomList />} />
+              <Route path="/Admin/Hotels/:hotelId/Rooms/:roomId" element={<AdminRoomPage />} />
+              <Route path="/HotelCreation" element={<HotelCreationPage />} />
+              <Route path="/HotelUpdating/:hotelId" element={<HotelUpdatingPage />} />
+              <Route path="/Test" element={<TestPage />} />
+            </Routes>
+          </div>
+          <div className='pageColumns' />
+        </div>
+        <Footer />
+
       </Router>
     </>
   );

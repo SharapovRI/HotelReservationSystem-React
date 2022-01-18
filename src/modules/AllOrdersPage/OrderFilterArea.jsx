@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import RadioTime from "./RadioTime";
-import ComboBox from "../HomePage/ComboBox";
 import { useSelector } from "react-redux";
 import { getId } from "../../services/TokenService/getId";
+import ComboBox from "../Shared/ComboBox/ComboBox";
 
+import './OrderFilterArea.scss';
 
-const FilterArea = ( { setFilter } ) => {
+const OrderFilterArea = ( { setFilter } ) => {
     const token = useSelector((state) => state.jwtReducer?.token);
     const [userId, setUserId] = useState();
     const [city, setCity] = useState(null);
+    const [country, setCountry] = useState(null);
     const [time, setTime] = useState(true);
 
     useEffect(() => {
@@ -17,23 +19,24 @@ const FilterArea = ( { setFilter } ) => {
             userId:id,
             cityId:city,
             whichTime:time,
-            size:1,
+            size:4,
         }
         setUserId(id);
         setFilter(filter);
     }, [city, time]);
 
     return (
-        <>
+        <div className='searchArea'>
             <ComboBox className='cbLocates' option={city}
                 setOption={(newValue) => setCity(newValue)}
+                setCountry={(newValue => setCountry(newValue))}
                 boxText={(option) => (option.country) + ', ' + option.city}
                 getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
                 labelText='Locates'
             />
             <RadioTime time={time} setTime={setTime} />
-        </>
+        </div>
     )
 }
 
-export default FilterArea;
+export default OrderFilterArea;

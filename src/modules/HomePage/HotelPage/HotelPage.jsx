@@ -5,6 +5,8 @@ import setFilterStorage from '../../../services/Order/setFilterStorage';
 import InfoBlock from './InfoBlock';
 import RoomList from './RoomList';
 
+import './HotelPage.scss';
+
 const HotelPage = ({filter}) => {
     const params = useParams();
     const hotelId = params.hotelId;
@@ -21,16 +23,15 @@ const HotelPage = ({filter}) => {
         }
 
         {filter && setFilterStorage(filter)}
-        console.log(filter);
         fetchHotelRooms();
     }, [filter])
 
     return(
-        <div>
-            <div>
+        <>
+            <div className='infoAboutHotel'>
                 <InfoBlock hotel={hotel}/>
             </div>
-            <div>
+            <div className='roomList'>
                 <RoomList 
                     rooms={rooms} 
                     pageCount={pageCount} 
@@ -39,7 +40,7 @@ const HotelPage = ({filter}) => {
                     setRooms={setRooms}
                 />
             </div>
-        </div>
+        </>
     )
 }
 

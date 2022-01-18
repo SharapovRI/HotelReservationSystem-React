@@ -4,9 +4,7 @@ import getHotelFacilities from "../../api/apiRequests/getHotelFacilities";
 import CostSlider from "./CostSlider";
 import FacilitiesList from "./FacilitiesList";
 
-
-
-const FacilitiesArea = ( { hotelId } ) => {
+const FacilitiesArea = ({ hotelId }) => {
     const [minCost, setMinCost] = useState(0);
     const [maxCost, setMaxCost] = useState(9999);
     const [facilities, setFacilities] = useState([]);
@@ -25,18 +23,21 @@ const FacilitiesArea = ( { hotelId } ) => {
             });
 
             setFacilities(data);
-            console.log(data);
         }
 
         fetchFacilities();
 
     }, [debouncedMinCost, debouncedMaxCost])
 
-    return(
-        <div>
-            <FacilitiesList facilities={facilities} />
-            <CostSlider minCost={minCost} setMinCost={setMinCost} maxCost={maxCost} setMaxCost={setMaxCost} setTimeout={setTimeout}/>
-        </div>
+    return (
+        <>
+            <div className='facilitiesList'>
+                <FacilitiesList facilities={facilities} />
+            </div>
+            <div className='costSlider'>
+                <CostSlider minCost={minCost} setMinCost={setMinCost} maxCost={maxCost} setMaxCost={setMaxCost} setTimeout={setTimeout} />
+            </div>
+        </>
     )
 
 }

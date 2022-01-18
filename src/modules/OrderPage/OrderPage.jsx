@@ -7,7 +7,9 @@ import getSavedData from "../../services/Order/getSavedData";
 import FacilitiesArea from "./FacilitiesArea";
 import OrderTable from "./OrderTable";
 import TimePickerIn from "./TimePickerIn";
+import Grid from '@mui/material/Grid';
 
+import './OrderPage.scss';
 
 const OrderPage = () => {
     const roomSt = useSelector((state) => state.orderReducer?.room)
@@ -39,16 +41,8 @@ const OrderPage = () => {
             setRoom(data);
         }
         { !roomSt && roomId && hotelId && fetchRoom() };
-        { roomSt && setRoom(roomSt)}
+        { roomSt && setRoom(roomSt) }
     }, [roomSt, roomId, hotelId])
-
-    const style = {
-        float: 'right',
-    }
-
-    const left = {
-        float: 'left',
-    }
 
     const doOrder = () => {
         createOrder(roomId, userId, checkInDate, checkOutDate, cost, facilitiesIds, checkInTime);
@@ -56,18 +50,28 @@ const OrderPage = () => {
     }
 
     return (
-        <div>
-            <h2>Order page</h2>
-            {room && <h2>{room.id}</h2>}
-            <div style={left}>
-                <OrderTable room={room} cost={cost} setCost={setCost} setFacilitiesIds={setFacilitiesIds} />
-                <button onClick={doOrder}>Create order</button>
+        <>
+            <div className='orderPageHeader'>
+                <h2>Order page</h2>
+                {room && <h2>{room.type}</h2>}
             </div>
-            <div style={style}>
-                {hotelId !== undefined && <FacilitiesArea hotelId={hotelId} />}
-                <TimePickerIn timeIn={checkInTime} setTimeIn={setCheckInTime} />
+            <div className='orderPageBody'>
+                    <div className='facilitiesArea'>
+                        <div className='facilityTable'>
+                            {hotelId && <FacilitiesArea hotelId={hotelId} />}
+                        </div>
+                        <div className='timePicker'>
+                            <TimePickerIn timeIn={checkInTime} setTimeIn={setCheckInTime} />
+                        </div>
+                    </div>
+                    <div className='orderTable'>
+                        <OrderTable room={room} cost={cost} setCost={setCost} setFacilitiesIds={setFacilitiesIds} />
+                        <div className='doOrderButton'>
+                            <button onClick={doOrder}>Create order</button>
+                        </div>
+                    </div>
             </div>
-        </div>
+        </>
     )
 }
 
