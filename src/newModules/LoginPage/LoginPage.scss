@@ -1,0 +1,31 @@
+.loginPage {
+    margin-top: 5%;
+    align-self: center;
+    align-items: center;
+    width: 400px;
+}
+
+.loginPage h1 {
+    text-align: center;
+    font-size: 48px;
+}
+
+
+.loginPage .submitButton{
+    background-color: #003580;
+    
+    &:hover{
+        background-color: olive;
+    }
+}
+
+.infoBlock {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    margin-bottom: 8%;
+}
+
+.infoBlock a {
+    text-align: center;
+}

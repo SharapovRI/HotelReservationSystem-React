@@ -1,0 +1,39 @@
+.searchingArea {
+    display: flex;
+    flex-flow: column;
+    border-radius: 5px;
+    background-color: #febb02;
+    padding: 5%;
+}
+
+.searchingArea fieldset{
+    border: 0px solid yellow;
+    border-radius: 5px;
+    background-color: azure;
+}
+
+.searchingArea input{
+    z-index: 2;
+}
+
+.searchingAreaForm > div:nth-child(n + 2), .datePickerCellsFormat > div:nth-child(n + 2){
+    margin-top: 20px;
+}
+
+.searchingArea .submitButton{
+    background-color: #003580;
+    width: 100%;
+    
+    &:hover{
+        background-color: olive;
+    }
+}
+
+.cbLocates {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.seatsCountField {
+    width: 100%;    
+}

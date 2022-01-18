@@ -16,8 +16,7 @@ code {
 }
 
 #root {
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 64px 1fr;
+  display: flex;
+  flex-flow: column;
   background-color: #ffffff;
 }

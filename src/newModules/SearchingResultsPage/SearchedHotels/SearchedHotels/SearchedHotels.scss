@@ -1,0 +1,33 @@
+.listItem {
+    display: flex;
+    flex-flow: row;
+    background-color: cyan;
+}
+
+.listItemImage {
+    width: 35%;
+    padding: 2%;
+}
+
+.listItemImage img {
+    width: 100%;
+    border-radius: 10px;
+    background-color: blue;
+}
+
+.listItemDescription {
+    display: flex;
+    flex-flow: column;
+    width: 65%;
+    padding: 2%;
+}
+
+.listItemDescription .orderButton {
+    background-color: #003580;
+    width: 30%;
+    align-self: flex-end;
+    
+    &:hover{
+        background-color: olive;
+    }
+}

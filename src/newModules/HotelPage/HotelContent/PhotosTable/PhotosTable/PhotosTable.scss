@@ -1,0 +1,37 @@
+$btmMarg : 10px;
+
+.hotelPhotosList {
+    width: 100%;
+    height: 60vh;
+}
+
+.hotelPhotosList::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+.hotelPhoto {
+    float: left;
+    margin-bottom: $btmMarg;
+
+    height: calc(50% - 10px);
+    min-width: 33.6%;
+}
+
+.hotelPhoto img {
+    height: 100%;
+    width: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.hotelPhoto:first-child {
+    float: right;
+    height: calc(100% - 10px);
+    min-width: 65.2%;
+    max-width: 100%;
+    margin-bottom: $btmMarg;
+}

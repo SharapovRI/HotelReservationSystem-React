@@ -1,0 +1,70 @@
+$headHeight: 70px;
+
+.tableForm {
+    display: flex;
+    flex-flow: row;
+    margin: 50px 0px;
+}
+
+.reservationColumn {
+    width: 20%;
+    border: 1px black solid;
+    border-left: 0;
+
+    .roomTableHead {
+        background-color: #003580;
+    }
+}
+
+.roomsTable {
+    width: 80%;
+    display: table;
+
+    & th {
+        border: 1px black solid;
+        border-top: none;
+    }
+
+    & tbody tr {
+        height: 100px;
+    }
+}
+
+.roomTableHead {
+    color: #fff;
+    height: $headHeight;
+
+    position: sticky;
+    top: 0;
+
+    & tr {
+        height: $headHeight;        
+    } 
+
+    & th {
+        border-top: 1px black solid;
+        border-bottom: none;
+        background-color: #003580;
+        color: #fff;
+        background-clip: padding-box;
+    }
+}
+
+.colType {
+    min-width: 25%;
+    max-width: 40%;
+}
+
+.colSeats {
+    min-width: 10%;
+    max-width: 15%;
+}
+
+.colCost {
+    min-width: 10%;
+    max-width: 15%;
+}
+
+.colRoomCount {
+    width: 10%;
+}   
