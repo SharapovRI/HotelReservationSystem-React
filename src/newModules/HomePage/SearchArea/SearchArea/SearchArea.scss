@@ -1,0 +1,33 @@
+.searchAreaContainer {
+    display: flex;
+    width: 80%;
+    flex-flow: row;
+    align-self: center;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.searchAreaContainer fieldset{
+    border: 0px solid yellow;
+}
+
+.searchAreaForm {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+}
+
+.searchAreaItem {
+    border: 5px solid yellow;
+    min-width: 20%;
+}
+
+.searchAreaItem .submitButton{
+    background-color: #003580;
+    width: 100%;
+    height: 100%;
+    
+    &:hover{
+        background-color: olive;
+    }
+}

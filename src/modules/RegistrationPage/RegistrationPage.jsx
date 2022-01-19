@@ -49,7 +49,7 @@ const RegistrationPage = () => {
                                     </div>
                                     <div className='infoBlock'>
                                         <label>Repeat password: </label>
-                                        <Field name="repeatPassword" />
+                                        <Field name="repeatedPassword" />
                                         {errors.repeatedPassword && <div>{errors.repeatedPassword}</div>}
                                     </div>
                                     <div className='infoBlock'>

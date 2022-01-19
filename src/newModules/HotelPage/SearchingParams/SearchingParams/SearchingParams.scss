@@ -1,0 +1,29 @@
+.paramItem {
+    margin: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.dataParam {
+    margin-right: 10px;
+}
+
+.dataParam:first-child {
+    border-right: 1px solid grey;
+    padding-right: 10px;
+}
+
+.paramBtn {
+    align-self: center;
+    flex-grow: 1;
+    text-align: end;
+    padding-right: 10px;
+}
+
+.paramBtn .paramButton{
+    background-color: #003580;
+    
+    &:hover{
+        background-color: olive;
+    }
+}
