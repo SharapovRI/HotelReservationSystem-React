@@ -1,0 +1,55 @@
+$photoHeight: 30vh;
+
+.creationPhotoCarousel {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 0;
+    height: $photoHeight;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    border: 2px red solid;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.creationPhoto {
+    margin: 0;
+    height: 100%;
+    padding: 5px;
+}
+
+.creationPhoto img {
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+    border-radius: 35px;
+}
+
+.creationPhoto input {
+    display: none;
+}
+
+.inputLi {
+    min-width: $photoHeight;
+    display: flex;
+    background-color: grey;
+    align-items: center;
+    justify-content: center;
+    background-clip: content-box;
+    border-radius: 35px;
+
+    & svg {
+        font-size: 50px;
+        color: black;
+        background-color: cornsilk;
+        border-radius: 50%;
+
+        &:hover {
+            color: cornsilk;
+            background-color: black;
+        }
+    }
+}

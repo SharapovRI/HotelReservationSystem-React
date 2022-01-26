@@ -1,0 +1,56 @@
+$headHeight: 70px;
+
+.createdRoomsTable {
+    width: 100%;
+    display: table;
+
+    & th {
+        border: 1px black solid;
+        border-top: none;
+    }
+
+    & tbody tr {
+        height: 100px;
+    }
+}
+
+.createdRoomsHead {
+    color: #fff;
+    height: $headHeight;
+
+    position: sticky;
+    top: 0;
+
+    & tr {
+        height: $headHeight;        
+    } 
+
+    & th {
+        border-top: 1px black solid;
+        border-bottom: none;
+        background-color: #003580;
+        color: #fff;
+        background-clip: padding-box;
+        text-align: center;
+    }
+}
+
+.colButtons {
+    width: 120px;
+}
+
+.colType {
+    width: 40%;
+}
+
+.colSeats {
+    width: 15%;
+}
+
+.colCost {
+    width: 15%;
+}
+
+.colRoomCount {
+    width: 10%;
+}   

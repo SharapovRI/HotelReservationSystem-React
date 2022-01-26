@@ -1,0 +1,22 @@
+.hotelCreationContainer {
+    display: flex;
+    flex-flow: column;
+}
+
+.hotelCreationButtons {
+    display: flex;
+    width: 80%;
+    align-self: center;
+    margin-bottom: 50px;
+    justify-content: space-between;
+
+    & .hotelCreationButton {
+        background-color: #003580;
+        width: 30%;
+        height: 100%;
+        
+        &:hover {
+            background-color: olive;
+        }
+    }
+}

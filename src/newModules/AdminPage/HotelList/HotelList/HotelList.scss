@@ -1,0 +1,46 @@
+.adminHotelContainer {
+    width: 80%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-self: center;
+} 
+
+.adminHotelList {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.hotelListItem {
+    display: flex;
+    flex-flow: row;
+    background-color: cyan;
+}
+
+.hotelListItemImage {
+    width: 35%;
+    padding: 2%;
+}
+
+.hotelListItemImage img {
+    width: 100%;
+    border-radius: 10px;
+    background-color: blue;
+}
+
+.hotelListItemDescription {
+    display: flex;
+    flex-flow: column;
+    width: 65%;
+    padding: 2%;
+}
+
+.hotelListItemDescription .orderButton {
+    background-color: #003580;
+    width: 30%;
+    align-self: flex-end;
+    
+    &:hover{
+        background-color: olive;
+    }
+}

@@ -13,13 +13,11 @@ const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, box
   const [curValue, setCurValue] = useState(null);
 
   useEffect(() => {
-    console.log(cityName, cityId);
     const apiUrl = 'https://localhost:44382/Locates';
     instance.get(apiUrl)
       .then((resp) => {
         const allPersons = resp.data;
         setAppState(allPersons);
-        console.log(allPersons);
       })
       .catch(async function (error) {
         if (error.response) {

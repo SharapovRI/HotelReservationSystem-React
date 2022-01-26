@@ -1,0 +1,31 @@
+.facilityCreationArea {
+    width: 80%;
+    align-self: center;
+    background-color: aqua;
+    margin-bottom: 50px;
+}
+
+
+.createdFacilitiesList {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.createdFacilityItem {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 33.3%;
+    padding: 10px 20px;
+    color: green;
+
+    & p {
+        margin: 0px 15px;
+        line-break: auto;
+        
+        &:first-child {
+            width: 50%;
+        }
+    }
+}
