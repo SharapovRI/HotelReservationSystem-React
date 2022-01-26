@@ -4,6 +4,7 @@ const roomSlice = createSlice({
     name: 'room',
     initialState: {
         rooms: [],
+        createdRooms: [],
     },
     reducers: {
         addRooms: (state, room) => {
@@ -25,6 +26,24 @@ const roomSlice = createSlice({
             else {
                 state.rooms[index].count = room.payload.count;
             }
+        },
+        addCreatedRoom: (state, room) => {
+            console.log("asdasdasd");
+            state.createdRooms.push(room.payload)
+        },
+        removeCreatedRoom: (state, index) => {
+            state.createdRooms.splice(index, 1);
+            console.log("asdasdasd");
+        },
+        updateCreatedRoom: (state, roomState) => {
+            //const index = state.rooms.findIndex((facil) => facil.id === room.payload.id);
+            console.log("asdasdasd", roomState.payload.index);
+            console.log("asdasdasd", roomState.payload.room);
+
+            const room = roomState.payload.room;
+            const index = roomState.payload.index;
+
+            state.createdRooms[index] = room;
         }
     }
 })
@@ -33,6 +52,9 @@ export const {
     addRooms,
     removeRooms,
     updateRoomState,
+    addCreatedRoom,
+    removeCreatedRoom,
+    updateCreatedRoom,
 } = roomSlice.actions
 
 export default roomSlice.reducer

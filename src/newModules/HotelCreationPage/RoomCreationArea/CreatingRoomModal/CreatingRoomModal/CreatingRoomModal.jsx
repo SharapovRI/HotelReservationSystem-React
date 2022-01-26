@@ -7,6 +7,8 @@ import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
 import CreationPhotoCarousel from '../../../../Shared/CreationPhotoCarousel/CreationPhotoCarousel/CreationPhotoCarousel';
 import { Formik, Form, Field } from 'formik';
+import { addCreatedRoom, addRooms, updateCreatedRoom, updateRoomState } from '../../../../../redux/Reducers/RoomReducer';
+import { useDispatch } from 'react-redux';
 
 const CreatingRoomModal = ({ open, handleClose, rooms, setRooms, roomItem, index }) => {
     const [roomPhotos, setRoomPhotos] = useState([]);
@@ -14,6 +16,7 @@ const CreatingRoomModal = ({ open, handleClose, rooms, setRooms, roomItem, index
     const [typeName, setTypeName] = useState('');
     const [cost, setCost] = useState(0);
     const [roomCount, setRoomCount] = useState(0);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (roomItem)
@@ -43,6 +46,7 @@ const CreatingRoomModal = ({ open, handleClose, rooms, setRooms, roomItem, index
     }
 
     function createRoom() {
+        console.log('11111111');
         const room = {
             cost: Number(cost),
             seatsCount: Number(seatsCount),
@@ -52,6 +56,7 @@ const CreatingRoomModal = ({ open, handleClose, rooms, setRooms, roomItem, index
         }
 
         setRooms([...rooms, room]);
+        dispatch(addCreatedRoom(room));
         cancel();
     }
 
@@ -72,9 +77,8 @@ const CreatingRoomModal = ({ open, handleClose, rooms, setRooms, roomItem, index
             roomCount: Number(roomCount),
         }
 
-        // rooms[index] = room;
-        // setRooms(rooms);
-        cancel();
+        dispatch(updateCreatedRoom({index, room}));
+        handleClose();
     }
 
     function cancel() {
