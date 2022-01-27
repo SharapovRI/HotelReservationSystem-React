@@ -1,29 +1,30 @@
 import { useEffect, useState } from 'react';
 import CreatingFacilityModal from '../CreatingFacilityModal/CreatingFacilityModal/CreatingFacilityModal';
+import CreatingFacilityItem from '../CreatingFacilityItem/CreatingFacilityItem/CreatingFacilityItem';
 import './FacilityCreationArea.scss';
+import { useSelector } from 'react-redux';
 
 const FacilityCreationArea = ({setFacilityPayload}) => {
-    const [createdFacilities, setCreatedFacilities] = useState([]);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const facilitiesRedux = useSelector((state) => state.facilityReducer?.createdFacilities)
+
     useEffect(() => {
         const facilities = {
-            facilities: createdFacilities,
+            facilities: facilitiesRedux,
         }
         setFacilityPayload(facilities);
-    }, [createdFacilities]);
+    }, [facilitiesRedux]);
 
     function getFacilities() {
         const rowList = [];
 
-        if (createdFacilities?.length > 0) {
-            createdFacilities.map((item, index) =>
+        if (facilitiesRedux?.length > 0) {
+            facilitiesRedux.map((item, index) =>
                 rowList.push(
-                    <div className='createdFacilityItem'>
-                        <p>{item.name}</p><p>{item.cost}</p>
-                    </div>
+                    <CreatingFacilityItem facilityItem={item} index={index} />
                 )
             );
         }
@@ -34,11 +35,11 @@ const FacilityCreationArea = ({setFacilityPayload}) => {
     return(
         <div className='facilityCreationArea'>
             <h2>Facility area</h2>
-            <button onClick={handleOpen}>create</button>
-            <CreatingFacilityModal open={open} handleClose={handleClose} facilities={createdFacilities} setFacilities={setCreatedFacilities} />
+            <CreatingFacilityModal open={open} handleClose={handleClose} />
             <div className='createdFacilitiesList'>
                 {getFacilities()}
             </div>
+            <button onClick={handleOpen}>create</button>
         </div>
     )
 }

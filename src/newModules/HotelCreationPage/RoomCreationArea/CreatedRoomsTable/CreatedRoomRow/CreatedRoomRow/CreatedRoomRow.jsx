@@ -8,7 +8,6 @@ import { useState } from 'react';
 import './CreatedRoomRow.scss';
 
 const CreatedRoomRow = ({ room, index }) => {
-    const [createdRooms, setCreatedRooms] = useState([]);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -31,7 +30,7 @@ const CreatedRoomRow = ({ room, index }) => {
                     </div>
                 </th>
             </tr>
-            <CreatingRoomModal open={open} handleClose={handleClose} rooms={createdRooms} setRooms={setCreatedRooms} roomItem={room} index={index} />
+            <CreatingRoomModal open={open} handleClose={handleClose} roomItem={room} index={index} />
             <DeleteRoomModal open={openAlert} handleClickClose={handleClickClose} index={index}/>
         </>
     )

@@ -19,9 +19,10 @@ const HotelCreationPage = () => {
         if(isSubmited){
             const payload = Object.assign(hotelPayload, roomPayload, facilityPayload);
             console.log(payload);
-            // const resp = postHotel(payload);
-            // console.log(resp);
+            const resp = postHotel(payload);
+            console.log(resp);
             setIsSubmited(false)
+            navigate('/Admin');
         }
     }, [isSubmited]);
 

@@ -7,20 +7,15 @@ import { useSelector } from 'react-redux';
 
 const RoomCreationArea = ({ setRoomPayload }) => {
     const roomSt = useSelector((state) => state.roomReducer?.createdRooms)
-    const [createdRooms, setCreatedRooms] = useState([]);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     useEffect(() => {
         const rooms = {
-            rooms: createdRooms,
+            rooms: roomSt,
         }
         setRoomPayload(rooms);
-    }, [createdRooms])
-
-    useEffect(() => {
-        console.log('change');
     }, [roomSt])
 
     return (
@@ -29,8 +24,7 @@ const RoomCreationArea = ({ setRoomPayload }) => {
             <div className='addRoomBtn' onClick={handleOpen}>
                 <AddCircleIcon />
             </div>
-            <CreatingRoomModal open={open} handleClose={handleClose} rooms={createdRooms} setRooms={setCreatedRooms} />
-            <button onClick={() => console.log(roomSt)}>fffffffffffffffff</button>
+            <CreatingRoomModal open={open} handleClose={handleClose} />
         </div>
     )
 }

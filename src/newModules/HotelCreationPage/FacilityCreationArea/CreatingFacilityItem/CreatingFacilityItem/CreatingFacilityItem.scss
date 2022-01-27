@@ -1,0 +1,26 @@
+.createdFacilityItem {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    min-width: 10%;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: #2365b5;
+    color: white;
+    margin-right: 15px;
+    margin-top: 10px;
+
+    & p {
+        display: flex;
+        align-items: center;
+        margin: 0px 15px;
+        line-break: auto;
+        text-align: center;
+        vertical-align: middle;
+        
+        &:first-child {
+            width: 50%;
+            margin-right: 15px;
+        }
+    }
+}

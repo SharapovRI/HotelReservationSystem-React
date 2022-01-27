@@ -1,7 +1,12 @@
 .facilityCreationArea {
+    display: flex;
+    flex-flow: column nowrap;
     width: 80%;
+    border-radius: 15px;
     align-self: center;
-    background-color: aqua;
+    padding: 20px 40px;
+    background-color: #003580;
+    color: white;
     margin-bottom: 50px;
 }
 
@@ -10,22 +15,5 @@
     display: flex;
     flex-flow: row wrap;
     width: 100%;
-}
-
-.createdFacilityItem {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    width: 33.3%;
-    padding: 10px 20px;
-    color: green;
-
-    & p {
-        margin: 0px 15px;
-        line-break: auto;
-        
-        &:first-child {
-            width: 50%;
-        }
-    }
+    margin-bottom: 40px;
 }

@@ -10,7 +10,7 @@ import { Formik, Form, Field } from 'formik';
 import { addCreatedRoom, addRooms, updateCreatedRoom, updateRoomState } from '../../../../../redux/Reducers/RoomReducer';
 import { useDispatch } from 'react-redux';
 
-const CreatingRoomModal = ({ open, handleClose, rooms, setRooms, roomItem, index }) => {
+const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
     const [roomPhotos, setRoomPhotos] = useState([]);
     const [seatsCount, setSeatsCount] = useState(0);
     const [typeName, setTypeName] = useState('');
@@ -46,7 +46,6 @@ const CreatingRoomModal = ({ open, handleClose, rooms, setRooms, roomItem, index
     }
 
     function createRoom() {
-        console.log('11111111');
         const room = {
             cost: Number(cost),
             seatsCount: Number(seatsCount),
@@ -55,21 +54,12 @@ const CreatingRoomModal = ({ open, handleClose, rooms, setRooms, roomItem, index
             roomCount: Number(roomCount),
         }
 
-        setRooms([...rooms, room]);
         dispatch(addCreatedRoom(room));
         cancel();
     }
 
     function updateRoom() {
         const room = {
-            cost: Number(cost),
-            seatsCount: Number(seatsCount),
-            typeName: typeName,
-            roomPhotos: roomPhotos,
-            roomCount: Number(roomCount),
-        }
-
-        roomItem = {
             cost: Number(cost),
             seatsCount: Number(seatsCount),
             typeName: typeName,
@@ -157,8 +147,10 @@ const CreatingRoomModal = ({ open, handleClose, rooms, setRooms, roomItem, index
                                 </div>
                             </div>
                             <div className='roomModalRow'>
-                                <Button variant="contained" className='roomModalBtn' onClick={cancel}>Cancel</Button>
+                                {!roomItem && <Button variant="contained" className='roomModalBtn' onClick={cancel}>Cancel</Button>}
                                 {!roomItem && <Button variant="contained" type="submit" className='roomModalBtn' onClick={createRoom}>Create</Button>}
+
+                                {roomItem && <Button variant="contained" className='roomModalBtn' onClick={handleClose}>Cancel</Button>}
                                 {roomItem && <Button variant="contained" type="submit" className='roomModalBtn' onClick={updateRoom}>Update</Button>}
                             </div>
                         </Form>
