@@ -28,16 +28,15 @@ const facilitySlice = createSlice({
         //     }
         // },
         addCreatedFacility: (state, facility) => {
-            console.log("qweqwe");
             state.createdFacilities.push(facility.payload)
+        },
+        addCreatedFacilitiesRange: (state, facilities) => {
+            state.createdFacilities = facilities.payload;
         },
         removeCreatedFacility: (state, index) => {
             state.createdFacilities.splice(index, 1);
         },
         updateCreatedFacility: (state, facilityState) => {
-            //const index = state.rooms.findIndex((facil) => facil.id === room.payload.id);
-            console.log("asdasdasd", facilityState.payload.index);
-            console.log("asdasdasd", facilityState.payload.facility);
 
             const facility = facilityState.payload.facility;
             const index = facilityState.payload.index;
@@ -49,6 +48,7 @@ const facilitySlice = createSlice({
 
 export const {
     addCreatedFacility,
+    addCreatedFacilitiesRange,
     removeCreatedFacility,
     updateCreatedFacility,
 } = facilitySlice.actions

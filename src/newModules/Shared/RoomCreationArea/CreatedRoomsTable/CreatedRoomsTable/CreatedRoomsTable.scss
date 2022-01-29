@@ -17,6 +17,7 @@ $headHeight: 70px;
 .createdRoomsHead {
     color: #fff;
     height: $headHeight;
+    z-index: 2;
 
     position: sticky;
     top: 0;

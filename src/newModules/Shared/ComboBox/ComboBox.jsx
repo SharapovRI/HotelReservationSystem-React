@@ -66,19 +66,17 @@ const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, box
         if (newValue !== null) {
           setOption(newValue.id);
           setCountry(newValue.countryId);
+          setCurValue(newValue);
         }
         else {
           setOption('');
           setCountry('');
+          setCurValue(null);
         }
       }
       }
 
       value={curValue}
-
-      // (cityName && appState.length > 0 && appState[appState.findIndex((locate) => locate.city === cityName)]) ||
-      // (cityId && appState.length > 0 && appState[appState.findIndex((locate) => locate.id === cityId)]) 
-
 
       getOptionLabel={getOptionLabel}
       renderOption={(props, option) => (

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CreationPhotoCarousel from '../../../Shared/CreationPhotoCarousel/CreationPhotoCarousel/CreationPhotoCarousel';
 
-const HotelCreationInfo = ({ setHotelPayload, setIsSubmited }) => {
+const HotelCreationInfo = ({ setHotelPayload, setIsSubmited, hotelPayload }) => {
     const [appState, setAppState] = useState([]);
     const [hotelPhotos, setHotelPhotos] = useState([]);
     const [hotelName, setHotelName] = useState('');
@@ -15,6 +15,24 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited }) => {
     const [country, setCountry] = useState(0);
     const [city, setCity] = useState(0);
     const [discription, setDiscription] = useState('');
+
+    const [curValue, setCurValue] = useState(null);
+
+    useEffect(() => {
+        if (hotelPayload) {
+            const { address: addressPay, name: hotelNamePay, photos: hotelPhotosPay, city: cityPay } = hotelPayload;
+            setAddress(addressPay);
+            setHotelName(hotelNamePay);
+            setHotelPhotos(hotelPhotosPay);
+
+            if (cityPay && appState.length > 0) {
+                const currentLocate = appState[appState.findIndex((locate) => locate.city === cityPay)];
+                setCity(currentLocate.id);
+                setCountry(currentLocate.countryId);
+                setCurValue(currentLocate);
+              };
+        }
+    }, [hotelPayload])
 
     useEffect(() => {
         const apiUrl = 'https://localhost:44382/Locates';
@@ -60,8 +78,8 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited }) => {
                 password: '',
                 login: '',
             }}
-        //validate={checkLoginData}
-        onSubmit={submit}
+            //validate={checkLoginData}
+            onSubmit={submit}
         >
             {({ errors }) => (
                 <Form id='deForm' className='hotelCreationInfo'>
@@ -75,14 +93,17 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited }) => {
                             <Autocomplete className='comboBox'
                                 options={appState}
                                 clearOnEscape={true}
+                                value={curValue}
                                 onChange={(event, newValue) => {
                                     if (newValue !== null) {
                                         setCity(newValue.id);
                                         setCountry(newValue.countryId);
+                                        setCurValue(newValue);
                                     }
                                     else {
                                         setCity('');
                                         setCountry('');
+                                        setCurValue(null);
                                     }
                                 }
                                 }

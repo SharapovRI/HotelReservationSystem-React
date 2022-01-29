@@ -4,8 +4,16 @@
     flex-flow: row;
     align-self: center;
     justify-content: center;
-    margin-top: 5%;
+    margin: 40px 0;
     align-items: flex-end;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border-radius: 5px;
+
+    & .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root, & .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+        background-color: white;
+        width: 100%;
+        border-radius: 5px;
+    }
 }
 
 .adminSearchAreaContainer fieldset{
@@ -16,11 +24,33 @@
     display: flex;
     flex-flow: row;
     width: 100%;
+    border-radius: 5px;
 }
 
 .adminSearchAreaItem {
-    border: 5px solid yellow;
+    border: 5px solid #febb02;
+    background-color: #febb02;
     flex: 1;
+
+    &:not(:last-child)
+    {
+        border-right: none;
+    }
+
+    &:first-child {
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+
+    &:last-child {
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    & .css-16awh2u-MuiAutocomplete-root {
+        background-color: white;
+        border-radius: 5px; 
+    }
 }
 
 .adminSearchAreaItem .submitButton{

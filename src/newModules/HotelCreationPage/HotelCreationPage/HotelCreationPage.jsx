@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import FacilityCreationArea from '../FacilityCreationArea/FacilityCreationArea/FacilityCreationArea';
-import HotelCreationInfo from '../HotelCreationInfo/HotelCreationInfo/HotelCreationInfo';
-import RoomCreationArea from '../RoomCreationArea/RoomCreationArea/RoomCreationArea';
+import FacilityCreationArea from '../../Shared/FacilityCreationArea/FacilityCreationArea/FacilityCreationArea';
+import HotelCreationInfo from '../../Shared/HotelCreationInfo/HotelCreationInfo/HotelCreationInfo';
+import RoomCreationArea from '../../Shared/RoomCreationArea/RoomCreationArea/RoomCreationArea';
 import Button from '@mui/material/Button';
 import './HotelCreationPage.scss';
 import { useNavigate } from 'react-router-dom';
@@ -18,9 +18,7 @@ const HotelCreationPage = () => {
     useEffect(() => {
         if(isSubmited){
             const payload = Object.assign(hotelPayload, roomPayload, facilityPayload);
-            console.log(payload);
             const resp = postHotel(payload);
-            console.log(resp);
             setIsSubmited(false)
             navigate('/Admin');
         }

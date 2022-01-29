@@ -4,7 +4,7 @@ import CreatingFacilityItem from '../CreatingFacilityItem/CreatingFacilityItem/C
 import './FacilityCreationArea.scss';
 import { useSelector } from 'react-redux';
 
-const FacilityCreationArea = ({setFacilityPayload}) => {
+const FacilityCreationArea = ({setFacilityPayload, facilityPayload}) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

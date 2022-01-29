@@ -6,29 +6,23 @@ import HotelCreatingPage from '../../HotelCreationPage/HotelCreationPage/HotelCr
 import './AdminPage.scss';
 
 import Modal from '@mui/material/Modal';
+import { useNavigate } from 'react-router-dom';
 
 const AdminPage = () => {
     const [filter, setFilter] = useState(null);
     const [content, setContent] = useState([]);
     const [pageCount, setPageCount] = useState(0);
+    const navigate = useNavigate();
 
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    function goToCreatingPage() {
+        navigate('/Admin/HotelCreation');
+    }
 
     return(
         <div className='adminPageContainer'>
             <SearchArea setFilter={setFilter} setContent={setContent} setPageCount={setPageCount}/>
             <HotelList hotels={content} />
-            <Button variant="contained" type="submit" className='addBtn' onClick={() => handleOpen()}>Create hotel</Button>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                className='creatingHotelModal'
-                sx={{overflow:'auto'}}
-            >
-                <HotelCreatingPage />
-            </Modal>
+            <Button variant="contained" type="submit" className='addBtn' onClick={goToCreatingPage}>Create hotel</Button>
         </div>
     )
 }
