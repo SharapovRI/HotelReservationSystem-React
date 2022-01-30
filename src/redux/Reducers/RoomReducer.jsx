@@ -4,6 +4,7 @@ const roomSlice = createSlice({
     name: 'room',
     initialState: {
         rooms: [],
+        createdRooms: [],
     },
     reducers: {
         addRooms: (state, room) => {
@@ -25,6 +26,21 @@ const roomSlice = createSlice({
             else {
                 state.rooms[index].count = room.payload.count;
             }
+        },
+        addCreatedRoom: (state, room) => {
+            state.createdRooms.push(room.payload)
+        },
+        addCreatedRoomsRange: (state, rooms) => {
+            state.createdRooms = rooms.payload;
+        },
+        removeCreatedRoom: (state, index) => {
+            state.createdRooms.splice(index, 1);
+        },
+        updateCreatedRoom: (state, roomState) => {
+            const room = roomState.payload.room;
+            const index = roomState.payload.index;
+
+            state.createdRooms[index] = room;
         }
     }
 })
@@ -33,6 +49,10 @@ export const {
     addRooms,
     removeRooms,
     updateRoomState,
+    addCreatedRoom,
+    addCreatedRoomsRange,
+    removeCreatedRoom,
+    updateCreatedRoom,
 } = roomSlice.actions
 
 export default roomSlice.reducer

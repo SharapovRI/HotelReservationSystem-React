@@ -1,0 +1,29 @@
+.roomCreationArea {
+    width: 80%;
+    align-self: center;
+    margin-bottom: 50px;
+}
+
+.addRoomBtn {
+    height: 100px;
+    display: flex;
+    background-color: grey;
+    align-items: center;
+    justify-content: center;
+    background-clip: content-box;
+    border-radius: 15px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    & svg {
+        font-size: 50px;
+        color: black;
+        background-color: cornsilk;
+        border-radius: 50%;
+
+        &:hover {
+            color: cornsilk;
+            background-color: black;
+        }
+    }   
+}

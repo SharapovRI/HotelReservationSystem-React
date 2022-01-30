@@ -13,13 +13,11 @@ const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, box
   const [curValue, setCurValue] = useState(null);
 
   useEffect(() => {
-    console.log(cityName, cityId);
     const apiUrl = 'https://localhost:44382/Locates';
     instance.get(apiUrl)
       .then((resp) => {
         const allPersons = resp.data;
         setAppState(allPersons);
-        console.log(allPersons);
       })
       .catch(async function (error) {
         if (error.response) {
@@ -68,19 +66,17 @@ const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, box
         if (newValue !== null) {
           setOption(newValue.id);
           setCountry(newValue.countryId);
+          setCurValue(newValue);
         }
         else {
           setOption('');
           setCountry('');
+          setCurValue(null);
         }
       }
       }
 
       value={curValue}
-
-      // (cityName && appState.length > 0 && appState[appState.findIndex((locate) => locate.city === cityName)]) ||
-      // (cityId && appState.length > 0 && appState[appState.findIndex((locate) => locate.id === cityId)]) 
-
 
       getOptionLabel={getOptionLabel}
       renderOption={(props, option) => (

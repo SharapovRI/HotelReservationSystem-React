@@ -1,0 +1,30 @@
+.UDbtns {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+
+    & span {
+        margin: 0 !important;
+
+        & svg {
+            font-size: 40px !important;
+        }
+    }
+
+    & button {
+        min-width: 0;
+        max-width: none;
+        width: 50px !important;
+        padding: 0 !important;
+    }
+
+    .updateBtn {
+        background-color: chocolate;
+        color: white;
+    }
+
+    .deleteBtn {
+        background-color: red;
+        color: white;
+    }
+}
