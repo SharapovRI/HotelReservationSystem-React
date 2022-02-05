@@ -10,17 +10,18 @@
     display: flex;
     flex-flow: column;
     width: 25%;
+    padding: 16px 8px 0;
 }
 
 .hotelArea {
     width: 75%;
     max-height: 75%;
-    padding: 5%;
+    padding: 16px 8px 0;
 }
 
 .hotelDescription {
     width: 100%;
-    padding: 5%;
+    padding: 0;
 }
 
 .searchingParams {
@@ -28,9 +29,14 @@
     display: flex;
     flex-flow: row nowrap;
     border: 1px grey solid;
+    margin-top: 32px;
 }
 
 .roomTable {
     width: 100%;
     margin-bottom: 600px;
+}
+
+.textArea {
+    white-space: pre-line;
 }

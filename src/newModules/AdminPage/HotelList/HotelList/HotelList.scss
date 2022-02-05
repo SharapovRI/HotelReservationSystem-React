@@ -22,6 +22,7 @@ $img_size: 200px;
     margin-top: 16px;
     border-radius: 2px;
     padding: $item_margin;
+    height: 256px;
 }
 
 .hotelListItemImage {
@@ -44,6 +45,7 @@ $img_size: 200px;
     flex-flow: column;
     margin-left: $item_margin;
     width: calc(100% - 216px);
+    height: 224px;
     color: #262626;
     font-size: 14px;
     font-weight: 400;
@@ -83,9 +85,11 @@ $img_size: 200px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    max-height: 174px;
 }
 
 .item_buttons {
+    margin-left: 15px;
     width: 150px;
     display: flex;
     flex-flow: column nowrap;
@@ -100,4 +104,11 @@ $img_size: 200px;
             width: 100%;
         }
     }
+}
+
+.item_discription {
+    padding-left: 5px;
+    border-left: 2px solid #e6e6e6;
+    height: 100%;
+    overflow-y: auto;
 }

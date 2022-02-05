@@ -1,23 +1,21 @@
-import postOrder from "../../api/apiRequests/postOrder";
-
-const createOrder = (roomId, userId, checkInDate, checkOutDate, cost, facilitiesIds, checkInTime) => {
+const createOrder = (room, checkInDate, checkOutDate, checkInTime) => {
     const hours = new Date(checkInTime).getHours();
     const min = new Date(checkInTime).getMinutes();
     const checkIn = new Date(checkInDate);
     const checkOut = new Date(checkOutDate);
     checkIn.setHours(hours);
     checkIn.setMinutes(min);
+    const facilitiesIds = room.facilities?.map(facil => facil.id);
 
     const payload = {
-        RoomId:Number(roomId),
-        PersonId:Number(userId),
+        RoomId:Number(room.id),
         CheckInTime: checkIn.toJSON(),
         CheckOutTime: checkOut.toJSON(),
-        Cost:Number(cost),
+        Cost:Number(room.cost),
         AdditionalFacilities:facilitiesIds,
     };
 
-    postOrder(payload);
+    return(payload);
 }
 
 export default createOrder;

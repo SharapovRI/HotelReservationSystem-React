@@ -58,7 +58,7 @@ const SearchingArea = ({ setFilter, setContent, setPageCount }) => {
     }
 
     return (
-        <div className='searchingArea'>
+        <div className='searchingAreaP'>
             <h2>Search</h2>
             <Formik
                 initialValues={{
@@ -69,7 +69,7 @@ const SearchingArea = ({ setFilter, setContent, setPageCount }) => {
                 onSubmit={searchHotels}
             >
                 {({ errors }) => (
-                    <Form className='searchingAreaForm'>
+                    <Form className='searchingAreaPForm'>
                         <ComboBox className='cbLocates' cityId={city}
                             setOption={(newValue) => setCity(newValue)}
                             setCountry={(newValue => setCountry(newValue))}

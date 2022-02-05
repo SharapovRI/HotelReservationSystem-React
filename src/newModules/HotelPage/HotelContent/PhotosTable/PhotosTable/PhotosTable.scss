@@ -17,7 +17,7 @@ $btmMarg : 10px;
     margin-bottom: $btmMarg;
 
     height: calc(50% - 10px);
-    min-width: 33.6%;
+    width: 33.6%;
 }
 
 .hotelPhoto img {
@@ -31,7 +31,6 @@ $btmMarg : 10px;
 .hotelPhoto:first-child {
     float: right;
     height: calc(100% - 10px);
-    min-width: 65.2%;
-    max-width: 100%;
+    width: 65.2%;
     margin-bottom: $btmMarg;
 }

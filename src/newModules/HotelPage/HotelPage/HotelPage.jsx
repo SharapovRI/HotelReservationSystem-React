@@ -5,6 +5,7 @@ import HotelContent from '../HotelContent/HotelContent/HotelContent';
 import RoomTable from '../RoomTable/RoomTable/RoomTable';
 import SearchingArea from '../SearchingArea/SearchingArea/SearchingArea';
 import SearchingParams from '../SearchingParams/SearchingParams/SearchingParams';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 import './HotelPage.scss';
 
 const HotelPage = () => {
@@ -22,7 +23,7 @@ const HotelPage = () => {
         async function fetchHotelRooms() {
             const data = await getHotelRooms(params.hotelId, { ...filter, index: 0 });
             setRooms(data.result);
-            console.log(data.result);
+            console.log(data);
             setHotel(data.hotel);
             setPageCount(data.pageCount);
         }
@@ -51,17 +52,18 @@ const HotelPage = () => {
                 <HotelContent hotel={hotel} />
             </div>
             <div className='hotelDescription'>
-                ------------------------------------------------------
-                <br />
-                dada
-                <br />
-                ------------------------------------------------------
+                {/* <TextareaAutosize
+                    value={hotel.discription}
+                    className=''
+                    readOnly
+                /> */}
+                <span className='textArea'>{hotel?.discription}</span>
             </div>
             <div className='searchingParams'>
                 <SearchingParams filter={filter} />
             </div>
             <div className='roomTable'>
-                <RoomTable rooms={rooms}/>
+                <RoomTable rooms={rooms} filter={filter} />
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-.searchingArea {
+.searchingAreaP {
     display: flex;
     flex-flow: column;
     border-radius: 5px;
@@ -6,21 +6,21 @@
     padding: 5%;
 }
 
-.searchingArea fieldset{
+.searchingAreaP fieldset{
     border: 0px solid yellow;
     border-radius: 5px;
     background-color: azure;
 }
 
-.searchingArea input{
+.searchingAreaP input{
     z-index: 2;
 }
 
-.searchingAreaForm > div:nth-child(n + 2), .datePickerCellsFormat > div:nth-child(n + 2){
+.searchingAreaPForm > div:nth-child(n + 2), .datePickerCellsFormat > div:nth-child(n + 2){
     margin-top: 20px;
 }
 
-.searchingArea .submitButton{
+.searchingAreaP .submitButton{
     background-color: #003580;
     width: 100%;
     

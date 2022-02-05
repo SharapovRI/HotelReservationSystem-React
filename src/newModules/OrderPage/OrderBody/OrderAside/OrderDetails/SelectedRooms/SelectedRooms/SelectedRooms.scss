@@ -1,0 +1,34 @@
+.selected_rooms {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.sr_header {
+    h3 {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 20px;
+    }
+}
+
+.selected_rooms_list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    margin-top: 4px !important;
+}
+
+.selected__room {
+    margin: 0;
+
+    &:last-child {
+        margin-bottom: 8px;
+    }
+
+    h3 {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        font-family: Helvetica,Arial,sans-serif;
+    }
+}

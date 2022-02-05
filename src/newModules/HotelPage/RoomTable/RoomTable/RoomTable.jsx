@@ -5,9 +5,14 @@ import { Formik, Form, Field } from 'formik';
 import './RoomTable.scss'
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
-const RoomTable = ({ rooms }) => {
+const RoomTable = ({ rooms, filter }) => {
     const roomSt = useSelector((state) => state.roomReducer?.rooms);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const params = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log('slice');
@@ -28,13 +33,27 @@ const RoomTable = ({ rooms }) => {
         return rowList;
     }
 
+    function goToOrderPage() {
+        const payload = filter;
+        payload['hotelId'] = params.hotelId;
+        payload['rooms'] = roomSt;
+        console.log(roomSt);
+        console.log(payload);
+        const path = axios.getUri({ url: `/OrderPage`, params: payload });
+        navigate(path);
+    }
+
     return (
         <Formik
+            initialValues={{
+                password: '',
+                login: '',
+            }}
             //validate={checkLoginData}
-            //onSubmit={authorizeClick}
+            onSubmit={goToOrderPage}
         >
             {({ errors }) => (
-                <Form className='tableForm'>
+                <Form id='order_form' className='tableForm'>
                     <table className='roomsTable'>
                         <colgroup className='columns'>
                             <col className='colType' />
