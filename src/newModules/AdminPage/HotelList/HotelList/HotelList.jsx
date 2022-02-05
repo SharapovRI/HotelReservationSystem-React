@@ -8,6 +8,7 @@ const HotelList = ({ hotels }) => {
 
     function getHotels() {
         const list = [];
+        console.log(hotels);
         if (hotels.length > 0) {
             hotels.map((item, index) =>
                 list.push(
@@ -26,7 +27,7 @@ const HotelList = ({ hotels }) => {
                             </div>
                             <div className='hotelListItemBody'>
                                 <div className="item_discription">
-
+                                    {item.discription}
                                 </div>
                                 <div className="item_buttons">
                                     <div className="item_button">

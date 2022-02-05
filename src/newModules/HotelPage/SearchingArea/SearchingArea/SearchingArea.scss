@@ -3,7 +3,17 @@
     flex-flow: column;
     border-radius: 5px;
     background-color: #febb02;
-    padding: 5%;
+    font-family: Helvetica,Arial,sans-serif;
+    color: #333;
+    padding: 16px;
+    position: relative;
+    font-size: 13px;
+
+    h2 {
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 600;
+    }
 }
 
 .searchingArea fieldset{
@@ -14,6 +24,13 @@
 
 .searchingArea input{
     z-index: 2;
+}
+
+.searchingAreaForm {
+    font-family: Helvetica,Arial,sans-serif;
+    color: #333;
+    position: relative;
+    font-size: 13px;
 }
 
 .searchingAreaForm > div:nth-child(n + 2), .datePickerCellsFormat > div:nth-child(n + 2){

@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import CreatingFacilityModal from '../CreatingFacilityModal/CreatingFacilityModal/CreatingFacilityModal';
 import CreatingFacilityItem from '../CreatingFacilityItem/CreatingFacilityItem/CreatingFacilityItem';
 import './FacilityCreationArea.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearCreatedFacilities } from '../../../../redux/Reducers/FacilitiesReducer';
 
 const FacilityCreationArea = ({setFacilityPayload, facilityPayload}) => {
     const [open, setOpen] = useState(false);
@@ -10,6 +11,12 @@ const FacilityCreationArea = ({setFacilityPayload, facilityPayload}) => {
     const handleClose = () => setOpen(false);
 
     const facilitiesRedux = useSelector((state) => state.facilityReducer?.createdFacilities)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(clearCreatedFacilities());
+    }, [setOpen])
 
     useEffect(() => {
         const facilities = {

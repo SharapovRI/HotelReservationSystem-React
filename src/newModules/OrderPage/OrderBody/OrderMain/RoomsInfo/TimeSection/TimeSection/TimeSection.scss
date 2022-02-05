@@ -1,0 +1,50 @@
+.time_section {
+    background-color: #ebf3ff;
+    color: #262626;
+    border: 1px solid #e7e7e7;
+    border-radius: 2px;
+    padding: 16px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.ts_header {
+    h3 {
+        font-weight: 700;
+        font-family: Helvetica,Arial,sans-serif;
+        font-size: 20px;
+        line-height: 28px;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.ts_info {
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 16px 0 0;
+}
+
+.ts_info_item {
+    h3 {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 400;
+        font-family: Helvetica,Arial,sans-serif;
+    }
+}
+
+.ts_time_select {
+    margin: 16px 0 0;
+}
+
+.ts_info_helper {
+    h3 {
+        color: #6b6b6b;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        margin-top: 4px;
+        font-family: Helvetica,Arial,sans-serif;
+    }
+}

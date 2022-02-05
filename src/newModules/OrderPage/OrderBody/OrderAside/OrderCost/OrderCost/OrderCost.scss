@@ -1,0 +1,35 @@
+.order_cost_container {
+    background-color: #ebf3ff;
+    padding: 16px;
+    border: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 16px;
+}
+
+.order_cost {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.price_name {
+
+    h3 {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        width: auto;
+    }
+}
+
+.price_value {
+
+    h3 {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: right;
+        white-space: nowrap;
+    }
+}

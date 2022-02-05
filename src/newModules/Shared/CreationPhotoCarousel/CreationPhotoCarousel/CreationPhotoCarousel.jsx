@@ -1,7 +1,7 @@
-import AddPhotoItem from '../AddPhotoItem/AddPhotoItem/AddPhotoItem';
 import './CreationPhotoCarousel.scss';
+import AddPhotoItem from '../AddPhotoItem/AddPhotoItem/AddPhotoItem';
 
-const CreationPhotoCarousel = ({ photos, setPhotos }) => {
+const CreationPhotoCarousel = ({ photos, setPhotos, withoutAddBtn = false}) => {
 
     const listItems = () => {
         const list = [];
@@ -15,11 +15,13 @@ const CreationPhotoCarousel = ({ photos, setPhotos }) => {
             );
         }
 
-        list.unshift(
-            <li className='creationPhoto inputLi'>
-                <AddPhotoItem photos={photos} setPhotos={setPhotos} />
-            </li>
-        )
+        if (withoutAddBtn === false) {
+            list.unshift(
+                <li className='creationPhoto inputLi'>
+                    <AddPhotoItem photos={photos} setPhotos={setPhotos} />
+                </li>
+            )
+        }
 
         return list;
     }

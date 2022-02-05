@@ -1,0 +1,25 @@
+.selected_failities_list {
+    margin-top: 16px;
+    display: flex;
+    flex-flow: row wrap;
+    margin: -4px 0 0 -4px;
+}
+
+.sfl_item {
+    margin: 4px 0 0 4px;
+
+    span {
+        display: inline-block;
+        background-color: #e7fde9;
+        border: 1px solid #97e59c;
+        color: #006607;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        font-family: Helvetica,Arial,sans-serif;
+        border-radius: 2px;
+        align-items: center;
+        padding: 1px 4px;
+        vertical-align: middle;
+    }
+}

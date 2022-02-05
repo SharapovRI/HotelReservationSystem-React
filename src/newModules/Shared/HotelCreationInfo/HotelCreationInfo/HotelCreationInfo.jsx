@@ -20,10 +20,11 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited, hotelPayload }) => 
 
     useEffect(() => {
         if (hotelPayload) {
-            const { address: addressPay, name: hotelNamePay, photos: hotelPhotosPay, city: cityPay } = hotelPayload;
+            const { address: addressPay, name: hotelNamePay, photos: hotelPhotosPay, city: cityPay, discription: discription } = hotelPayload;
             setAddress(addressPay);
             setHotelName(hotelNamePay);
             setHotelPhotos(hotelPhotosPay);
+            setDiscription(discription);
 
             if (cityPay && appState.length > 0) {
                 const currentLocate = appState[appState.findIndex((locate) => locate.city === cityPay)];
@@ -67,6 +68,7 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited, hotelPayload }) => 
             address: address,
             name: hotelName,
             hotelPhotos: hotelPhotos,
+            discription: discription,
         }
         setHotelPayload(payload);
         setIsSubmited(true);

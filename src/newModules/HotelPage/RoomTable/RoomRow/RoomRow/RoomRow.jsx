@@ -8,6 +8,7 @@ const RoomRow = ({ room }) => {
     function saveChoose(event) {
         const payload = {
             id: room?.id,
+            roomsIds: (room?.freeRoomsId).slice(0, event.target.value),
             count: Number(event.target.value),
         }
         dispatch(updateRoomState(payload));

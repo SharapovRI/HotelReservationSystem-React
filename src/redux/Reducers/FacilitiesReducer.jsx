@@ -7,26 +7,11 @@ const facilitySlice = createSlice({
         createdFacilities: [],
     },
     reducers: {
-        // addRooms: (state, room) => {
-        //     state.rooms.unshift(room.payload)
-        // },
-        // removeRooms: (state, room) => {
-        //     const index = state.rooms.findIndex((facil) => facil.id === room.payload.id);
-        //     state.rooms.splice(index, 1);
-        // },
-        // updateRoomState: (state, room) => {
-        //     const index = state.rooms.findIndex((facil) => facil.id === room.payload.id);
+        addFacilities: (state, facilities) => {
+            state.facilities = facilities.payload;
+        },
 
-        //     if (index < 0) {
-        //         state.rooms.unshift(room.payload);
-        //     }
-        //     else if (room.payload.count < 1) {
-        //         state.rooms.splice(index, 1);
-        //     }
-        //     else {
-        //         state.rooms[index].count = room.payload.count;
-        //     }
-        // },
+
         addCreatedFacility: (state, facility) => {
             state.createdFacilities.push(facility.payload)
         },
@@ -42,15 +27,21 @@ const facilitySlice = createSlice({
             const index = facilityState.payload.index;
 
             state.createdFacilities[index] = facility;
-        }
+        },
+        clearCreatedFacilities: (state) => {
+            state.createdFacilities = [];
+        },
     }
 })
 
 export const {
+    addFacilities,
+    
     addCreatedFacility,
     addCreatedFacilitiesRange,
     removeCreatedFacility,
     updateCreatedFacility,
+    clearCreatedFacilities,
 } = facilitySlice.actions
 
 export default facilitySlice.reducer
