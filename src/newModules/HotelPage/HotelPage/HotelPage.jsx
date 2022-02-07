@@ -23,7 +23,6 @@ const HotelPage = () => {
         async function fetchHotelRooms() {
             const data = await getHotelRooms(params.hotelId, { ...filter, index: 0 });
             setRooms(data.result);
-            console.log(data);
             setHotel(data.hotel);
             setPageCount(data.pageCount);
         }

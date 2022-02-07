@@ -1,0 +1,54 @@
+.horizontal_search_area_form {
+    display: flex;
+    width: 100%;
+    flex-flow: row;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #333;
+    background-color: #febb02;
+    border: 4px solid #febb02;
+    border-radius: 4px;
+    margin: 24px 0 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.hsaf_item {
+    display: flex;
+    flex-grow: 1;
+    justify-content: stretch;
+    background-color: white;
+    border-radius: 4px;
+
+    &:not(:first-child)
+    {
+        margin-left: 4px;
+    }
+
+    .css-16awh2u-MuiAutocomplete-root {
+        width: 100%;
+    }
+
+    .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root {
+        padding-right: 9px !important;
+    }
+
+    fieldset {
+        display: none;
+    }
+}
+
+.hsaf_item .submitButton{
+    background-color: #003580;
+    width: 100%;
+    height: 100%;
+    
+    &:hover{
+        background-color: olive;
+    }
+}
+
+.hsaf_item fieldset{
+    border: 0px solid;
+}

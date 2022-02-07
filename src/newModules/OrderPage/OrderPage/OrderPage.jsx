@@ -20,12 +20,11 @@ const OrderPage = () => {
             for (var i = 0; i < rooms?.length; i++) {
                 rooms[i] = JSON.parse(rooms[i]);
                 const payload = {
-                    hotelId: hotelId,
                     roomsIds: rooms[i].roomsIds,
                 }
                 const data = await getRoomsRange(payload);
-                dispatch(addRoomsRange(data));
-                console.log(data);
+                console.log(data.result);
+                dispatch(addRoomsRange(data.result));
             }
         }
             

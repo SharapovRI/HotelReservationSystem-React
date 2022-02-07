@@ -1,0 +1,31 @@
+.oli_total_cost {
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.oli_tc_header {
+    p {
+        font-weight: 100;
+        font-family: Helvetica,Arial,sans-serif;
+        font-size: 14px;
+        line-height: 18px;
+
+        &.oli_tc_nights_count {
+            font-weight: 700;
+        }
+    }
+}
+
+.oli_tc_body {
+    p {
+        padding-top: 10px;
+        font-weight: 700;
+        font-family: Helvetica,Arial,sans-serif;
+        font-size: 28px;
+        line-height: 28px;
+        color: #22c113;
+    }
+}

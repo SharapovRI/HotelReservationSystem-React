@@ -5,6 +5,7 @@ const createOrder = (room, checkInDate, checkOutDate, checkInTime) => {
     const checkOut = new Date(checkOutDate);
     checkIn.setHours(hours);
     checkIn.setMinutes(min);
+    checkOut.setHours(12);
     const facilitiesIds = room.facilities?.map(facil => facil.id);
 
     const payload = {

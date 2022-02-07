@@ -15,6 +15,7 @@ const OrderCost = () => {
             );
         }
 
+        console.log(roomSt);
         const totalPrice = price * getNumberOfDays();
 
         return totalPrice;

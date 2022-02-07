@@ -1,0 +1,65 @@
+.order_list_item {
+    display: flex;
+    flex-flow: column;
+    border: 1px solid #c6c6c6;
+    border-radius: 2px;
+    padding: 16px;
+    margin: 16px 0;
+    min-width: 720px;
+    width: 100%;
+}
+
+.order_list_main {
+    display: flex;
+    flex-flow: column;
+    border: 2px solid #c6c6c6;
+    border-radius: 2px;
+}
+
+.order_list_header {
+    h3 {
+        font-weight: 700;
+        font-family: Helvetica,Arial,sans-serif;
+        font-size: 20px;
+        line-height: 28px;
+    }
+}
+
+.oli_buttons {
+    margin-top: 16px;
+
+    button {
+        background-color: #0071c2;
+        color: #fff;
+        font-size: 16px;
+        line-height: 18px;
+        padding: 8px 12px;
+        width: auto;
+        border-radius: 2px;
+        border: 0;
+
+        &:hover {
+            background-color: #003580;
+        }
+    }
+}
+
+.oli_time_edit_modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: white;
+    width: auto;
+    padding: 24px;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .PrivatePickersToolbar-root {
+        .PrivateTimePickerToolbar-penIconLandscape {
+            display: none;
+        }
+    }
+}
