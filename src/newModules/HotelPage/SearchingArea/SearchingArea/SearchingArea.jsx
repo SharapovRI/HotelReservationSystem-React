@@ -21,12 +21,11 @@ const SearchingArea = ({ filter, setFilter, setContent, setPageCount }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (filter)
-        {
-        setCity(filter.cityId);
-        setCountry(filter.countryId);
-        setSeatsCount(filter.freeSeatsCount);
-        setDate([filter.checkIn, filter.checkOut]);
+        if (filter) {
+            setCity(filter.cityId);
+            setCountry(filter.countryId);
+            setSeatsCount(filter.freeSeatsCount);
+            setDate([filter.checkIn, filter.checkOut]);
         }
     }, [filter]);
 
@@ -89,7 +88,7 @@ const SearchingArea = ({ filter, setFilter, setContent, setPageCount }) => {
 
                     </Form>
                 )}
-            </Formik>   
+            </Formik>
         </div>
     )
 }

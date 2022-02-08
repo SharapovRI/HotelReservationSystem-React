@@ -1,0 +1,113 @@
+.oli_room_list_item {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.oli_room_modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: white;
+    width: 1100px;
+    padding: 24px;
+    display: flex;
+    flex-flow: column nowrap;
+
+    hr {
+        margin-bottom: 0;
+    }
+}
+
+.oli_rm_header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    .oli_rm_close_button {
+        margin-right: 16px;
+        position: absolute;
+        right: 5px;
+        cursor: pointer;
+
+        h3 {
+            margin: 0;
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 400;
+            font-family: Helvetica,Arial,sans-serif;
+        }
+
+        &:hover {
+            color: red;
+        }
+    }
+
+    .oli_rm_room_name {
+        max-width: 60%;
+        width: auto;
+
+        span {
+            margin: 0;
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 400;
+            font-family: Helvetica,Arial,sans-serif;
+        }
+    }
+}
+
+.oli_rm_body {
+    display: flex;
+}
+
+.oli_rm_photos {
+    width: 70%;
+
+    li {
+        margin: 0;
+        margin-right: 10px;
+        margin-top: 10px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 2px;
+    }
+
+    img {
+        border-radius: 2px;
+
+        &:hover {
+            transform: scale(1.1);
+            transition: all .2s ease;
+        }
+    }
+}
+
+.facility_item_text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3, span {
+        margin: 0;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        font-family: Helvetica,Arial,sans-serif;
+    }
+
+    h3 {
+        margin: 0 10px;
+    }
+}
+
+.oli_rm_facilities {
+    flex: 1;
+    margin-left: 6px;
+    margin-top: 8px;
+}

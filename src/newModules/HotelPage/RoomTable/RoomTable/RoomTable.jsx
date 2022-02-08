@@ -14,11 +14,6 @@ const RoomTable = ({ rooms, filter }) => {
     const params = useParams();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log('slice');
-        console.log(roomSt);
-    }, [roomSt]);
-
     function getTableRows() {
         const rowList = [];
 
@@ -37,8 +32,6 @@ const RoomTable = ({ rooms, filter }) => {
         const payload = filter;
         payload['hotelId'] = params.hotelId;
         payload['rooms'] = roomSt;
-        console.log(roomSt);
-        console.log(payload);
         const path = axios.getUri({ url: `/OrderPage`, params: payload });
         navigate(path);
     }

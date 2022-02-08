@@ -16,6 +16,7 @@ const RoomsInfo = () => {
     const orderingRooms = useSelector((state) => state.roomReducer?.selectedRooms);
     const [searchParams, setSearchParams] = useSearchParams();
     const [timeIn, setTimeIn] = useState(new Date(0, 0, 0, 14));
+    const [totalCost, setTotalCost] = useState(0);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -23,7 +24,6 @@ const RoomsInfo = () => {
         async function getFacilities() {
             const hotelId = searchParams.get('hotelId');
             const data = await getHotelFacilities(hotelId, {});
-            console.log(data);
             dispatch(addFacilities(data));
         }
         getFacilities();
@@ -33,13 +33,41 @@ const RoomsInfo = () => {
         const roomList = [];
         if (roomSt.length > 0) {
             roomSt.map((item, index) =>
-            roomList.push(
+                roomList.push(
                     <RoomSection room={item} />
                 )
             );
         }
 
         return roomList;
+    }
+
+    function getTotalCost() {
+        let totalCost = 0;
+        const days = getNumberOfDays();
+
+        for (let index = 0; index < orderingRooms.length; index++) {
+            const room = orderingRooms[index];
+            let roomCost = room.cost;
+            roomCost *= days;
+            totalCost += roomCost;
+        }
+
+        setTotalCost(totalCost);
+        return totalCost;
+    }
+
+    function getNumberOfDays() {
+        const date1 = new Date(searchParams.get('checkIn'));
+        const date2 = new Date(searchParams.get('checkOut'));
+
+        const oneDay = 1000 * 60 * 60 * 24;
+
+        const diffInTime = date2.getTime() - date1.getTime();
+
+        const diffInDays = Math.round(diffInTime / oneDay);
+
+        return diffInDays;
     }
 
     async function submitOrder() {
@@ -58,32 +86,34 @@ const RoomsInfo = () => {
         const payload = {
             personId: Number(1),
             orders: orders,
+            totalCost: totalCost,
         }
 
         const response = await postOrder(payload);
         //navigate("/");
     }
 
-    return(
+    return (
         <Formik
-                initialValues={{
-                    password: '',
-                    login: '',
-                }}
-                //validate={checkLoginData}
-                onSubmit={submitOrder}
-            >
-                {({ errors }) => (
-                    <Form className='order_form'>
-                        {getRoomsList()}
-                        <TimeSection timeIn={timeIn} setTimeIn={setTimeIn}/>
-                        <div className="submit_container">
-                            <button type='submit' className='submit_order_btn'>Create order</button>
-                        </div>
-                        <button onClick={console.log(orderingRooms)}>sdsds</button>
-                    </Form>
-                )}
-            </Formik>   
+            initialValues={{
+                password: '',
+                login: '',
+            }}
+            //validate={checkLoginData}
+            onSubmit={submitOrder}
+        >
+            {({ errors }) => (
+                <Form className='order_form'>
+                    {getRoomsList()}
+                    <TimeSection timeIn={timeIn} setTimeIn={setTimeIn} />
+                    <div className="submit_container">
+                        <h3>Total cost: {getTotalCost()}$</h3>
+                        <button type='submit' className='submit_order_btn'>Create order</button>
+                    </div>
+                    <button onClick={console.log(orderingRooms)}>sdsds</button>
+                </Form>
+            )}
+        </Formik>
     )
 }
 

@@ -1,0 +1,34 @@
+
+
+.oli_hi_address_container {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.oli_hi_ac {
+    flex: 1;
+}
+
+.oli_hi_address {
+    h3 {
+        font-weight: 100;
+        font-family: Helvetica,Arial,sans-serif;
+        font-size: 14px;
+        line-height: 24px;
+    }
+}
+
+.oli_hi_photo {
+    height: 160px;
+    width: 100%;
+    margin-bottom: 16px;
+
+    img {
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        border-radius: 2px;
+    }
+}

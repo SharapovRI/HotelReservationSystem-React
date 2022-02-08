@@ -41,25 +41,9 @@ const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, box
     };
   }, [appState, cityName, cityId])
 
-  function getDefValue() {
-    if (cityId && appState.length > 0) {
-      console.log("a");
-      console.log(appState[appState.findIndex((locate) => locate.id === cityId)]);
-      return appState[appState.findIndex((locate) => locate.id === cityId)];
-    }
-
-    if (cityName && appState.length > 0) {
-      console.log("b");
-      return appState[appState.findIndex((locate) => locate.city === cityName)];
-    }
-    console.log("c");
-    return undefined;
-  }
-
   return (
     <Autocomplete
       disablePortal
-      id="combo-box-demo"
       options={appState}
 
       onChange={(event, newValue) => {
@@ -84,7 +68,8 @@ const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, box
           {boxText(option)}
         </Box>
       )}
-      renderInput={(params) => <TextField {...params} label={labelText} />}
+      renderInput={(params) => <TextField {...params} 
+      placeholder={labelText} />}
     />
 
   );

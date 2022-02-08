@@ -1,0 +1,64 @@
+.oli_info {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.oli_order_info {
+    display: flex;
+    flex-flow: column;
+}
+
+.oli_data_range {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.oli_data_range_item {
+    display: flex;
+    flex-flow: column nowrap;
+
+    &:first-child {
+        margin-bottom: 16px;
+    }
+
+    p {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.oli_dr_time {
+    text-align: left;
+    display: inline-block;
+    position: relative;
+
+    & .title {
+        font-size: 16px;
+        line-height: 20px;
+        text-align: left;  
+        display: block;
+        font-family: Helvetica,Arial,sans-serif;
+        font-weight: 700;
+        box-sizing: border-box;
+    }
+
+    & .subtitle {
+        color: #6b6b6b;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        display: block;
+        font-family: Helvetica,Arial,sans-serif;
+        box-sizing: border-box;
+    }
+}
+
+.oli_info_item {
+    flex: 1;
+    width: 33.3%;
+    padding: 16px;
+
+    &:not(:first-child) {
+        border-left: 2px solid #c6c6c6;
+    }
+}

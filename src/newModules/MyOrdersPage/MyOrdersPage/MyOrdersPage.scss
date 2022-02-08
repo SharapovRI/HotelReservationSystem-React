@@ -1,0 +1,20 @@
+.my_orders_page {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.mop_header {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.mop_search_area {    
+    width: 1110px;    
+    align-self: center;
+}
+
+.mop_main {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
