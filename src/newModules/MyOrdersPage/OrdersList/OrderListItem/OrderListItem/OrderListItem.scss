@@ -63,3 +63,24 @@
         }
     }
 }
+
+.oli_tem_buttons {
+    margin-top: 16px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.oli_tem_button {
+    background-color: #0071c2;
+    color: #fff;
+    font-size: 16px;
+    line-height: 18px;
+    padding: 8px 12px;
+    width: auto;
+    border-radius: 2px;
+    border: 0;
+    &:hover {
+        background-color: #003580;
+    }
+}
