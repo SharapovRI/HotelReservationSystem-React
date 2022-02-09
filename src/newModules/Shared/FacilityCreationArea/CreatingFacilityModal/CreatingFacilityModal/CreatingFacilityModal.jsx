@@ -16,12 +16,11 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
     const [openAlert, setAlertOpen] = useState(false);
     const handleClickOpen = () => setAlertOpen(true);
     const handleClickClose = () => setAlertOpen(false);
-    
+
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (facilityItem)
-        {
+        if (facilityItem) {
             setFacilityName(facilityItem.name);
             setCost(facilityItem.cost);
         }
@@ -50,15 +49,15 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
             cost: Number(cost),
             name: facilityName,
         }
-        dispatch(updateCreatedFacility({index, facility}));
+        dispatch(updateCreatedFacility({ index, facility }));
         handleClose();
     }
 
     function cancel() {
         setFacilityName('');
-        setCost(0);  
+        setCost(0);
         handleClose();
-    } 
+    }
 
     return (
         <>
@@ -76,43 +75,39 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
                 >
                     {({ errors }) => (
                         <Form className='creatingFacilityModalContainer'>
-                            <Typography variant="h3" component="h2">
-                                Facility creation
-                            </Typography>
-                            <div className='colorContainer'>
-                                <div className='facilityModalRow'>
-                                    <div className="facilityModalCell">
-                                        <h3>Facility name:</h3>
-                                        <TextField
-                                            type={'text'}
-                                            defaultValue={facilityName}
-                                            onInput={onTextChange}
-                                            variant="standard"
-                                        />
-                                    </div>
+                            <div className='cfmc_header'>
+                                <h3>Facility creation</h3>
+                            </div>
+                            <div className='color_container'>
+                                <div className="cfmc_cc_item">
+                                    <label className='cfmc_cc_label'>Facility name:</label>
+                                    <TextField
+                                        type={'text'}
+                                        defaultValue={facilityName}
+                                        onInput={onTextChange}
+                                        variant="standard"
+                                    />
                                 </div>
-                                <div className='facilityModalRow'>
-                                    <div className="facilityModalCell">
-                                        <h3>Cost:</h3>
-                                        <TextField
-                                            type={'number'}
-                                            defaultValue={cost}
-                                            onInput={onCostChange}
-                                            variant="standard"
-                                        />
-                                    </div>
+                                <div className="cfmc_cc_item">
+                                    <label className='cfmc_cc_label'>Cost:</label>
+                                    <TextField
+                                        type={'number'}
+                                        defaultValue={cost}
+                                        onInput={onCostChange}
+                                        variant="standard"
+                                    />
                                 </div>
                             </div>
-                            <div className='facilityModalRow'>
+                            <div className='cfmc_buttons'>
                                 {!facilityItem && <Button variant="contained" className='facilityModalBtn' onClick={cancel}>Cancel</Button>}
                                 {!facilityItem && <Button variant="contained" type="submit" className='facilityModalBtn' onClick={createFacility}>Create</Button>}
-                                
+
                                 {facilityItem && <Button variant="contained" className='facilityModalBtn' onClick={handleClose}>Cancel</Button>}
                                 {facilityItem && <Button variant="contained" type="submit" className='facilityModalBtn' onClick={updateFacility}>Update</Button>}
                             </div>
 
                             {facilityItem && <Button variant="contained" type="submit" className='facilityModalDeleteBtn' onClick={handleClickOpen}>Delete</Button>}
-                            <DeleteFacilityModal open={openAlert} handleClickClose={handleClickClose} handleClose={handleClose} index={index}/>
+                            <DeleteFacilityModal open={openAlert} handleClickClose={handleClickClose} handleClose={handleClose} index={index} />
                         </Form>
                     )}
                 </Formik>

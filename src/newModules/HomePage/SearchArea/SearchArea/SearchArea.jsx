@@ -30,13 +30,6 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
             size: 5,
         };
         setFilter(payload);
-        //setSearchParams(payload);
-
-        //const data = await getHotels({ ...payload, index: 0 });
-        //console.log(data);
-
-        //setContent(data.result);
-        //setPageCount(data.pageCount);
 
         const path = axios.getUri({ url: `/Hotels`, params: payload });
         navigate(path);

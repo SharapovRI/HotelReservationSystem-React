@@ -1,29 +1,18 @@
-.roomCreationArea {
-    width: 80%;
+.room_creation_area {
+    width: 100%;
     align-self: center;
-    margin-bottom: 50px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid black;
+    margin-bottom: 16px;
 }
 
 .addRoomBtn {
-    height: 100px;
+    height: auto;
     display: flex;
-    background-color: grey;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-clip: content-box;
-    border-radius: 15px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-
-    & svg {
-        font-size: 50px;
-        color: black;
-        background-color: cornsilk;
-        border-radius: 50%;
-
-        &:hover {
-            color: cornsilk;
-            background-color: black;
-        }
-    }   
+    border-radius: 5px;
+    
 }

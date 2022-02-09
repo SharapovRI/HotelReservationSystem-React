@@ -11,7 +11,7 @@ const CreatingFacilityItem = ({ facilityItem, index }) => {
     return (
         <>
             <div className='createdFacilityItem' onClick={() => handleOpen()}>
-                <p>{facilityItem.name}</p><p>{facilityItem.cost}</p>
+                <span>{facilityItem.name}</span><div>{`${facilityItem.cost}$`}</div>
             </div>
             <CreatingFacilityModal open={open} handleClose={handleClose} facilities={createdFacilities}
                 setFacilities={setCreatedFacilities} facilityItem={facilityItem} index={index} />

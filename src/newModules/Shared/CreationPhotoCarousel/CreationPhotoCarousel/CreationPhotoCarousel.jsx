@@ -1,26 +1,42 @@
 import './CreationPhotoCarousel.scss';
 import AddPhotoItem from '../AddPhotoItem/AddPhotoItem/AddPhotoItem';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 
-const CreationPhotoCarousel = ({ photos, setPhotos, withoutAddBtn = false}) => {
+const CreationPhotoCarousel = ({ photos, setPhotos, withoutAddBtn = false }) => {
 
     const listItems = () => {
         const list = [];
+        // if (photos?.length > 0) {
+        //     photos.map((item, index) =>
+        //         list.push(
+        //             <li key={index} className='creationPhoto'>
+        //                 <img src={`data:${item?.extension};base64,${item?.data}`} />
+        //             </li>
+        //         )
+        //     );
+        // }
+
+        // if (withoutAddBtn === false) {
+        //     list.push(
+        //         <li className='creationPhoto inputLi'>
+        //             <AddPhotoItem photos={photos} setPhotos={setPhotos} />
+        //         </li>
+        //     )
+        // }
+
         if (photos?.length > 0) {
             photos.map((item, index) =>
-                list.unshift(
-                    <li key={index} className='creationPhoto'>
-                        <img src={`data:${item?.extension};base64,${item?.data}`} />
-                    </li>
+                list.push(
+                    <ImageListItem key={item.img} className='creationPhoto'>
+                        <img
+                            src={`data:${item?.extension};base64,${item?.data}`}
+                            alt={item.title}
+                            loading="lazy"
+                        />
+                    </ImageListItem>
                 )
             );
-        }
-
-        if (withoutAddBtn === false) {
-            list.unshift(
-                <li className='creationPhoto inputLi'>
-                    <AddPhotoItem photos={photos} setPhotos={setPhotos} />
-                </li>
-            )
         }
 
         return list;
@@ -28,9 +44,12 @@ const CreationPhotoCarousel = ({ photos, setPhotos, withoutAddBtn = false}) => {
 
     return (
         <>
-            <ul className='creationPhotoCarousel'>
-                {listItems()}
-            </ul>
+            {photos?.length > 0 &&
+                <ImageList variant="masonry" className='creationPhotoCarousel' cols={1}>
+                    {listItems()}
+                </ImageList>
+            }
+            {withoutAddBtn === false && <AddPhotoItem photos={photos} setPhotos={setPhotos} />}
         </>
     )
 }

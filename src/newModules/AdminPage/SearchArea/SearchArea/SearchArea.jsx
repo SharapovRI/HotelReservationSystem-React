@@ -10,7 +10,7 @@ import { Formik, Form, Field } from 'formik';
 import './SearchArea.scss';
 import axios from 'axios';
 
-const SearchArea = ({ setFilter, setContent, setPageCount }) => {
+const SearchArea = ({ setFilter }) => {
     const [city, setCity] = useState(null);
     const [country, setCountry] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
@@ -33,11 +33,6 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
         setFilter(payload);
         setSearchParams(payload);
 
-        const data = await getHotels({ ...payload, index: 0 });
-
-        setContent(data.result);
-        setPageCount(data.pageCount);
-
         //const path = axios.getUri({ url: `/Hotels`, params: payload });
         //navigate(path);
     }
@@ -48,6 +43,14 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
 
     return (
         <div className='adminSearchAreaContainer'>
+            <div className="page_header">
+                <div className='ph_title'>
+                    Admin page
+                </div>
+                <div className='ph_subtitle'>
+                    Here you can manage hotels
+                </div>
+            </div>
             <Formik
                 initialValues={{
                     password: '',
@@ -63,7 +66,7 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
                                 setOption={(newValue) => setCity(newValue)}
                                 setCountry={(newValue => setCountry(newValue))}
                                 boxText={(option) => (option.country) + ', ' + option.city}
-                                getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
+                                getOptionLabel={(option) => option.country + ', ' + option.city}
                                 labelText='Locates'
                             />
                         </div>
@@ -72,7 +75,7 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
                                 type={'text'}
                                 defaultValue={hotelName}
                                 onInput={onTextChange}
-                                label="Hotel name"
+                                placeholder="Hotel name"
                                 variant="outlined"
                             />
                         </div>

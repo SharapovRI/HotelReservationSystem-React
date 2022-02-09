@@ -1,11 +1,13 @@
 .hotelCreationContainer {
     display: flex;
     flex-flow: column;
+    width: 1100px;
+    align-self: center;
 }
 
 .hotelCreationButtons {
     display: flex;
-    width: 80%;
+    width: 100%;
     align-self: center;
     margin-bottom: 50px;
     justify-content: space-between;
@@ -18,5 +20,33 @@
         &:hover {
             background-color: olive;
         }
+    }
+}
+
+.hcc_main {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.hcc_main_hotel_facilities {
+    display: flex;
+    width: 100%;
+}
+
+.hcc_main_rooms {
+    display: flex;
+    flex-flow: column;
+}
+
+.hcc_header {
+    margin-top: 32px;
+    
+    h2 {
+        font-size: 32px;
+        line-height: 48px;
+        font-family: Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+        font-weight: 700;
     }
 }

@@ -18,15 +18,15 @@ const CreatedRoomRow = ({ room, index }) => {
 
     return (
         <>
-            <tr>
+            <tr className='table_row'>
                 <th>{room?.typeName}</th>
                 <th>{room?.seatsCount}</th>
-                <th>{room?.cost}</th>
+                <th>{room?.cost}$</th>
                 <th>{room?.roomCount}</th>
                 <th>
                     <div className='UDbtns'>
-                        <Button className='updateBtn' variant="outlined" endIcon={<CreateIcon />} onClick={handleOpen} />
-                        <Button className='deleteBtn' variant="outlined" endIcon={<DeleteIcon />} onClick={handleClickOpen}/>
+                        <Button className='updateBtn' variant="standart" endIcon={<CreateIcon />} onClick={handleOpen} />
+                        <Button className='deleteBtn' variant="standart" endIcon={<DeleteIcon />} onClick={handleClickOpen}/>
                     </div>
                 </th>
             </tr>

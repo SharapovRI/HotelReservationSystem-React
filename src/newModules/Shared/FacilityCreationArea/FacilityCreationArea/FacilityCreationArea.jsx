@@ -1,9 +1,11 @@
+import './FacilityCreationArea.scss';
+
 import { useEffect, useState } from 'react';
 import CreatingFacilityModal from '../CreatingFacilityModal/CreatingFacilityModal/CreatingFacilityModal';
 import CreatingFacilityItem from '../CreatingFacilityItem/CreatingFacilityItem/CreatingFacilityItem';
-import './FacilityCreationArea.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCreatedFacilities } from '../../../../redux/Reducers/FacilitiesReducer';
+import Button from '@mui/material/Button';
 
 const FacilityCreationArea = ({setFacilityPayload, facilityPayload}) => {
     const [open, setOpen] = useState(false);
@@ -41,12 +43,12 @@ const FacilityCreationArea = ({setFacilityPayload, facilityPayload}) => {
 
     return(
         <div className='facilityCreationArea'>
-            <h2>Facility area</h2>
+            <h3>Facility creation</h3>
             <CreatingFacilityModal open={open} handleClose={handleClose} />
             <div className='createdFacilitiesList'>
                 {getFacilities()}
             </div>
-            <button onClick={handleOpen}>create</button>
+            <Button variant="contained" onClick={handleOpen}>Create</Button>
         </div>
     )
 }

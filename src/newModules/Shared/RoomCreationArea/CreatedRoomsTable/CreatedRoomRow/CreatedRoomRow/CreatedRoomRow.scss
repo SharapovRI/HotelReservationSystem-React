@@ -19,12 +19,34 @@
     }
 
     .updateBtn {
-        background-color: chocolate;
-        color: white;
+
+        color: chocolate;
     }
 
     .deleteBtn {
-        background-color: red;
-        color: white;
+        color: red;
+    }
+}
+
+.table_row {
+    
+    & th {
+        border: 1px black solid;
+        background-color: #1565c0;
+        text-align: center;
+
+        &:first-child {
+            border-left: 0;
+        }
+
+        &:last-child {
+            border-right: 0;
+        }
+    }
+
+    &:last-child {
+        th {
+            border-bottom: 0;
+        }
     }
 }
