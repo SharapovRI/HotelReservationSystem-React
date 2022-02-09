@@ -1,16 +1,18 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import Button from '@mui/material/Button';
 import postAuthenticate from '../../api/apiRequests/authentication';
 import checkLoginData from '../../services/Validation/loginDataValidation';
-import { useDispatch } from 'react-redux';
 import { addJwt } from '../../redux/Reducers/JWTreducer';
 import { addRefresh } from '../../redux/Reducers/RefreshReducer';
-// import './styles.css';
 
+import './LoginPage.scss';
+import { makeStyles } from '@mui/styles';
 
 const LoginPage = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     async function authorizeClick({ login, password }) {
@@ -23,67 +25,54 @@ const LoginPage = () => {
             localStorage.setItem("refreshToken", response.refreshToken);
 
             const path = localStorage.getItem("LastPath");
-            if (path)
-            {
+            if (path) {
                 window.location.href = path;
             }
-            else{
-            navigate(`/Hotels`);
+            else {
+                navigate(`/Home`);
             }
         }
     }
 
     return (
-        <>
-            <div></div>
-            <div class="container">
-                <div class="col"></div>
-                <div class="colCenter">
-                    <div class="rowCenter">
-                        <h1>SignIn</h1>
-                        <Formik
-                            initialValues={{
-                                password: '',
-                                login: '',
-                            }}
-                            validate={checkLoginData}
-                            onSubmit={authorizeClick}
-                        >
-                            {({ errors }) => (
-                                <Form>
-                                  <div className='loginInfoArea'>
-                                    <div className='infoBlock'>
-                                        <label for="inputLogin">Login</label>
-                                        <Field name="login" id="inputLogin" />
-                                        <div>
-                                        {errors.login && <p>{errors.login}</p>}
-                                        </div>
-                                    </div>
+        <div className='loginPage'>
+            <h1>Sign In</h1>
+            <Formik
+                initialValues={{
+                    password: '',
+                    login: '',
+                }}
+                validate={checkLoginData}
+                onSubmit={authorizeClick}
+            >
+                {({ errors }) => (
+                    <Form>
+                        <div className='infoBlock'>
+                            <label for="inputLogin">Login</label>
+                            <Field name="login" id="inputLogin" />
+                            <div>
+                                {errors.login && <p>{errors.login}</p>}
+                            </div>
+                        </div>
 
-                                    <div className='infoBlock'>
-                                        <label for="inputPassword">Password</label>
-                                        <Field name="password" type='password' id="inputPassword"/>
-                                        {errors.password && <div>{errors.password}</div>}
-                                    </div>
-                                    <div className='infoBlock'>
-                                        <button type="submit">Submit</button>
-                                    </div>
-                                    <div className='infoBlock'>
-                                        <NavLink to='/Registration'>
-                                            <label>Registration</label>
-                                        </NavLink>
-                                    </div>
-                                </div>
-                                </Form>
-                            )}
-                        </Formik>
-                    </div>
-                    <div class="row"></div>
-                </div>
-                <div class="col"></div>
-            </div>
-        </>
+                        <div className='infoBlock'>
+                            <label for="inputPassword">Password</label>
+                            <Field name="password" type='password' id="inputPassword" />
+                            {errors.password && <div>{errors.password}</div>}
+                        </div>
+                        <div className='infoBlock'>
+                            <Button variant="contained" type="submit" className='submitButton'>Submit</Button>
+                        </div>
+                        <div className='infoBlock'>
+                            <NavLink to='/Registration'>
+                                <label>Registration</label>
+                            </NavLink>
+                        </div>
+                    </Form>
+                )}
+            </Formik>
+        </div>
     )
-};
+}
 
 export default LoginPage;

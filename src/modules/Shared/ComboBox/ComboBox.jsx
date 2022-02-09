@@ -5,9 +5,12 @@ import Box from '@mui/material/Box';
 import axios from 'axios';
 import instance from "../../../services/API/API";
 
-const ComboBox = ({ filter, setOption, setCountry, getOptionLabel, boxText, labelText }) => {
+import './ComboBox.scss';
+
+const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, boxText, labelText }) => {
 
   const [appState, setAppState] = useState([]);
+  const [curValue, setCurValue] = useState(null);
 
   useEffect(() => {
     const apiUrl = 'https://localhost:44382/Locates';
@@ -24,32 +27,46 @@ const ComboBox = ({ filter, setOption, setCountry, getOptionLabel, boxText, labe
   }, [setAppState]);
 
   useEffect(() => {
-    if (filter && appState.length > 0) {
-      const currentLocate = appState[appState.findIndex((locate) => locate.city === filter)];
-      setOption(currentLocate.id);
-      setCountry(currentLocate.countryId);
+    console.log(cityId, cityName);
+    if (cityId && appState.length > 0) {
+      const currentLocate = appState[appState.findIndex((locate) => locate.id === Number(cityId))];
+
+      if (currentLocate) {
+        setOption(currentLocate.id);
+        setCountry(currentLocate.countryId);
+        setCurValue(currentLocate);
+      }
     }
-  }, [appState])
+    else if (cityName && appState.length > 0) {
+      const currentLocate = appState[appState.findIndex((locate) => locate.city === cityName)];
+      if (currentLocate) {
+        setOption(currentLocate.id);
+        setCountry(currentLocate.countryId);
+        setCurValue(currentLocate);
+      }
+    };
+  }, [appState, cityName, cityId])
 
   return (
     <Autocomplete
       disablePortal
-      id="combo-box-demo"
       options={appState}
-      sx={{ width: 300 }}
 
       onChange={(event, newValue) => {
         if (newValue !== null) {
           setOption(newValue.id);
           setCountry(newValue.countryId);
+          setCurValue(newValue);
         }
         else {
           setOption('');
           setCountry('');
+          setCurValue(null);
         }
       }
       }
-      value={filter && appState.length > 0 && appState[appState.findIndex((locate) => locate.city === filter)]}
+
+      value={curValue}
 
       getOptionLabel={getOptionLabel}
       renderOption={(props, option) => (
@@ -57,7 +74,8 @@ const ComboBox = ({ filter, setOption, setCountry, getOptionLabel, boxText, labe
           {boxText(option)}
         </Box>
       )}
-      renderInput={(params) => <TextField {...params} label={labelText} />}
+      renderInput={(params) => <TextField {...params}
+        placeholder={labelText} />}
     />
 
   );
