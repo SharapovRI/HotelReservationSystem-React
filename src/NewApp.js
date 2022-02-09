@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Navigate } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import { Routes } from 'react-router-dom'
 import AdminPage from './newModules/AdminPage/AdminPage/AdminPage';
-import Header from './newModules/Header/Header';
+//import Header from './newModules/Header/Header';
+import Header from './newModules/Shared/Header/Header/Header'
 import HomePage from './newModules/HomePage/HomePage/HomePage';
 import HotelCreationPage from './newModules/HotelCreationPage/HotelCreationPage/HotelCreationPage';
 import HotelPage from './newModules/HotelPage/HotelPage/HotelPage';

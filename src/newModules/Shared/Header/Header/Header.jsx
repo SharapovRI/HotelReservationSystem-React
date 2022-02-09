@@ -1,4 +1,5 @@
-import * as React from 'react';
+import './Header.scss';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,17 +9,20 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Link } from '@mui/material';
-import LogOutMenuItem from '../LogOut/LogOutMenuItem';
-import UserName from './UserName';
-import { NavLink } from 'react-router-dom';
+import LogOutMenuItem from '../../LogOut/LogOutMenuItem';
+import UserName from '../UserName/UserName/UserName';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Header = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const navigate = useNavigate();
 
     const isMenuOpen = Boolean(anchorEl);
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
+        console.log(event.currentTarget);
     };
 
     const handleMenuClose = () => {
@@ -30,8 +34,8 @@ const Header = () => {
         <Menu
             anchorEl={anchorEl}
             anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: 'bottom',
+                horizontal: 'center',
             }}
             id={menuId}
             keepMounted
@@ -42,43 +46,32 @@ const Header = () => {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <NavLink to={'/AllOrders'}>
-                <MenuItem onClick={handleMenuClose}>My orders</MenuItem>
-            </NavLink>
+            <MenuItem onClick={() => {
+                handleMenuClose();
+                navigate('/MyOrders');
+            }}>
+                My orders
+            </MenuItem> 
             <LogOutMenuItem handleMenuClose={handleMenuClose} />
         </Menu>
     );
 
-    const style = {
-        color: 'white',
-        background: 'green',
-        fontSize: 200
-    };
-
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" style={style}>
-                <Toolbar>
+        <>
+            <AppBar position="static">
+                <div className='header_toolbar'>
                     <Link color="inherit" underline="none" href="/">
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{ display: { xs: 'none', sm: 'block' } }}
-                        >
+                        <h3 className=' '>
                             HotelReservation
-                        </Typography>
+                        </h3>
                     </Link>
 
-                    <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <div className='user_name_container'>
                         <UserName />
 
                         <IconButton
                             size="large"
                             edge="end"
-                            aria-label="account of current user"
                             aria-controls={menuId}
                             aria-haspopup="true"
                             onClick={handleProfileMenuOpen}
@@ -86,12 +79,12 @@ const Header = () => {
                         >
                             <AccountCircle />
                         </IconButton>
-                    </Box>
+                        {renderMenu}
+                    </div>
 
-                </Toolbar>
+                </div>
             </AppBar>
-            {renderMenu}
-        </Box>
+        </>
     );
 }
 
