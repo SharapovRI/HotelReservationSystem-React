@@ -1,0 +1,16 @@
+.datePickerCellsFormat {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    background-color: white;
+    border-radius: 4px;
+    width: 100%;
+    padding: 0 4px !important;
+
+    input {
+        padding: 7.5px 4px 7.5px 6px;
+    }
+}

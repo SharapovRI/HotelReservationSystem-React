@@ -1,0 +1,12 @@
+.date_picker_modal_cells_format {
+    width: 100%;
+    display: flex;
+    margin-right: 16px;
+
+    .spmc_ia_item {
+
+        &:not(:first-child) {
+            margin-left: 16px;
+        }
+    }
+}

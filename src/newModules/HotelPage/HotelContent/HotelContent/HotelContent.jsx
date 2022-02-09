@@ -9,23 +9,15 @@ const HotelContent = ( { hotel } ) => {
     const params = useParams();
     const [rooms, setRooms] = useState([]);
     const [pageCount, setPageCount] = useState(0);
-
-    // useEffect(() => {
-    //     async function fetchHotelRooms(){
-    //         const data = await getHotelRooms(params.hotelId, { ...filter, index: 0});
-    //         setRooms(data.result);
-    //         console.log(data.result);
-    //         setHotel(data.hotel);
-    //         setPageCount(data.pageCount);
-    //     }
-
-    //     {filter && params.hotelId && fetchHotelRooms()}
-    // }, [filter])
     return (
         <>
-        <h2>{hotel?.name}</h2>
-        <h4>{hotel?.address}</h4>
-        <h5>Ссылка на карту</h5>
+        <div className="hotel_content_header">
+            <h2>{hotel?.name}</h2>
+        </div>
+        <div className="hotel_content_address">
+            <span className='hca_address'>{hotel?.address}, {hotel?.city}, {hotel?.country}</span>
+            <h5>Ссылка на карту</h5>
+        </div>
         <div className='hotelPhotosArea'>
             <PhotosTable photos={hotel?.photos} />
             <PhotosCarousel photos={hotel?.photos} />

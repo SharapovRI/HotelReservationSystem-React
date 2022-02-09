@@ -2,13 +2,32 @@ import './HotelList.scss';
 
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import getHotels from '../../../../api/apiRequests/getHotels';
+import Pagination from '@mui/material/Pagination';
 
-const HotelList = ({ hotels }) => {
+const HotelList = ({ filter }) => {
+    const [pageCount, setPageCount] = useState(0);
+    const [page, setPage] = useState(1);
+    const [hotels, setHotels] = useState([]);
     const navigate = useNavigate();
 
-    function getHotels() {
+    useEffect(() => {
+        async function fetchHotels() {
+            const data = await getHotels({ ...filter, index: page - 1 });
+            setHotels(data.result);
+            setPageCount(data.pageCount);
+        }
+
+        { filter && fetchHotels() }
+    }, [filter, page]);
+
+    const handleChange = (event, value) => {
+        setPage(value);
+    };
+
+    function getHotelList() {
         const list = [];
-        console.log(hotels);
         if (hotels.length > 0) {
             hotels.map((item, index) =>
                 list.push(
@@ -50,7 +69,12 @@ const HotelList = ({ hotels }) => {
     return (
         <div className='adminHotelContainer'>
             <div className='adminHotelList'>
-                {hotels && getHotels()}
+                {hotels?.length > 0 &&
+                <>
+                {getHotelList()}
+                <Pagination count={pageCount} page={page} onChange={handleChange} variant="outlined" shape="rounded" />
+                </>
+}
             </div>
         </div>
     )

@@ -25,6 +25,7 @@ const HotelPage = () => {
             setRooms(data.result);
             setHotel(data.hotel);
             setPageCount(data.pageCount);
+            setSearchParams(filter);
         }
 
         { filter && params.hotelId && fetchHotelRooms() }
@@ -40,7 +41,7 @@ const HotelPage = () => {
             size: 5,
         };
         setFilter(payload)
-    }, []);
+    }, [searchParams]);
 
     return (
         <div className='hotelPageContainer'>
@@ -59,7 +60,7 @@ const HotelPage = () => {
                 <span className='textArea'>{hotel?.discription}</span>
             </div>
             <div className='searchingParams'>
-                <SearchingParams filter={filter} />
+                <SearchingParams filter={filter} setFilter={setFilter}/>
             </div>
             <div className='roomTable'>
                 <RoomTable rooms={rooms} filter={filter} />

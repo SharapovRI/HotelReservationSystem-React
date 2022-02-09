@@ -27,17 +27,23 @@ const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, box
   }, [setAppState]);
 
   useEffect(() => {
+    console.log(cityId, cityName);
     if (cityId && appState.length > 0) {
       const currentLocate = appState[appState.findIndex((locate) => locate.id === Number(cityId))];
-      setOption(currentLocate.id);
-      setCountry(currentLocate.countryId);
-      setCurValue(currentLocate);
+
+      if (currentLocate) {
+        setOption(currentLocate.id);
+        setCountry(currentLocate.countryId);
+        setCurValue(currentLocate);
+      }
     }
     else if (cityName && appState.length > 0) {
       const currentLocate = appState[appState.findIndex((locate) => locate.city === cityName)];
-      setOption(currentLocate.id);
-      setCountry(currentLocate.countryId);
-      setCurValue(currentLocate);
+      if (currentLocate) {
+        setOption(currentLocate.id);
+        setCountry(currentLocate.countryId);
+        setCurValue(currentLocate);
+      }
     };
   }, [appState, cityName, cityId])
 
@@ -68,8 +74,8 @@ const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, box
           {boxText(option)}
         </Box>
       )}
-      renderInput={(params) => <TextField {...params} 
-      placeholder={labelText} />}
+      renderInput={(params) => <TextField {...params}
+        placeholder={labelText} />}
     />
 
   );

@@ -3,16 +3,18 @@ import RoomRow from '../RoomRow/RoomRow/RoomRow';
 import { Formik, Form, Field } from 'formik';
 
 import './RoomTable.scss'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { clearRooms } from '../../../../redux/Reducers/RoomReducer';
 
 const RoomTable = ({ rooms, filter }) => {
     const roomSt = useSelector((state) => state.roomReducer?.rooms);
     const [searchParams, setSearchParams] = useSearchParams();
     const params = useParams();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     function getTableRows() {
         const rowList = [];
@@ -27,6 +29,10 @@ const RoomTable = ({ rooms, filter }) => {
 
         return rowList;
     }
+
+    useEffect(() => {
+        dispatch(clearRooms());
+    }, [filter])
 
     function goToOrderPage() {
         const payload = filter;

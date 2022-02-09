@@ -91,16 +91,23 @@ const HotelUpdatingPage = () => {
 
     return (
         <div className='hotelCreationContainer'>
-            <h2>Hotel creation</h2>
-
-            <HotelCreationInfo setHotelPayload={setHotelPayload} setIsSubmited={setIsSubmited} hotelPayload={hotelPayload} />
-            <RoomCreationArea setRoomPayload={setRoomPayload} roomPayload={roomPayload} />
-            <FacilityCreationArea setFacilityPayload={setFacilityPayload} facilityPayload={facilityPayload} />
+            <div className="hcc_header">
+                <h2>Hotel updating</h2>
+            </div>
+            <div className="hcc_main">
+                <div className="hcc_main_hotel_facilities">
+                    <HotelCreationInfo setHotelPayload={setHotelPayload} setIsSubmited={setIsSubmited} hotelPayload={hotelPayload} />
+                    <FacilityCreationArea setFacilityPayload={setFacilityPayload} facilityPayload={facilityPayload} />
+                </div>
+                <div className="hcc_main_rooms">
+                    <RoomCreationArea setRoomPayload={setRoomPayload} roomPayload={roomPayload} />
+                </div>
+            </div>
             <div className='hotelCreationButtons'>
                 <Button variant="contained" className='hotelCreationButton' onClick={cancel}>Cancel</Button>
                 <Button form='deForm' variant="contained" type="submit" className='hotelCreationButton'>Create</Button>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -14,9 +14,9 @@ const HotelCreationPage = () => {
     const [roomPayload, setRoomPayload] = useState({});
     const [facilityPayload, setFacilityPayload] = useState({});
     const [isSubmited, setIsSubmited] = useState(false);
-    
+
     useEffect(() => {
-        if(isSubmited){
+        if (isSubmited) {
             const payload = Object.assign(hotelPayload, roomPayload, facilityPayload);
             const resp = postHotel(payload);
             setIsSubmited(false)
@@ -30,11 +30,18 @@ const HotelCreationPage = () => {
 
     return (
         <div className='hotelCreationContainer'>
-            <h2>Hotel creation</h2>
-
-            <HotelCreationInfo setHotelPayload={setHotelPayload} setIsSubmited={setIsSubmited}/>
-            <RoomCreationArea setRoomPayload={setRoomPayload}/>
-            <FacilityCreationArea setFacilityPayload={setFacilityPayload}/>
+            <div className="hcc_header">
+                <h2>Hotel creation</h2>
+            </div>
+            <div className="hcc_main">
+                <div className="hcc_main_hotel_facilities">
+                    <HotelCreationInfo setHotelPayload={setHotelPayload} setIsSubmited={setIsSubmited} />
+                    <FacilityCreationArea setFacilityPayload={setFacilityPayload} />
+                </div>
+                <div className="hcc_main_rooms">
+                    <RoomCreationArea setRoomPayload={setRoomPayload} />
+                </div>
+            </div>
             <div className='hotelCreationButtons'>
                 <Button variant="contained" className='hotelCreationButton' onClick={cancel}>Cancel</Button>
                 <Button form='deForm' variant="contained" type="submit" className='hotelCreationButton'>Create</Button>

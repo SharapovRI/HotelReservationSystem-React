@@ -31,7 +31,7 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited, hotelPayload }) => 
                 setCity(currentLocate.id);
                 setCountry(currentLocate.countryId);
                 setCurValue(currentLocate);
-              };
+            };
         }
     }, [hotelPayload])
 
@@ -85,38 +85,56 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited, hotelPayload }) => 
         >
             {({ errors }) => (
                 <Form id='deForm' className='hotelCreationInfo'>
-                    <div className='hotelInfoItem'>
-                        <h4>Hotel name:</h4>
-                        <TextField value={hotelName} variant="standard" onChange={onNameChange} placeholder='Hotel name' />
-                    </div>
-                    <div className='hotelInfoItem'>
-                        <h4>Hotel address:</h4>
-                        <div className='addressContainer'>
-                            <Autocomplete className='comboBox'
-                                options={appState}
-                                clearOnEscape={true}
-                                value={curValue}
-                                onChange={(event, newValue) => {
-                                    if (newValue !== null) {
-                                        setCity(newValue.id);
-                                        setCountry(newValue.countryId);
-                                        setCurValue(newValue);
-                                    }
-                                    else {
-                                        setCity('');
-                                        setCountry('');
-                                        setCurValue(null);
-                                    }
-                                }
-                                }
-                                getOptionLabel={(option) => option.id + ' ' + option.country + ', ' + option.city}
-                                renderInput={(params) => (
-                                    <TextField {...params} placeholder="City" variant="standard">
-                                        {(option) => (option.country) + ', ' + option.city}
-                                    </TextField>
-                                )}
-                            />
-                            <TextField value={address} variant="standard" onChange={onAddressChange} placeholder='Address' />
+                    <div className="hci_header">
+                        <div className="hci_header_photo">
+                            {hotelPhotos && hotelPhotos[0] &&
+                                <img
+                                    src={`data:${hotelPhotos[0]?.extension};base64,${hotelPhotos[0]?.data}`}
+                                    alt={hotelPhotos[0].title}
+                                    loading="lazy"
+                                />
+                            }
+                        </div>
+                        <div className="hci_header_main">
+                            <div className='hotelInfoItem'>
+                                <label>Hotel name:</label>
+                                <TextField value={hotelName} variant="standard" onChange={onNameChange} placeholder='Hotel name' />
+                            </div>
+                            <div className="hci_hm_place_container">
+                                <div className='hotelInfoItem item_margin'>
+                                    <label>Hotel address:</label>
+                                    <div className='addressContainer'>
+                                        <Autocomplete className='comboBox'
+                                            options={appState}
+                                            clearOnEscape={true}
+                                            value={curValue}
+                                            onChange={(event, newValue) => {
+                                                if (newValue !== null) {
+                                                    setCity(newValue.id);
+                                                    setCountry(newValue.countryId);
+                                                    setCurValue(newValue);
+                                                }
+                                                else {
+                                                    setCity('');
+                                                    setCountry('');
+                                                    setCurValue(null);
+                                                }
+                                            }
+                                            }
+                                            getOptionLabel={(option) => option.id + ' ' + option.country + ', ' + option.city}
+                                            renderInput={(params) => (
+                                                <TextField {...params} placeholder="City" variant="standard">
+                                                    {(option) => (option.country) + ', ' + option.city}
+                                                </TextField>
+                                            )}
+                                        />
+                                    </div>
+                                </div>
+                                <div className='hotelInfoItem flex_grow'>
+                                    <label>Hotel address:</label>
+                                    <TextField value={address} variant="standard" onChange={onAddressChange} placeholder='Address' />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div>

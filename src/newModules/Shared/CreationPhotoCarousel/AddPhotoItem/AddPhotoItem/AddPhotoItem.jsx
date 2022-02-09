@@ -1,5 +1,6 @@
 import './AddPhotoItem.scss';
 import Icon from '@mui/material/Icon';
+import Button from '@mui/material/Button';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
@@ -41,9 +42,11 @@ const AddPhotoItem = ({ photos, setPhotos }) => {
     }
 
     return (
-        <div onClick={inputCreate}>
-            <AddCircleIcon />
-        </div>
+        <>
+            <div onClick={inputCreate} className='add_photo_item'>
+                Add photo
+            </div>
+        </>
     )
 }
 

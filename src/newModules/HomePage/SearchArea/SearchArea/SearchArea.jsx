@@ -30,17 +30,10 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
             size: 5,
         };
         setFilter(payload);
-        //setSearchParams(payload);
-        
-        //const data = await getHotels({ ...payload, index: 0 });
-        //console.log(data);
-        
-        //setContent(data.result);
-        //setPageCount(data.pageCount);
 
         const path = axios.getUri({ url: `/Hotels`, params: payload });
         navigate(path);
-    }    
+    }
 
     const onSeatsChange = (event) => {
         setSeatsCount(event.target.value);
@@ -48,13 +41,21 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
 
     return (
         <div className='searchAreaContainer'>
+            <div className="page_header">
+                <div className='ph_title'>
+                    Find accommodation for a new trip
+                </div>
+                <div className='ph_subtitle'>
+                    Find exclusive rooms in just a couple of clicks
+                </div>
+            </div>
             <Formik
                 initialValues={{
                     password: '',
                     login: '',
                 }}
                 //validate={checkLoginData}
-                onSubmit={searchHotels}                
+                onSubmit={searchHotels}
             >
                 {({ errors }) => (
                     <Form className='searchAreaForm'>
@@ -63,7 +64,7 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
                                 setOption={(newValue) => setCity(newValue)}
                                 setCountry={(newValue => setCountry(newValue))}
                                 boxText={(option) => (option.country) + ', ' + option.city}
-                                getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
+                                getOptionLabel={(option) => option.country + ', ' + option.city}
                                 labelText='Locates'
                             />
                         </div>

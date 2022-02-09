@@ -3,6 +3,7 @@ $btmMarg : 10px;
 .hotelPhotosList {
     width: 100%;
     height: 60vh;
+    overflow: hidden;
 }
 
 .hotelPhotosList::after {
@@ -33,4 +34,17 @@ $btmMarg : 10px;
     height: calc(100% - 10px);
     width: 65.2%;
     margin-bottom: $btmMarg;
+}
+
+.hotel_photo_1 {
+    margin-bottom: $btmMarg;
+    height: calc(50% - 10px);
+    width: 100%;
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
 }

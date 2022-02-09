@@ -19,8 +19,7 @@ const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (roomItem)
-        {
+        if (roomItem) {
             setRoomPhotos(roomItem.roomPhotos);
             setSeatsCount(roomItem.seatsCount);
             setTypeName(roomItem.typeName);
@@ -67,18 +66,18 @@ const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
             roomCount: Number(roomCount),
         }
 
-        dispatch(updateCreatedRoom({index, room}));
+        dispatch(updateCreatedRoom({ index, room }));
         handleClose();
     }
 
     function cancel() {
         setRoomPhotos([]);
-        setCost(0);  
+        setCost(0);
         setSeatsCount(0);
         setTypeName('');
         setRoomCount(0);
         handleClose();
-    } 
+    }
 
     return (
         <>
@@ -96,56 +95,52 @@ const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
                 >
                     {({ errors }) => (
                         <Form className='creatingRoomModalContainer'>
-                            <Typography variant="h3" component="h2">
-                                Room creation
-                            </Typography>
-                            <div className='colorContainer'>
-                                <div className='roomModalRow'>
-                                    <div className='roomModalCell'>
-                                        <h3>Room type name:</h3>
-                                        <TextField
-                                            type={'text'}
-                                            value={typeName}
-                                            onInput={onTextChange}
-                                            placeholder="Type name"
-                                            variant="standard"
-                                        />
-                                    </div>
-                                    <div className='roomModalCell'>
-                                        <h3>Seats Count:</h3>
-                                        <TextField
-                                            type={'number'}
-                                            value={seatsCount}
-                                            onInput={onSeatsChange}
-                                            placeholder="Seats Count"
-                                            variant="standard"
-                                        />
-                                    </div>
+                            <div className='crmc_header'>
+                                <h3>Room creation</h3>
+                            </div>
+                            <div className='crmc_container'>
+                                <div className='crmc_cc_item'>
+                                    <label className='crmc_cc_label'>Room type name:</label>
+                                    <TextField
+                                        type={'text'}
+                                        value={typeName}
+                                        onInput={onTextChange}
+                                        placeholder="Type name"
+                                        variant="standard"
+                                    />
                                 </div>
-                                <CreationPhotoCarousel photos={roomPhotos} setPhotos={setRoomPhotos} />
-                                <div className='roomModalRow'>
-                                    <div className='roomModalCell'>
-                                        <h3>Cost:</h3>
-                                        <TextField
-                                            type={'number'}
-                                            value={cost}
-                                            onInput={onCostChange}
-                                            placeholder="Cost"
-                                            variant="standard"
-                                        />
-                                    </div>
-                                    <div className='roomModalCell'>
-                                        <h3>Rooms Count:</h3>
-                                        <TextField
-                                            type={'number'}
-                                            value={roomCount}
-                                            onInput={onRoomCountChange}
-                                            placeholder="Rooms Count"
-                                            variant="standard"
-                                        />
-                                    </div>
+                                <div className='crmc_cc_item'>
+                                    <label className='crmc_cc_label'>Seats Count:</label>
+                                    <TextField
+                                        type={'number'}
+                                        value={seatsCount}
+                                        onInput={onSeatsChange}
+                                        placeholder="Seats Count"
+                                        variant="standard"
+                                    />
+                                </div>
+                                <div className='crmc_cc_item'>
+                                    <label className='crmc_cc_label'>Cost:</label>
+                                    <TextField
+                                        type={'number'}
+                                        value={cost}
+                                        onInput={onCostChange}
+                                        placeholder="Cost"
+                                        variant="standard"
+                                    />
+                                </div>
+                                <div className='crmc_cc_item'>
+                                    <label className='crmc_cc_label'>Rooms Count:</label>
+                                    <TextField
+                                        type={'number'}
+                                        value={roomCount}
+                                        onInput={onRoomCountChange}
+                                        placeholder="Rooms Count"
+                                        variant="standard"
+                                    />
                                 </div>
                             </div>
+                            <CreationPhotoCarousel photos={roomPhotos} setPhotos={setRoomPhotos} />
                             <div className='roomModalRow'>
                                 {!roomItem && <Button variant="contained" className='roomModalBtn' onClick={cancel}>Cancel</Button>}
                                 {!roomItem && <Button variant="contained" type="submit" className='roomModalBtn' onClick={createRoom}>Create</Button>}

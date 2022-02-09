@@ -18,12 +18,14 @@ const AdminPage = () => {
         navigate('/Admin/HotelCreation');
     }
 
-    return(
-        <div className='adminPageContainer'>
-            <SearchArea setFilter={setFilter} setContent={setContent} setPageCount={setPageCount}/>
-            <HotelList hotels={content} />
-            <Button variant="contained" type="submit" className='addBtn' onClick={goToCreatingPage}>Create hotel</Button>
-        </div>
+    return (
+        <>
+            <SearchArea setFilter={setFilter} setContent={setContent} setPageCount={setPageCount} />
+            <div className='adminPageContainer'>
+                <HotelList filter={filter} />
+                <Button variant="contained" type="submit" className='addBtn' onClick={goToCreatingPage}>Create hotel</Button>
+            </div>
+        </>
     )
 }
 

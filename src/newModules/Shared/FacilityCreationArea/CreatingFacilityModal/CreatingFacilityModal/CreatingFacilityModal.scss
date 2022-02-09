@@ -3,53 +3,17 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid black;
-    border-radius: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
     background-color: white;
-    width: 400px;
-    padding: 30px;
+    padding: 20px;
+    width: auto;
 }
 
-.facilityModalRow {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    color: white;
 
-    margin: 20px 0;
 
-    & .css-1u3bzj6-MuiFormControl-root-MuiTextField-root, .textInput {
-        border: 4px solid rgb(254, 187, 2) !important;
-        border-radius: 5px !important;
-        background-color: #fff;
-        width: 100%;
-    
-        & input {
-            margin-left: 6px;
-        }
-    }
-
-    .css-1480iag-MuiInputBase-root-MuiInput-root {
-        margin: 0 !important;
-        &::after {
-            display: none;
-        }
-        &::before {
-            display: none;
-        }
-    }
-
-    &:first-child {
-        margin: 0;
-    }
-}
-
-.facilityModalCell {
-    width: 100%;
-}
-
-.facilityModalRow .facilityModalBtn {
-    background-color: #003580;
+.facilityModalBtn {
+    //background-color: #003580;
     width: 30%;
     height: 100%;
     
@@ -66,4 +30,64 @@
     &:hover{
         background-color: rgb(94, 8, 8) !important;
     }
+}
+
+.color_container {
+    background-color: #ebf3ff;
+    display: flex;
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+}
+
+.cfmc_header {
+    h3 {
+        font-size: 24px;
+        font-weight: normal;
+        margin-bottom: 15px;
+        font-family: Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+        line-height: 24px;
+    }
+}
+
+.cfmc_cc_item {
+    display: flex;
+    flex-direction: column;
+    margin-right: 16px;
+
+    &:last-child {
+        margin: 0;
+    }
+
+    .cfmc_cc_label {
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 500;
+        font-family: Arial, Helvetica, sans-serif;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+        background-color: white;
+        border-radius: 4px;
+        border: 1px solid #dfdfdf;
+    }
+
+    .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-16awh2u-MuiAutocomplete-root .MuiOutlinedInput-root {
+        padding: 0 4px;
+    }
+
+    .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+        width: 180px;
+    }
+
+    fieldset {
+        display: none;
+    }
+}
+
+.cfmc_buttons {
+    display: flex;
+    justify-content: space-between;
 }

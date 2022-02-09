@@ -4,12 +4,12 @@ import { Formik, Form, Field } from 'formik';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
 import ComboBox from '../../../Shared/ComboBox/ComboBox'
-import DatePickerRange from '../DatePickerRange/DatePickerRange';
 import TextField from '@mui/material/TextField';
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import getHotels from '../../../../api/apiRequests/getHotels';
 import axios from 'axios';
+import DatePickerRange from '../../../Shared/DatePickerRange/DatePickerRange';
 
 const SearchingArea = ({ filter, setFilter, setContent, setPageCount }) => {
     const [date, setDate] = useState([new Date(), new Date()]);
@@ -55,7 +55,7 @@ const SearchingArea = ({ filter, setFilter, setContent, setPageCount }) => {
 
     return (
         <div className='searchingArea'>
-            <h2>Search</h2>
+            <h2 className='srp_sa_header'>Search</h2>
             <Formik
                 initialValues={{
                     password: '',
@@ -65,28 +65,35 @@ const SearchingArea = ({ filter, setFilter, setContent, setPageCount }) => {
                 onSubmit={searchHotels}
             >
                 {({ errors }) => (
-                    <Form className='searchingAreaForm'>
+                    <Form className='srp_searching_area_form'>
+                    <div className="srp_saf_item">
+                        <label className='saf_item_label'>Search location</label>
                         <ComboBox className='cbLocates' cityId={city}
                             setOption={(newValue) => setCity(newValue)}
                             setCountry={(newValue => setCountry(newValue))}
                             boxText={(option) => (option.country) + ', ' + option.city}
-                            getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
+                            getOptionLabel={(option) => option.country + ', ' + option.city}
                             labelText='Locates'
                         />
+                    </div>
+                    <div className="srp_saf_item">
                         <DatePickerRange date={date} setDate={(newValue) => setDate(newValue)} />
+                    </div>
+                    <div className="srp_saf_item">
+                        <label className='saf_item_label'>Seats count</label>
                         <TextField id="outlined-basic"
                             className='seatsCountField'
                             type={'number'}
                             value={seatsCount}
                             onInput={onSeatsChange}
-                            label="Seats Count"
                             variant="outlined"
                         />
-                        <div>
-                            <Button variant="contained" type="submit" className='submitButton'>Search</Button>
-                        </div>
+                    </div>
+                    <div className='srp_saf_buttons'>
+                        <Button variant="contained" type="submit" className='submitButton'>Search</Button>
+                    </div>
 
-                    </Form>
+                </Form>
                 )}
             </Formik>
         </div>
