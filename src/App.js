@@ -2,54 +2,38 @@ import React from 'react';
 import { BrowserRouter as Router, Navigate } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import { Routes } from 'react-router-dom'
-import HomePage from './modules/HomePage/HomePage';
+import AdminPage from './modules/AdminPage/AdminPage/AdminPage';
+//import Header from './newModules/Header/Header';
+import Header from './modules/Shared/Header/Header/Header'
+import HomePage from './modules/HomePage/HomePage/HomePage';
+import HotelCreationPage from './modules/HotelCreationPage/HotelCreationPage/HotelCreationPage';
+import HotelPage from './modules/HotelPage/HotelPage/HotelPage';
+import HotelUpdatingPage from './modules/HotelUpdatingPage/HotelUpdatingPage/HotelUpdatingPage';
 import LoginPage from './modules/LoginPage/LoginPage';
-import OrderPage from './modules/OrderPage/OrderPage';
-import RegistrationPage from './modules/RegistrationPage/RegistrationPage';
-import Footer from './modules/Shared/Footer/Footer';
-import Header from './modules/Shared/Header/Header';
-import AllOrdersPage from './modules/AllOrdersPage/AllOrdersPage';
-import AdminPage from './modules/AdminPage/AdminPage';
-import HotelCreationPage from './modules/AdminPage/HotelCreation/HotelCreationPage/HotelCreationPage';
-import AdminRoomList from './modules/AdminPage/RoomUpdating/AdminRoomList';
-import AdminRoomPage from './modules/AdminPage/RoomUpdating/AdminRoomPage';
+import MyOrdersPage from './modules/MyOrdersPage/MyOrdersPage/MyOrdersPage';
+import OrderPage from './modules/OrderPage/OrderPage/OrderPage';
+import SearchingResultsPage from './modules/SearchingResultsPage/SearchingResultsPage/SearchingResultsPage';
 
-import './App.css'
-import TestPage from './modules/TestPage/TestPage/TestPage';
-import HotelUpdatingPage from './modules/AdminPage/HotelUpdating/HotelUpdatingPage/HotelUpdatingPage';
-
-function App() {
+function NewApp() {
   return (
     <>
       <Router>
-        <div style={{ height: '64px' }}>
-          <Header />
-        </div>
-        <div class='wrapper1'>
-          <div className='pageColumns' />
-          <div className='page'>
+            <Header/>
             <Routes>
-              <Route path="/" element={<Navigate to="/Hotels" />} />
               <Route path="/Login" element={<LoginPage />} />
-              <Route path="/Registration" element={<RegistrationPage />} />
-              <Route path="/Hotels/*" element={<HomePage />} />
-              <Route path="/Order" element={<OrderPage />} />
-              <Route path="/AllOrders" element={<AllOrdersPage />} />
+              <Route path="/Home" element={<HomePage />} />
+              <Route path="/Hotels" element={<SearchingResultsPage />} />
+              <Route path="/Hotels/:hotelId" element={<HotelPage />} />
               <Route path="/Admin" element={<AdminPage />} />
-              <Route path="/Admin/Hotels/:hotelId" element={<AdminRoomList />} />
-              <Route path="/Admin/Hotels/:hotelId/Rooms/:roomId" element={<AdminRoomPage />} />
-              <Route path="/HotelCreation" element={<HotelCreationPage />} />
-              <Route path="/HotelUpdating/:hotelId" element={<HotelUpdatingPage />} />
-              <Route path="/Test" element={<TestPage />} />
+              <Route path="/Admin/HotelCreation" element={<HotelCreationPage />} />
+              <Route path="/Admin/HotelUpdating/:hotelId" element={<HotelUpdatingPage />} />
+              <Route path="/OrderPage" element={<OrderPage />} />
+              <Route path="/MyOrders" element={<MyOrdersPage />} />
+              <Route path="/" element={<Navigate to="/Home" replace={true} />} />
             </Routes>
-          </div>
-          <div className='pageColumns' />
-        </div>
-        <Footer />
-
       </Router>
     </>
   );
 }
 
-export default App;
+export default NewApp;
