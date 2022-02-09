@@ -110,7 +110,6 @@ const RoomsInfo = () => {
                         <h3>Total cost: {getTotalCost()}$</h3>
                         <button type='submit' className='submit_order_btn'>Create order</button>
                     </div>
-                    <button onClick={console.log(orderingRooms)}>sdsds</button>
                 </Form>
             )}
         </Formik>

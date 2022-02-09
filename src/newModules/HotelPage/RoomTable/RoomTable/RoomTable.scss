@@ -23,6 +23,12 @@ $headHeight: 70px;
     & th {
         border: 1px black solid;
         border-top: none;
+        padding: 6px 8px;
+        text-align: center;
+        
+        &:first-child {
+            text-align: left;
+        }
     }
 
     & tbody tr {
@@ -48,24 +54,23 @@ $headHeight: 70px;
         background-color: #003580;
         color: #fff;
         background-clip: padding-box;
+        text-align: left;
     }
 }
 
 .colType {
-    min-width: 25%;
-    max-width: 40%;
+    width: auto;
+    max-width: 400px;
 }
 
 .colSeats {
-    min-width: 10%;
-    max-width: 15%;
+    width: 70px;
 }
 
 .colCost {
-    min-width: 10%;
-    max-width: 15%;
+    width: 100px;
 }
 
 .colRoomCount {
-    width: 10%;
+    width: 120px;
 }   

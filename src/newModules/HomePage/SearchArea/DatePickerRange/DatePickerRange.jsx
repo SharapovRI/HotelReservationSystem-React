@@ -10,8 +10,8 @@ const DatePickerRange = ( {date, setDate} ) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
-        startText="Check-in"
-        endText="Check-out"
+        startText=""
+        endText=""
         value={date}
         allowSameDateSelection={false}
         onChange={(newValue) => {

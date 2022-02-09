@@ -9,6 +9,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
+    align-items: center;
 
     .submit_order_btn {
         justify-content: center;
@@ -25,6 +26,15 @@
         &:hover {
             background-color: #00487a;
         }
+    }
+
+    h3 {
+        margin: 0;
+        margin-right: 16px;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 600;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     margin-bottom: 50px;

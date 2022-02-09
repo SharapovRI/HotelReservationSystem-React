@@ -2,3 +2,19 @@
     display: flex;
     flex-flow: column;
 }
+
+.hotel_content_header {
+    h2 {
+        font-family: Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+        font-weight: 700;
+    }
+}
+
+.hotel_content_address {
+    .hca_address {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 20px;
+        font-family: Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    }
+}

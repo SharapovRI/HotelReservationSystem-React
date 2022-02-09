@@ -5,16 +5,14 @@ import './SearchingResultsPage.scss'
 
 const SearchingResultsPage = () => {
     const [filter, setFilter] = useState(null);
-    const [content, setContent] = useState([]);
-    const [pageCount, setPageCount] = useState(0);
 
     return(
         <div className='searchingResultsContainer'>
             <div className='searchingResultsArea'>
-                <SearchingArea setFilter={setFilter} setContent={setContent} setPageCount={setPageCount}/>
+                <SearchingArea setFilter={setFilter} />
             </div>
             <div className='searchedResultsArea'>
-                <SearchedHotels hotels={content} filter={filter}/>
+                <SearchedHotels filter={filter}/>
             </div>
         </div>
     )
