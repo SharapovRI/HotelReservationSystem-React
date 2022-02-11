@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Mape from '../Map/Map/Mape';
+// import Mape from '../Map/Map/Mape';
 import SearchedHotels from '../SearchedHotels/SearchedHotels/SearchedHotels';
 import SearchingArea from '../SearchingArea/SearchingArea/SearchingArea';
-import SimpleMap from '../SearchingResultsMap/SearchingResultsMap/SearchingResultsMap';
-import FuncMap from '../FuncMap/FuncMap/FuncMap'
+// import SimpleMap from '../SearchingResultsMap/SearchingResultsMap/SearchingResultsMap';
+// import FuncMap from '../FuncMap/FuncMap/FuncMap'
 import './SearchingResultsPage.scss'
 
 const SearchingResultsPage = () => {
