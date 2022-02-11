@@ -27,7 +27,6 @@ const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, box
   }, [setAppState]);
 
   useEffect(() => {
-    console.log(cityId, cityName);
     if (cityId && appState.length > 0) {
       const currentLocate = appState[appState.findIndex((locate) => locate.id === Number(cityId))];
 

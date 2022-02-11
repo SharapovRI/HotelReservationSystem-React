@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Navigate } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import { Routes } from 'react-router-dom'
 import AdminPage from './modules/AdminPage/AdminPage/AdminPage';
-//import Header from './newModules/Header/Header';
 import Header from './modules/Shared/Header/Header/Header'
 import HomePage from './modules/HomePage/HomePage/HomePage';
 import HotelCreationPage from './modules/HotelCreationPage/HotelCreationPage/HotelCreationPage';
@@ -13,6 +12,7 @@ import LoginPage from './modules/LoginPage/LoginPage';
 import MyOrdersPage from './modules/MyOrdersPage/MyOrdersPage/MyOrdersPage';
 import OrderPage from './modules/OrderPage/OrderPage/OrderPage';
 import SearchingResultsPage from './modules/SearchingResultsPage/SearchingResultsPage/SearchingResultsPage';
+import RegistrationPage from './modules/RegistrationPage/RegistrationPage/RegistrationPage';
 
 function NewApp() {
   return (
@@ -21,6 +21,7 @@ function NewApp() {
             <Header/>
             <Routes>
               <Route path="/Login" element={<LoginPage />} />
+              <Route path="/Registration" element={<RegistrationPage />} />
               <Route path="/Home" element={<HomePage />} />
               <Route path="/Hotels" element={<SearchingResultsPage />} />
               <Route path="/Hotels/:hotelId" element={<HotelPage />} />

@@ -15,7 +15,6 @@ const HotelInfo = () => {
                 id: hotelId,
             }
             const data = await getHotels(payload); 
-            console.log(data.result[0]);
             setHotel(data.result[0]);
         }
         getHotel();

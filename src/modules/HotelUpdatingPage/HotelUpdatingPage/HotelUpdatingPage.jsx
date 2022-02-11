@@ -13,6 +13,7 @@ import getHotelFacilities from '../../../api/apiRequests/getHotelFacilities';
 import { useDispatch } from 'react-redux';
 import { addCreatedRoomsRange } from '../../../redux/Reducers/RoomReducer';
 import { addCreatedFacilitiesRange } from '../../../redux/Reducers/FacilitiesReducer';
+import putHotel from '../../../api/apiRequests/putHotel';
 
 const HotelUpdatingPage = () => {
     const navigate = useNavigate();
@@ -58,10 +59,7 @@ const HotelUpdatingPage = () => {
         if (isSubmited) {
             const payload = Object.assign(hotelPayload, roomPayload, facilityPayload);
             if (hotelId) {
-
-            }
-            else {
-                const resp = postHotel(payload);
+                const resp = putHotel(hotelId, payload);
                 navigate('/Admin');
             }
             setIsSubmited(false)
@@ -105,7 +103,7 @@ const HotelUpdatingPage = () => {
             </div>
             <div className='hotelCreationButtons'>
                 <Button variant="contained" className='hotelCreationButton' onClick={cancel}>Cancel</Button>
-                <Button form='deForm' variant="contained" type="submit" className='hotelCreationButton'>Create</Button>
+                <Button form='deForm' variant="contained" type="submit" className='hotelCreationButton'>Update</Button>
             </div>
         </div >
     )

@@ -28,8 +28,12 @@ const RoomCreationArea = ({ setRoomPayload }) => {
     return (
         <>
             <div className='room_creation_area'>
-                <CreatedRoomsTable createdRooms={roomSt} />
-                <CreatingRoomModal open={open} handleClose={handleClose} />
+                {roomSt?.length > 0 && 
+                <>
+                    <CreatedRoomsTable createdRooms={roomSt} />
+                </>
+                }
+                    <CreatingRoomModal open={open} handleClose={handleClose} />
             </div>
             <div className='addRoomBtn'>
                 <Button variant="contained" onClick={handleOpen}>Create room</Button>

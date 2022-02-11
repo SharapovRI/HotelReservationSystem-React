@@ -20,7 +20,7 @@ const HotelCreationPage = () => {
             const payload = Object.assign(hotelPayload, roomPayload, facilityPayload);
             const resp = postHotel(payload);
             setIsSubmited(false)
-            //navigate('/Admin');
+            navigate('/Admin');
         }
     }, [isSubmited]);
 

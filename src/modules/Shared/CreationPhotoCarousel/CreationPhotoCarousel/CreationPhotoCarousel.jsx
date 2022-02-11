@@ -7,23 +7,6 @@ const CreationPhotoCarousel = ({ photos, setPhotos, withoutAddBtn = false }) => 
 
     const listItems = () => {
         const list = [];
-        // if (photos?.length > 0) {
-        //     photos.map((item, index) =>
-        //         list.push(
-        //             <li key={index} className='creationPhoto'>
-        //                 <img src={`data:${item?.extension};base64,${item?.data}`} />
-        //             </li>
-        //         )
-        //     );
-        // }
-
-        // if (withoutAddBtn === false) {
-        //     list.push(
-        //         <li className='creationPhoto inputLi'>
-        //             <AddPhotoItem photos={photos} setPhotos={setPhotos} />
-        //         </li>
-        //     )
-        // }
 
         if (photos?.length > 0) {
             photos.map((item, index) =>

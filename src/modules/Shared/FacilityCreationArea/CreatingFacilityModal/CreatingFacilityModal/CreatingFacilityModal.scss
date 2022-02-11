@@ -8,6 +8,7 @@
     background-color: white;
     padding: 20px;
     width: auto;
+    z-index: 0;
 }
 
 
@@ -23,6 +24,7 @@
 }
 
 .facilityModalDeleteBtn {
+    margin-top: 16px !important;
     background-color: #d01414 !important;
     width: 100% !important;
     height: 100%;
@@ -38,6 +40,8 @@
     padding: 10px;
     border-radius: 3px;
     margin-bottom: 16px;
+    padding-bottom: 16px;
+
 }
 
 .cfmc_header {
@@ -90,4 +94,8 @@
 .cfmc_buttons {
     display: flex;
     justify-content: space-between;
+}
+
+.css-79ws1d-MuiModal-root {
+    z-index: 1200 !important;
 }

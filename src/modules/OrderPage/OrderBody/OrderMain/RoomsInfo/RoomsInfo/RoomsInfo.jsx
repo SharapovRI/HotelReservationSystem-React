@@ -10,6 +10,7 @@ import TimeSection from '../TimeSection/TimeSection/TimeSection';
 import { getId } from '../../../../../../services/TokenService/getId';
 import createOrder from '../../../../../../services/Order/createOrder';
 import postOrder from '../../../../../../api/apiRequests/postOrder';
+import checkOrderCreationData from '../../../../../../services/Validation/orderCreationDataValidation';
 
 const RoomsInfo = () => {
     const roomSt = useSelector((state) => state.roomReducer?.rooms);
@@ -19,6 +20,7 @@ const RoomsInfo = () => {
     const [totalCost, setTotalCost] = useState(0);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [renderEnd, setRenderEnd] = useState(false);
 
     useEffect(() => {
         async function getFacilities() {
@@ -28,6 +30,13 @@ const RoomsInfo = () => {
         }
         getFacilities();
     }, [setSearchParams])
+
+    useEffect(() => {
+        if (renderEnd && orderingRooms.length < 1) {
+            navigate('/')
+        }
+        setRenderEnd(true);
+    }, [orderingRooms])
 
     function getRoomsList() {
         const roomList = [];
@@ -60,13 +69,9 @@ const RoomsInfo = () => {
     function getNumberOfDays() {
         const date1 = new Date(searchParams.get('checkIn'));
         const date2 = new Date(searchParams.get('checkOut'));
-
         const oneDay = 1000 * 60 * 60 * 24;
-
         const diffInTime = date2.getTime() - date1.getTime();
-
         const diffInDays = Math.round(diffInTime / oneDay);
-
         return diffInDays;
     }
 
@@ -90,7 +95,15 @@ const RoomsInfo = () => {
         }
 
         const response = await postOrder(payload);
-        //navigate("/");
+        navigate("/MyOrders");
+    }
+
+    function validateOrderParameters() {
+        const values = {
+            rooms: orderingRooms,
+        }
+        const errors = checkOrderCreationData(values);
+        return errors;
     }
 
     return (
@@ -99,7 +112,7 @@ const RoomsInfo = () => {
                 password: '',
                 login: '',
             }}
-            //validate={checkLoginData}
+            validate={validateOrderParameters}
             onSubmit={submitOrder}
         >
             {({ errors }) => (

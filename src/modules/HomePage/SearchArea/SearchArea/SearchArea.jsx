@@ -1,22 +1,20 @@
+import './SearchArea.scss';
 import React, { useState } from 'react';
 import DatePickerRange from '../DatePickerRange/DatePickerRange';
 import TextField from '@mui/material/TextField';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ComboBox from '../../../Shared/ComboBox/ComboBox';
-import { useSearchParams } from 'react-router-dom';
-import getHotels from '../../../../api/apiRequests/getHotels';
 import Button from '@mui/material/Button';
-import { Formik, Form, Field } from 'formik';
-
-import './SearchArea.scss';
+import { Formik, Form } from 'formik';
+import Tooltip from '@mui/material/Tooltip';
 import axios from 'axios';
+import checkHomePageSearchingData from '../../../../services/Validation/homePageSearchingDataValidation';
 
-const SearchArea = ({ setFilter, setContent, setPageCount }) => {
-    const [date, setDate] = useState([new Date(), new Date()]);
+const SearchArea = ({ setFilter }) => {
+    const [date, setDate] = useState([new Date(), (new Date()).setDate(new Date().getDate() + 1)]);
     const [city, setCity] = useState(null);
     const [country, setCountry] = useState(null);
     const [seatsCount, setSeatsCount] = useState(0);
-    const [searchParams, setSearchParams] = useSearchParams();
 
     const navigate = useNavigate();
 
@@ -36,7 +34,30 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
     }
 
     const onSeatsChange = (event) => {
-        setSeatsCount(event.target.value);
+        if (event.target.value < 0) {
+            setSeatsCount(0);
+        }
+        else {
+            setSeatsCount(event.target.value);
+        }
+    }
+
+    function getStyles(errors) {
+        if (errors) {
+            return {
+                border: '1px solid red'
+            }
+        }
+    }
+
+    function validateSearchingParameters() {
+        const values = {
+            date: date,
+            city: city,
+            seats: seatsCount,
+        }
+        const errors = checkHomePageSearchingData(values);
+        return errors;
     }
 
     return (
@@ -51,35 +72,40 @@ const SearchArea = ({ setFilter, setContent, setPageCount }) => {
             </div>
             <Formik
                 initialValues={{
-                    password: '',
-                    login: '',
+                    city: -1,
+                    date: [],
                 }}
-                //validate={checkLoginData}
+                validate={validateSearchingParameters}
                 onSubmit={searchHotels}
+
             >
                 {({ errors }) => (
                     <Form className='searchAreaForm'>
-                        <div className='searchAreaItem'>
-                            <ComboBox className='cbLocates'
-                                setOption={(newValue) => setCity(newValue)}
-                                setCountry={(newValue => setCountry(newValue))}
-                                boxText={(option) => (option.country) + ', ' + option.city}
-                                getOptionLabel={(option) => option.country + ', ' + option.city}
-                                labelText='Locates'
-                            />
-                        </div>
+                        <Tooltip open={true} title={errors.city} style={{zIndex: 0}}>
+                            <div className='searchAreaItem' name='cityPicker' style={getStyles(errors.city)}>
+                                <ComboBox className='cbLocates'
+                                    setOption={(newValue) => setCity(newValue)}
+                                    setCountry={(newValue => setCountry(newValue))}
+                                    boxText={(option) => (option.country) + ', ' + option.city}
+                                    getOptionLabel={(option) => option.country + ', ' + option.city}
+                                    labelText='Locates'
+                                />
+                            </div>
+                        </Tooltip>
                         <div className='searchAreaItem'>
                             <DatePickerRange date={date} setDate={(newValue) => setDate(newValue)} />
                         </div>
-                        <div className='searchAreaItem'>
-                            <TextField id="outlined-basic"
-                                type={'number'}
-                                defaultValue={seatsCount}
-                                onInput={onSeatsChange}
-                                label="Seats Count"
-                                variant="outlined"
-                            />
-                        </div>
+                        <Tooltip open={errors.seats && true} title={errors.seats}>
+                            <div className='searchAreaItem'>
+                                <TextField id="outlined-basic"
+                                    type={'number'}
+                                    value={seatsCount}
+                                    onInput={onSeatsChange}
+                                    label="Seats Count"
+                                    variant="outlined"
+                                />
+                            </div>
+                        </Tooltip>
                         <div className='searchAreaItem'>
                             <Button variant="contained" type="submit" className='submitButton'>Search</Button>
                         </div>
