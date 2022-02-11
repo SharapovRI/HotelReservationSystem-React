@@ -1,13 +1,14 @@
 import './CreatingFacilityModal.scss';
 import { Formik, Form, Field } from 'formik';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addCreatedFacility, updateCreatedFacility } from "../../../../../redux/Reducers/FacilitiesReducer";
 import DeleteFacilityModal from '../DeleteFacilityModal/DeleteFacilityModal/DeleteFacilityModal';
+import checkFacilityData from '../../../../../services/Validation/facilityCreationDataValidation';
+import Tooltip from '@mui/material/Tooltip';
 
 const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
     const [facilityName, setFacilityName] = useState('');
@@ -24,14 +25,19 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
             setFacilityName(facilityItem.name);
             setCost(facilityItem.cost);
         }
-    }, []);
+    }, [setCost]);
 
     const onTextChange = (event) => {
         setFacilityName(event.target.value);
     }
 
     const onCostChange = (event) => {
-        setCost(event.target.value);
+        if (event.target.value < 0) {
+            setCost(0);
+        }
+        else {
+            setCost(event.target.value);
+        }
     }
 
     function createFacility() {
@@ -59,6 +65,28 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
         handleClose();
     }
 
+    function actionFacility() {
+        { !facilityItem && createFacility() }
+        { facilityItem && updateFacility() }
+    }
+
+    function getStyles(errors) {
+        if (errors) {
+            return {
+                border: '1px solid red'
+            }
+        }
+    }
+
+    function validateFacilityParameters() {
+        const values = {
+            facilityName: facilityName,
+            cost: cost,
+        }
+        const errors = checkFacilityData(values);
+        return errors;
+    }
+
     return (
         <>
             <Modal
@@ -70,8 +98,8 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
                         password: '',
                         login: '',
                     }}
-                //validate={checkLoginData}
-                //onSubmit={authorizeClick}
+                    validate={validateFacilityParameters}
+                    onSubmit={actionFacility}
                 >
                     {({ errors }) => (
                         <Form className='creatingFacilityModalContainer'>
@@ -79,31 +107,37 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
                                 <h3>Facility creation</h3>
                             </div>
                             <div className='color_container'>
-                                <div className="cfmc_cc_item">
-                                    <label className='cfmc_cc_label'>Facility name:</label>
-                                    <TextField
-                                        type={'text'}
-                                        defaultValue={facilityName}
-                                        onInput={onTextChange}
-                                        variant="standard"
-                                    />
-                                </div>
-                                <div className="cfmc_cc_item">
-                                    <label className='cfmc_cc_label'>Cost:</label>
-                                    <TextField
-                                        type={'number'}
-                                        defaultValue={cost}
-                                        onInput={onCostChange}
-                                        variant="standard"
-                                    />
-                                </div>
+                                <Tooltip open={true} title={errors.facilityName} className='modal_tooltip'>
+                                    <div className="cfmc_cc_item">
+                                        <label className='cfmc_cc_label'>Facility name:</label>
+                                        <TextField
+                                            type={'text'}
+                                            defaultValue={facilityName}
+                                            onInput={onTextChange}
+                                            variant="standard"
+                                            style={getStyles(errors.facilityName)}
+                                        />
+                                    </div>
+                                </Tooltip>
+                                <Tooltip open={true} title={errors.cost}>
+                                    <div className="cfmc_cc_item">
+                                        <label className='cfmc_cc_label'>Cost:</label>
+                                        <TextField
+                                            type={'number'}
+                                            value={cost}
+                                            onInput={onCostChange}
+                                            variant="standard"
+                                            style={getStyles(errors.cost)}
+                                        />
+                                    </div>
+                                </Tooltip>
                             </div>
                             <div className='cfmc_buttons'>
                                 {!facilityItem && <Button variant="contained" className='facilityModalBtn' onClick={cancel}>Cancel</Button>}
-                                {!facilityItem && <Button variant="contained" type="submit" className='facilityModalBtn' onClick={createFacility}>Create</Button>}
+                                {!facilityItem && <Button variant="contained" type="submit" className='facilityModalBtn'>Create</Button>}
 
                                 {facilityItem && <Button variant="contained" className='facilityModalBtn' onClick={handleClose}>Cancel</Button>}
-                                {facilityItem && <Button variant="contained" type="submit" className='facilityModalBtn' onClick={updateFacility}>Update</Button>}
+                                {facilityItem && <Button variant="contained" type="submit" className='facilityModalBtn'>Update</Button>}
                             </div>
 
                             {facilityItem && <Button variant="contained" type="submit" className='facilityModalDeleteBtn' onClick={handleClickOpen}>Delete</Button>}

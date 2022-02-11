@@ -6,6 +6,8 @@ import { Formik, Form, Field } from 'formik';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CreationPhotoCarousel from '../../../Shared/CreationPhotoCarousel/CreationPhotoCarousel/CreationPhotoCarousel';
+import checkHotelCreationHotelInfoData from '../../../../services/Validation/hotelCreationHotelInfoDataValidation';
+import Tooltip from '@mui/material/Tooltip';
 
 const HotelCreationInfo = ({ setHotelPayload, setIsSubmited, hotelPayload }) => {
     const [appState, setAppState] = useState([]);
@@ -74,13 +76,31 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited, hotelPayload }) => 
         setIsSubmited(true);
     }
 
+    function getStyles(errors) {
+        if (errors) {
+            return {
+                border: '1px solid red'
+            }
+        }
+    }
+
+    function validateCreatingParameters() {
+        const values = {
+            hotelName: hotelName,
+            address: address,
+            city: city,
+        }
+        const errors = checkHotelCreationHotelInfoData(values)
+        return errors;
+    }
+
     return (
         <Formik
             initialValues={{
                 password: '',
                 login: '',
             }}
-            //validate={checkLoginData}
+            validate={validateCreatingParameters}
             onSubmit={submit}
         >
             {({ errors }) => (
@@ -96,44 +116,52 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited, hotelPayload }) => 
                             }
                         </div>
                         <div className="hci_header_main">
-                            <div className='hotelInfoItem'>
-                                <label>Hotel name:</label>
-                                <TextField value={hotelName} variant="standard" onChange={onNameChange} placeholder='Hotel name' />
-                            </div>
+                            <Tooltip open={true} title={errors.hotelName} placement="bottom-start">
+                                <div className='hotelInfoItem'>
+                                    <label>Hotel name:</label>
+                                    <TextField value={hotelName} variant="standard" onChange={onNameChange} 
+                                        placeholder='Hotel name' style={getStyles(errors.hotelName)}/>
+                                </div>
+                            </Tooltip>
                             <div className="hci_hm_place_container">
-                                <div className='hotelInfoItem item_margin'>
-                                    <label>Hotel address:</label>
-                                    <div className='addressContainer'>
-                                        <Autocomplete className='comboBox'
-                                            options={appState}
-                                            clearOnEscape={true}
-                                            value={curValue}
-                                            onChange={(event, newValue) => {
-                                                if (newValue !== null) {
-                                                    setCity(newValue.id);
-                                                    setCountry(newValue.countryId);
-                                                    setCurValue(newValue);
+                                <Tooltip open={true} title={errors.city} placement="bottom-start">
+                                    <div className='hotelInfoItem item_margin'>
+                                        <label>Hotel address:</label>
+                                        <div className='addressContainer'>
+                                            <Autocomplete className='comboBox' style={getStyles(errors.city)}
+                                                options={appState}
+                                                clearOnEscape={true}
+                                                value={curValue}
+                                                onChange={(event, newValue) => {
+                                                    if (newValue !== null) {
+                                                        setCity(newValue.id);
+                                                        setCountry(newValue.countryId);
+                                                        setCurValue(newValue);
+                                                    }
+                                                    else {
+                                                        setCity('');
+                                                        setCountry('');
+                                                        setCurValue(null);
+                                                    }
                                                 }
-                                                else {
-                                                    setCity('');
-                                                    setCountry('');
-                                                    setCurValue(null);
                                                 }
-                                            }
-                                            }
-                                            getOptionLabel={(option) => option.id + ' ' + option.country + ', ' + option.city}
-                                            renderInput={(params) => (
-                                                <TextField {...params} placeholder="City" variant="standard">
-                                                    {(option) => (option.country) + ', ' + option.city}
-                                                </TextField>
-                                            )}
-                                        />
+                                                getOptionLabel={(option) => option.id + ' ' + option.country + ', ' + option.city}
+                                                renderInput={(params) => (
+                                                    <TextField {...params} placeholder="City" variant="standard">
+                                                        {(option) => (option.country) + ', ' + option.city}
+                                                    </TextField>
+                                                )}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className='hotelInfoItem flex_grow'>
-                                    <label>Hotel address:</label>
-                                    <TextField value={address} variant="standard" onChange={onAddressChange} placeholder='Address' />
-                                </div>
+                                </Tooltip>
+                                <Tooltip open={true} title={errors.address} placement="bottom-start">
+                                    <div className='hotelInfoItem flex_grow'>
+                                        <label>Hotel address:</label>
+                                        <TextField value={address} variant="standard" onChange={onAddressChange} 
+                                            placeholder='Address' style={getStyles(errors.address)}/>
+                                    </div>
+                                </Tooltip>
                             </div>
                         </div>
                     </div>

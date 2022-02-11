@@ -15,7 +15,6 @@ const OrderCost = () => {
             );
         }
 
-        console.log(roomSt);
         const totalPrice = price * getNumberOfDays();
 
         return totalPrice;
@@ -23,14 +22,10 @@ const OrderCost = () => {
 
     function getNumberOfDays() {
         const date1 = new Date(searchParams.get('checkIn'));
-        const date2 = new Date(searchParams.get('checkOut'));
-    
-        const oneDay = 1000 * 60 * 60 * 24;
-    
-        const diffInTime = date2.getTime() - date1.getTime();
-    
-        const diffInDays = Math.round(diffInTime / oneDay);
-    
+        const date2 = new Date(searchParams.get('checkOut'));    
+        const oneDay = 1000 * 60 * 60 * 24;    
+        const diffInTime = date2.getTime() - date1.getTime();    
+        const diffInDays = Math.round(diffInTime / oneDay);    
         return diffInDays;
     }
 

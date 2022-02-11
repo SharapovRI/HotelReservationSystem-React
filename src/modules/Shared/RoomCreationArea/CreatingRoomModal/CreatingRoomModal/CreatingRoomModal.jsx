@@ -9,13 +9,15 @@ import CreationPhotoCarousel from '../../../../Shared/CreationPhotoCarousel/Crea
 import { Formik, Form, Field } from 'formik';
 import { addCreatedRoom, addRooms, updateCreatedRoom, updateRoomState } from '../../../../../redux/Reducers/RoomReducer';
 import { useDispatch } from 'react-redux';
+import checkRoomCreationData from '../../../../../services/Validation/roomCreationDataValidation';
+import Tooltip from '@mui/material/Tooltip';
 
 const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
     const [roomPhotos, setRoomPhotos] = useState([]);
-    const [seatsCount, setSeatsCount] = useState(0);
+    const [seatsCount, setSeatsCount] = useState(1);
     const [typeName, setTypeName] = useState('');
     const [cost, setCost] = useState(0);
-    const [roomCount, setRoomCount] = useState(0);
+    const [roomCount, setRoomCount] = useState(1);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -29,7 +31,12 @@ const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
     }, []);
 
     const onSeatsChange = (event) => {
-        setSeatsCount(event.target.value);
+        if (event.target.value < 1) {
+            setSeatsCount(1);
+        }
+        else {
+            setSeatsCount(event.target.value);
+        }
     }
 
     const onTextChange = (event) => {
@@ -37,11 +44,21 @@ const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
     }
 
     const onCostChange = (event) => {
-        setCost(event.target.value);
+        if (event.target.value < 0) {
+            setCost(0);
+        }
+        else {
+            setCost(event.target.value);
+        }
     }
 
     const onRoomCountChange = (event) => {
-        setRoomCount(event.target.value);
+        if (event.target.value < 1) {
+            setRoomCount(1);
+        }
+        else {
+            setRoomCount(event.target.value);
+        }
     }
 
     function createRoom() {
@@ -79,6 +96,30 @@ const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
         handleClose();
     }
 
+    function actionRoom() {
+        { !roomItem && createRoom() }
+        { roomItem && updateRoom() }
+    }
+
+    function getStyles(errors) {
+        if (errors) {
+            return {
+                border: '1px solid red'
+            }
+        }
+    }
+
+    function validateCreatingParameters() {
+        const values = {
+            roomCount: roomCount,
+            typeName: typeName,
+            cost: cost,
+            seats: seatsCount,
+        }
+        const errors = checkRoomCreationData(values);
+        return errors;
+    }
+
     return (
         <>
             <Modal
@@ -90,8 +131,8 @@ const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
                         password: '',
                         login: '',
                     }}
-                //validate={checkLoginData}
-                //onSubmit={authorizeClick}
+                    validate={validateCreatingParameters}
+                    onSubmit={actionRoom}
                 >
                     {({ errors }) => (
                         <Form className='creatingRoomModalContainer'>
@@ -99,54 +140,66 @@ const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
                                 <h3>Room creation</h3>
                             </div>
                             <div className='crmc_container'>
-                                <div className='crmc_cc_item'>
-                                    <label className='crmc_cc_label'>Room type name:</label>
-                                    <TextField
-                                        type={'text'}
-                                        value={typeName}
-                                        onInput={onTextChange}
-                                        placeholder="Type name"
-                                        variant="standard"
-                                    />
-                                </div>
-                                <div className='crmc_cc_item'>
-                                    <label className='crmc_cc_label'>Seats Count:</label>
-                                    <TextField
-                                        type={'number'}
-                                        value={seatsCount}
-                                        onInput={onSeatsChange}
-                                        placeholder="Seats Count"
-                                        variant="standard"
-                                    />
-                                </div>
-                                <div className='crmc_cc_item'>
-                                    <label className='crmc_cc_label'>Cost:</label>
-                                    <TextField
-                                        type={'number'}
-                                        value={cost}
-                                        onInput={onCostChange}
-                                        placeholder="Cost"
-                                        variant="standard"
-                                    />
-                                </div>
-                                <div className='crmc_cc_item'>
-                                    <label className='crmc_cc_label'>Rooms Count:</label>
-                                    <TextField
-                                        type={'number'}
-                                        value={roomCount}
-                                        onInput={onRoomCountChange}
-                                        placeholder="Rooms Count"
-                                        variant="standard"
-                                    />
-                                </div>
+                                <Tooltip open={true} title={errors.typeName}>
+                                    <div className='crmc_cc_item'>
+                                        <label className='crmc_cc_label'>Room type name:</label>
+                                        <TextField
+                                            type={'text'}
+                                            value={typeName}
+                                            onInput={onTextChange}
+                                            placeholder="Type name"
+                                            variant="standard"
+                                            style={getStyles(errors.typeName)}
+                                        />
+                                    </div>
+                                </Tooltip>
+                                <Tooltip open={true} title={errors.seats}>
+                                    <div className='crmc_cc_item'>
+                                        <label className='crmc_cc_label'>Seats Count:</label>
+                                        <TextField
+                                            type={'number'}
+                                            value={seatsCount}
+                                            onInput={onSeatsChange}
+                                            placeholder="Seats Count"
+                                            variant="standard"
+                                            style={getStyles(errors.seats)}
+                                        />
+                                    </div>
+                                </Tooltip>
+                                <Tooltip open={true} title={errors.cost}>
+                                    <div className='crmc_cc_item'>
+                                        <label className='crmc_cc_label'>Cost:</label>
+                                        <TextField
+                                            type={'number'}
+                                            value={cost}
+                                            onInput={onCostChange}
+                                            placeholder="Cost"
+                                            variant="standard"
+                                            style={getStyles(errors.cost)}
+                                        />
+                                    </div>
+                                </Tooltip>
+                                <Tooltip open={true} title={errors.roomCount}>
+                                    <div className='crmc_cc_item'>
+                                        <label className='crmc_cc_label'>Rooms Count:</label>
+                                        <TextField
+                                            type={'number'}
+                                            value={roomCount}
+                                            onInput={onRoomCountChange}
+                                            placeholder="Rooms Count"
+                                            variant="standard"
+                                            style={getStyles(errors.roomCount)}
+                                        />
+                                    </div>
+                                </Tooltip>
                             </div>
                             <CreationPhotoCarousel photos={roomPhotos} setPhotos={setRoomPhotos} />
                             <div className='roomModalRow'>
                                 {!roomItem && <Button variant="contained" className='roomModalBtn' onClick={cancel}>Cancel</Button>}
-                                {!roomItem && <Button variant="contained" type="submit" className='roomModalBtn' onClick={createRoom}>Create</Button>}
+                                {!roomItem && <Button variant="contained" type="submit" className='roomModalBtn'>Create</Button>}
 
                                 {roomItem && <Button variant="contained" className='roomModalBtn' onClick={handleClose}>Cancel</Button>}
-                                {roomItem && <Button variant="contained" type="submit" className='roomModalBtn' onClick={updateRoom}>Update</Button>}
+                                {roomItem && <Button variant="contained" type="submit" className='roomModalBtn'>Update</Button>}
                             </div>
                         </Form>
                     )}

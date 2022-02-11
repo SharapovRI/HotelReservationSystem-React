@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Formik, Form, Field } from 'formik';
 import ComboBox from '../../../Shared/ComboBox/ComboBox';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TimeComboBox from '../TimeComboBox/TimeComboBox/TimeComboBox';
 
 const SearchArea = ( { setFilter } ) => {
@@ -16,6 +16,16 @@ const SearchArea = ( { setFilter } ) => {
     const onTextChange = (event) => {
         setHotelName(event.target.value);
     }
+
+    useEffect(() => {
+        const filter = {
+            cityId:city,
+            hotelNamePart:hotelName,
+            whichTime:time,
+            size:4,
+        }
+        setFilter(filter);
+    }, [setFilter])
 
     function getMyOrders() {
         const filter = {

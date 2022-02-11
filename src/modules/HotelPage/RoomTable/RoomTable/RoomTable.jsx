@@ -1,17 +1,16 @@
+import './RoomTable.scss'
 import ReservationColumn from '../ReservationColumn/ReservationColumn/ReservationColumn';
 import RoomRow from '../RoomRow/RoomRow/RoomRow';
-import { Formik, Form, Field } from 'formik';
-
-import './RoomTable.scss'
+import { Formik, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { clearRooms } from '../../../../redux/Reducers/RoomReducer';
+import checkRoomOrderingData from '../../../../services/Validation/roomOrderingDataValidation';
 
 const RoomTable = ({ rooms, filter }) => {
     const roomSt = useSelector((state) => state.roomReducer?.rooms);
-    const [searchParams, setSearchParams] = useSearchParams();
     const params = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -42,13 +41,29 @@ const RoomTable = ({ rooms, filter }) => {
         navigate(path);
     }
 
+    function getStyles(errors) {
+        if (errors) {
+            return {
+                backgroundColor: '#ffebeb',
+            }
+        }
+    }
+
+    function validateRoomOrderingParameters() {
+        const values = {
+            rooms: roomSt,
+        }
+        const errors = checkRoomOrderingData(values);
+        return errors;
+    }
+
     return (
         <Formik
             initialValues={{
                 password: '',
                 login: '',
             }}
-            //validate={checkLoginData}
+            validate={validateRoomOrderingParameters}
             onSubmit={goToOrderPage}
         >
             {({ errors }) => (
@@ -58,7 +73,7 @@ const RoomTable = ({ rooms, filter }) => {
                             <col className='colType' />
                             <col className='colSeats' />
                             <col className='colCost' />
-                            <col className='colRoomCount' />
+                            <col className='colRoomCount' style={getStyles(errors.rooms)}/>
                         </colgroup>
                         <thead className='roomTableHead'>
                             <tr>
@@ -73,7 +88,7 @@ const RoomTable = ({ rooms, filter }) => {
                         </tbody>
                     </table>
                     <div className='reservationColumn'>
-                        <ReservationColumn />
+                        <ReservationColumn errors={errors}/>
                     </div>
                 </Form>
             )}

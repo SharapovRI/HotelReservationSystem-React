@@ -6,6 +6,8 @@ import { Formik, Form, Field } from 'formik';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import DatePickerModal from '../DatePickerModal/DatePickerModal/DatePickerModal';
+import checkHomePageSearchingData from '../../../../services/Validation/homePageSearchingDataValidation';
+import Tooltip from '@mui/material/Tooltip';
 
 const SearchingParams = ({ filter, setFilter }) => {
     const [arrivalDate, setArrivalDate] = useState(null);
@@ -18,7 +20,12 @@ const SearchingParams = ({ filter, setFilter }) => {
     const handleClose = () => setOpen(false);
 
     const onSeatsChange = (event) => {
-        setSeatsCount(event.target.value);
+        if (event.target.value < 0) {
+            setSeatsCount(0);
+        }
+        else {
+            setSeatsCount(event.target.value);
+        }
     }
 
     useEffect(() => {
@@ -38,8 +45,25 @@ const SearchingParams = ({ filter, setFilter }) => {
         newFilter.checkIn = new Date(date[0]);
         newFilter.checkOut = new Date(date[1]);
         newFilter.freeSeatsCount = seatsCount;
-        setFilter(newFilter );
+        setFilter(newFilter);
         handleClose();
+    }
+
+    function getStyles(errors) {
+        if (errors) {
+            return {
+                border: '1px solid red'
+            }
+        }
+    }
+
+    function validateSearchingParameters() {
+        const values = {
+            city: 1,
+            seats: seatsCount,
+        }
+        const errors = checkHomePageSearchingData(values);
+        return errors;
     }
 
     return (
@@ -75,7 +99,7 @@ const SearchingParams = ({ filter, setFilter }) => {
                         password: '',
                         login: '',
                     }}
-                    //validate={checkLoginData}
+                    validate={validateSearchingParameters}
                     onSubmit={changeFilter}
                 >
                     {({ errors }) => (
@@ -88,16 +112,19 @@ const SearchingParams = ({ filter, setFilter }) => {
                                     <div className="spmc_ia_item">
                                         <DatePickerModal date={date} setDate={(newValue) => setDate(newValue)} />
                                     </div>
-                                    <div className="spmc_ia_item">
-                                        <label className='saf_item_label'>Seats count</label>
-                                        <TextField id="outlined-basic"
-                                            className='seatsCountField'
-                                            type={'number'}
-                                            value={seatsCount}
-                                            onInput={onSeatsChange}
-                                            variant="outlined"
-                                        />
-                                    </div>
+                                    <Tooltip open={true} title={errors.seats}>
+                                        <div className="spmc_ia_item">
+                                            <label className='saf_item_label'>Seats count</label>
+                                            <TextField id="outlined-basic"
+                                                className='seatsCountField'
+                                                type={'number'}
+                                                value={seatsCount}
+                                                onInput={onSeatsChange}
+                                                variant="outlined"
+                                                style={getStyles(errors.seats)}
+                                            />
+                                        </div>
+                                    </Tooltip>
                                 </div>
                                 <div className="spmc_buttons">
                                     <Button variant="contained" type="submit">View the availability of seats</Button>

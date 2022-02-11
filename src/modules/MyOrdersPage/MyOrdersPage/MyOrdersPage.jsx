@@ -6,10 +6,6 @@ import './MyOrdersPage.scss';
 const MyOrdersPage = () => {
     const [filter, setFilter] = useState();
 
-    useEffect(() => {
-        console.log(filter);
-    }, [filter])
-
     return(
         <div className="my_orders_page">
             <div className="mop_header">

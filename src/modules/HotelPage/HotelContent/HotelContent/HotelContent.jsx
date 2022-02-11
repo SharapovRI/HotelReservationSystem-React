@@ -16,7 +16,7 @@ const HotelContent = ( { hotel } ) => {
         </div>
         <div className="hotel_content_address">
             <span className='hca_address'>{hotel?.address}, {hotel?.city}, {hotel?.country}</span>
-            <h5>Ссылка на карту</h5>
+            {/* <h5>Ссылка на карту</h5> */}
         </div>
         <div className='hotelPhotosArea'>
             <PhotosTable photos={hotel?.photos} />

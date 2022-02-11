@@ -32,16 +32,37 @@ const HotelPage = () => {
     }, [filter])
 
     useEffect(() => {
+        let checkIn = new Date(searchParams.get('checkIn')).toJSON();
+        let checkOut = new Date(searchParams.get('checkOut')).toJSON();
+
+        if (getNumberOfDays(checkIn, checkOut) < 1) {
+            checkOut = (new Date()).setDate(new Date(checkIn).getDate() + 1);
+        }
+
+        let seats = Number(searchParams.get('freeSeatsCount'));
+        if (seats < 1) {
+            seats = 1;
+        }
+
         const payload = {
             cityId: Number(searchParams.get('cityId')),
             countryId: Number(searchParams.get('countryId')),
-            checkIn: new Date(searchParams.get('checkIn')).toJSON(),
-            checkOut: new Date(searchParams.get('checkOut')).toJSON(),
-            freeSeatsCount: Number(searchParams.get('freeSeatsCount')),
+            checkIn: new Date(checkIn).toJSON(),
+            checkOut: new Date(checkOut).toJSON(),
+            freeSeatsCount: seats,
             size: 5,
         };
         setFilter(payload)
     }, [searchParams]);
+
+    function getNumberOfDays(start, end) {
+        const date1 = new Date(start);
+        const date2 = new Date(end);
+        const oneDay = 1000 * 60 * 60 * 24;
+        const diffInTime = date2.getTime() - date1.getTime();
+        const diffInDays = Math.round(diffInTime / oneDay);
+        return diffInDays;
+    }
 
     return (
         <div className='hotelPageContainer'>
@@ -52,11 +73,6 @@ const HotelPage = () => {
                 <HotelContent hotel={hotel} />
             </div>
             <div className='hotelDescription'>
-                {/* <TextareaAutosize
-                    value={hotel.discription}
-                    className=''
-                    readOnly
-                /> */}
                 <span className='textArea'>{hotel?.discription}</span>
             </div>
             <div className='searchingParams'>

@@ -95,3 +95,16 @@
         background-color: olive;
     }
 }
+
+.css-1twearc-MuiTooltip-popper {
+    z-index: 1250 !important;
+
+    .css-ja5taz-MuiTooltip-tooltip {
+        margin: 0 !important;
+    }
+}
+
+.css-ja5taz-MuiTooltip-tooltip {
+    background-color: transparent !important;
+    color: red !important;
+}

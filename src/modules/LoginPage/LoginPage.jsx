@@ -7,9 +7,9 @@ import postAuthenticate from '../../api/apiRequests/authentication';
 import checkLoginData from '../../services/Validation/loginDataValidation';
 import { addJwt } from '../../redux/Reducers/JWTreducer';
 import { addRefresh } from '../../redux/Reducers/RefreshReducer';
+import Tooltip from '@mui/material/Tooltip';
 
 import './LoginPage.scss';
-import { makeStyles } from '@mui/styles';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -34,6 +34,14 @@ const LoginPage = () => {
         }
     }
 
+    function getStyles(errors) {
+        if (errors) {
+            return {
+                border: '1px solid red'
+            }
+        }
+    }
+
     return (
         <div className='loginPage'>
             <h1>Sign In</h1>
@@ -44,22 +52,24 @@ const LoginPage = () => {
                 }}
                 validate={checkLoginData}
                 onSubmit={authorizeClick}
+                validateOnBlur={false}
+                validateOnChange={false}
             >
                 {({ errors }) => (
                     <Form>
-                        <div className='infoBlock'>
-                            <label for="inputLogin">Login</label>
-                            <Field name="login" id="inputLogin" />
-                            <div>
-                                {errors.login && <p>{errors.login}</p>}
+                        <Tooltip open={true} title={errors.login} placement="bottom-start">
+                            <div className='infoBlock'>
+                                <label for="inputLogin">Login</label>
+                                <Field name="login" id="inputLogin" style={getStyles(errors.login)} />
                             </div>
-                        </div>
+                        </Tooltip>
 
-                        <div className='infoBlock'>
-                            <label for="inputPassword">Password</label>
-                            <Field name="password" type='password' id="inputPassword" />
-                            {errors.password && <div>{errors.password}</div>}
-                        </div>
+                        <Tooltip open={true} title={errors.password} placement="bottom-start">
+                            <div className='infoBlock'>
+                                <label for="inputPassword">Password</label>
+                                <Field name="password" type='password' id="inputPassword" style={getStyles(errors.password)} />
+                            </div>
+                        </Tooltip>
                         <div className='infoBlock'>
                             <Button variant="contained" type="submit" className='submitButton'>Submit</Button>
                         </div>

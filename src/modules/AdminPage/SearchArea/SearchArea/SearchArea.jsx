@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ComboBox from '../../../Shared/ComboBox/ComboBox';
 import { useSearchParams } from 'react-router-dom';
-import getHotels from '../../../../api/apiRequests/getHotels';
 import Button from '@mui/material/Button';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
+import Tooltip from '@mui/material/Tooltip';
 
 import './SearchArea.scss';
-import axios from 'axios';
 
 const SearchArea = ({ setFilter }) => {
     const [city, setCity] = useState(null);

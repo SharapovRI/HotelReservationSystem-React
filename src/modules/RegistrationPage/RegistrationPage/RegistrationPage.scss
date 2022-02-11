@@ -1,11 +1,11 @@
-.loginPage {
+.registration_page {
     margin-top: 16px;
     align-self: center;
     align-items: center;
     width: 400px;
 }
 
-.loginPage h1 {
+.registration_page h1 {
     text-align: center;
     font-size: 48px;
     font-family: Segoe UI,Roboto,Helvetica,Arial,sans-serif;
@@ -13,7 +13,7 @@
 }
 
 
-.loginPage .submitButton{
+.registration_page .submitButton{
     background-color: #003580;
     
     &:hover{
@@ -21,13 +21,9 @@
     }
 }
 
-.infoBlock {
+.registration_page .infoBlock {
     display: flex;
     flex-flow: column;
     justify-content: center;
     margin-bottom: 8%;
-}
-
-.infoBlock a {
-    text-align: center;
 }
