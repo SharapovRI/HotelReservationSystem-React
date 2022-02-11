@@ -1,26 +1,15 @@
+import './LogOutMenuItem.scss';
 import { MenuItem } from "@mui/material";
 import { useNavigate } from "react-router"
 import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useState } from "react";
 import { removeJwt } from "../../../redux/Reducers/JWTreducer";
 import { removeRefresh } from "../../../redux/Reducers/RefreshReducer";
 import { useDispatch } from "react-redux";
+import Button from '@mui/material/Button';
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
-
-const LogOutMenuItem = ( {handleMenuClose} ) => {
+const LogOutMenuItem = ({ handleMenuClose }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -33,6 +22,7 @@ const LogOutMenuItem = ( {handleMenuClose} ) => {
         dispatch(removeRefresh());
         localStorage.removeItem("jwtToken");
         localStorage.removeItem("refreshToken");
+        localStorage.getItem("LastPath");
         handleClose();
         handleMenuClose();
         navigate('/Login');
@@ -47,17 +37,17 @@ const LogOutMenuItem = ( {handleMenuClose} ) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
-                    <div>
+                <div className="logout_container">
+                    <div className="logout_header">
                         <Typography id="modal-modal-title" variant="h6" component="h2">
                             Are you sure you want to exit?
                         </Typography>
                     </div>
-                    <div>
-                        <button onClick={logOut}>Yes</button>
-                        <button onClick={handleClose}>No</button>
+                    <div className="logout_buttons">
+                        <Button variant="contained" type="submit" className='submitButton' onClick={logOut}>Yes</Button>
+                        <Button variant="contained" type="submit" className='submitButton' onClick={handleClose}>No</Button>
                     </div>
-                </Box>
+                </div>
             </Modal>
         </>
     )

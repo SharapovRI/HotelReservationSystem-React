@@ -19,6 +19,7 @@ const LoginPage = () => {
         const response = await postAuthenticate(login, password);
 
         if (response) {
+            console.log(response);
             dispatch(addJwt(response.jwtToken));
             dispatch(addRefresh(response.refreshToken));
             localStorage.setItem("jwtToken", response.jwtToken);
@@ -27,6 +28,7 @@ const LoginPage = () => {
             const path = localStorage.getItem("LastPath");
             if (path) {
                 window.location.href = path;
+                localStorage.removeItem("LastPath");
             }
             else {
                 navigate(`/Home`);

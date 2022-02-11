@@ -2,18 +2,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import baseURL from "../../api/consts";
 
-const instance = axios.create({
+const axiosInterceptor = axios.create({
   baseURL: baseURL,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-instance.interceptors.request.use(
+axiosInterceptor.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("jwtToken");
     if (token) {
-      config.headers["Authorization"] = 'Bearer ' + token;  
+      config.headers["Authorization"] = 'Bearer ' + token;
     }
     return config;
   },
@@ -22,7 +22,7 @@ instance.interceptors.request.use(
   }
 );
 
-instance.interceptors.response.use(
+axiosInterceptor.interceptors.response.use(
   (res) => {
     return res;
   },
@@ -35,30 +35,35 @@ instance.interceptors.response.use(
         originalConfig._retry = true;
 
         try {
-          const rs = await instance.post("/Authorization/refresh-token", {
+          const rs = await axiosInterceptor.post("/Authorization/refresh-token", {
             refreshToken: localStorage.getItem("refreshToken")
           }).catch((error) => {
-            if(error.response.status === 400)
-            {
+            if (error.response.status === 403) {
               localStorage.setItem("LastPath", window.location.href);
-              window.location.href = "/Login"
+              localStorage.removeItem("jwtToken");
+              localStorage.removeItem("refreshToken");
+              window.location.href = "/Login";
               return Promise.reject(error);
             }
           });
-
           const { accessToken } = rs.data;
           localStorage.setItem("jwtToken", accessToken);
 
-          return instance(originalConfig);
-        } 
+          return axiosInterceptor(originalConfig);
+        }
         catch (_error) {
           return Promise.reject(_error);
         }
       }
     }
 
+    if (err.response?.status === 403) {
+      window.location.href = "/*";
+      return Promise.reject(err);
+    }
+
     return Promise.reject(err);
   }
 );
 
-export default instance;
+export default axiosInterceptor;

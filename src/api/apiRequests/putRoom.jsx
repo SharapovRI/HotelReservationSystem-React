@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosInterceptor from "../../services/API/API";
 import baseURL from "../consts";
 
 const putRoom = async (roomId, hotelId, typeName, seatsCount, cost, photos) => {
@@ -10,8 +11,7 @@ const putRoom = async (roomId, hotelId, typeName, seatsCount, cost, photos) => {
         cost: Number(cost),
         roomPhotos: photos,
     }
-    console.log(payload);
-    return await axios.put(`${baseURL}Hotel/Room/Edit/${roomId}`, payload).then(response => response.data).catch(error => console.log(error));
+    return await axiosInterceptor.put(`${baseURL}Hotel/Room/Edit/${roomId}`, payload).then(response => response.data).catch(error => console.log(error));
 }
 
 export default putRoom;
