@@ -2,7 +2,6 @@ import './HotelUpdatingPage.scss';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import postHotel from '../../../api/apiRequests/postHotel';
 import { useState } from 'react';
 import FacilityCreationArea from '../../Shared/FacilityCreationArea/FacilityCreationArea/FacilityCreationArea';
 import HotelCreationInfo from '../../Shared/HotelCreationInfo/HotelCreationInfo/HotelCreationInfo';
@@ -55,11 +54,11 @@ const HotelUpdatingPage = () => {
         { hotelId && fetchFacilities() };
     }, [hotelId]) //facility payload
 
-    useEffect(() => {
+    useEffect(async () => {
         if (isSubmited) {
             const payload = Object.assign(hotelPayload, roomPayload, facilityPayload);
             if (hotelId) {
-                const resp = putHotel(hotelId, payload);
+                const resp = await putHotel(hotelId, payload);
                 navigate('/Admin');
             }
             setIsSubmited(false)

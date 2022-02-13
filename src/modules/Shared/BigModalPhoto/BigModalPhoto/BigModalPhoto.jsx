@@ -1,7 +1,8 @@
 import './BigModalPhoto.scss';
 import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
 
-const BigModalPhoto = ({ photo, open, handleClose }) => {
+const BigModalPhoto = ({ photo, open, handleClose, deletePhoto }) => {
     return (
         <Modal
             open={open}
@@ -12,6 +13,9 @@ const BigModalPhoto = ({ photo, open, handleClose }) => {
                     <img src={`data:${photo?.extension};base64,${photo?.data}`}
                         alt={photo.title}
                         loading="lazy" />
+                </div>
+                <div className="big_modal_btn">
+                    <Button variant="contained" onClick={deletePhoto}>Delete</Button>
                 </div>
             </div>
         </Modal>

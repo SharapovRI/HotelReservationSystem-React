@@ -73,7 +73,6 @@ const SearchArea = ({ setFilter }) => {
             <Formik
                 initialValues={{
                     city: -1,
-                    date: [],
                 }}
                 validate={validateSearchingParameters}
                 onSubmit={searchHotels}

@@ -14,12 +14,13 @@ import './LoginPage.scss';
 const LoginPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    let errorMessage = '';
 
     async function authorizeClick({ login, password }) {
+        errorMessage =  '';
         const response = await postAuthenticate(login, password);
 
         if (response) {
-            console.log(response);
             dispatch(addJwt(response.jwtToken));
             dispatch(addRefresh(response.refreshToken));
             localStorage.setItem("jwtToken", response.jwtToken);
@@ -33,6 +34,9 @@ const LoginPage = () => {
             else {
                 navigate(`/Home`);
             }
+        }
+        else {
+            errorMessage = 'Login or password is incorrect';
         }
     }
 
@@ -72,9 +76,11 @@ const LoginPage = () => {
                                 <Field name="password" type='password' id="inputPassword" style={getStyles(errors.password)} />
                             </div>
                         </Tooltip>
-                        <div className='infoBlock'>
-                            <Button variant="contained" type="submit" className='submitButton'>Submit</Button>
-                        </div>
+                        <Tooltip open={true} title={errorMessage} placement="right">
+                            <div className='infoBlock'>
+                                <Button variant="contained" type="submit" className='submitButton'>Submit</Button>
+                            </div>
+                        </Tooltip>
                         <div className='infoBlock'>
                             <NavLink to='/Registration'>
                                 <label>Registration</label>

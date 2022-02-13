@@ -1,9 +1,9 @@
+import './HotelCreationPage.scss';
 import { useState } from 'react';
 import FacilityCreationArea from '../../Shared/FacilityCreationArea/FacilityCreationArea/FacilityCreationArea';
 import HotelCreationInfo from '../../Shared/HotelCreationInfo/HotelCreationInfo/HotelCreationInfo';
 import RoomCreationArea from '../../Shared/RoomCreationArea/RoomCreationArea/RoomCreationArea';
 import Button from '@mui/material/Button';
-import './HotelCreationPage.scss';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import postHotel from '../../../api/apiRequests/postHotel';
@@ -15,10 +15,10 @@ const HotelCreationPage = () => {
     const [facilityPayload, setFacilityPayload] = useState({});
     const [isSubmited, setIsSubmited] = useState(false);
 
-    useEffect(() => {
+    useEffect(async () => {
         if (isSubmited) {
             const payload = Object.assign(hotelPayload, roomPayload, facilityPayload);
-            const resp = postHotel(payload);
+            const resp = await postHotel(payload);
             setIsSubmited(false)
             navigate('/Admin');
         }

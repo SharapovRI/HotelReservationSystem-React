@@ -7,7 +7,7 @@ import instance from "../../../services/API/API";
 
 import './ComboBox.scss';
 
-const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, boxText, labelText }) => {
+const ComboBox = ({ cityName, cityId, countryId, setOption, setCountry, getOptionLabel, boxText, labelText }) => {
 
   const [appState, setAppState] = useState([]);
   const [curValue, setCurValue] = useState(null);
@@ -27,7 +27,16 @@ const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, box
   }, [setAppState]);
 
   useEffect(() => {
-    if (cityId && appState.length > 0) {
+    if (countryId && (cityId == 'null' || cityId == 0) && appState.length > 0) {
+      const currentLocate = appState[appState.findIndex((locate) => locate.countryId == Number(countryId))];
+
+      if (currentLocate) {
+        setOption(currentLocate.id);
+        setCountry(currentLocate.countryId);
+        setCurValue(currentLocate);
+      }
+    }
+    else if (cityId && appState.length > 0) {
       const currentLocate = appState[appState.findIndex((locate) => locate.id === Number(cityId))];
 
       if (currentLocate) {
@@ -44,7 +53,7 @@ const ComboBox = ({ cityName, cityId, setOption, setCountry, getOptionLabel, box
         setCurValue(currentLocate);
       }
     };
-  }, [appState, cityName, cityId])
+  }, [appState, cityName, cityId, countryId])
 
   return (
     <Autocomplete

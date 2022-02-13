@@ -1,4 +1,3 @@
-import axios from "axios";
 import axiosInterceptor from "../../services/API/API";
 import baseURL from "../consts";
 

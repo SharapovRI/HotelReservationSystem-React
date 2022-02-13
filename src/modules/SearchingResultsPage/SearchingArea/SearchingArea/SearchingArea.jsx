@@ -15,17 +15,18 @@ const SearchingArea = ({ setFilter }) => {
     const [city, setCity] = useState(null);
     const [country, setCountry] = useState(null);
     const [seatsCount, setSeatsCount] = useState(0);
-
     const [searchParams, setSearchParams] = useSearchParams();
-
     const [called, setCalled] = useState(false);
 
     useEffect(() => {
-        let checkIn = new Date(searchParams.get('checkIn')).toJSON();
-        let checkOut = new Date(searchParams.get('checkOut')).toJSON();
+        if (searchParams.get('checkIn')) {
+            let checkIn = new Date(searchParams.get('checkIn')).toJSON();
+            let checkOut = new Date(searchParams.get('checkOut')).toJSON();
 
-        if (getNumberOfDays(checkIn, checkOut) < 1) {
-            checkOut = (new Date()).setDate(new Date(checkIn).getDate() + 1);
+            if (getNumberOfDays(checkIn, checkOut) < 1) {
+                checkOut = (new Date()).setDate(new Date(checkIn).getDate() + 1);
+            }
+            setDate([new Date(checkIn).toJSON(), new Date(checkOut).toJSON()]);
         }
 
         const seats = searchParams.get('freeSeatsCount');
@@ -36,9 +37,8 @@ const SearchingArea = ({ setFilter }) => {
             setSeatsCount(seats);
         }
 
-        setCity(searchParams.get('cityId'));
+        setCity(searchParams.get('cityId'))
         setCountry(searchParams.get('countryId'));
-        setDate([new Date(checkIn).toJSON(), new Date(checkOut).toJSON()]);
         setCalled(true);
     }, [setCity]);
 
@@ -49,14 +49,14 @@ const SearchingArea = ({ setFilter }) => {
     }, [called])
 
     async function searchHotels() {
-        const payload = {
-            cityId: Number(city),
+        let payload = {
             countryId: Number(country),
             checkIn: new Date(date[0]).toJSON(),
             checkOut: new Date(date[1]).toJSON(),
             freeSeatsCount: Number(seatsCount),
             size: 5,
         };
+        payload.cityId = city;
         setFilter(payload);
         setSearchParams(payload);
     }
@@ -113,7 +113,7 @@ const SearchingArea = ({ setFilter }) => {
                         <Tooltip open={true} title={errors.city} placement="bottom-end" style={{ zIndex: 0 }}>
                             <div className="srp_saf_item">
                                 <label className='saf_item_label'>Search location</label>
-                                <ComboBox className='cbLocates' cityId={city}
+                                <ComboBox className='cbLocates' cityId={city} countryId={country}
                                     setOption={(newValue) => setCity(newValue)}
                                     setCountry={(newValue => setCountry(newValue))}
                                     boxText={(option) => (option.country) + ', ' + option.city}

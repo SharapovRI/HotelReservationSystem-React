@@ -15,7 +15,10 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
     const [cost, setCost] = useState(0);
 
     const [openAlert, setAlertOpen] = useState(false);
-    const handleClickOpen = () => setAlertOpen(true);
+    const handleClickOpen = () =>
+    { 
+        setAlertOpen(true);
+    }
     const handleClickClose = () => setAlertOpen(false);
 
     const dispatch = useDispatch();
@@ -52,6 +55,7 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
 
     function updateFacility() {
         const facility = {
+            id: facilityItem.id,
             cost: Number(cost),
             name: facilityName,
         }
@@ -136,12 +140,12 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
                                 {!facilityItem && <Button variant="contained" className='facilityModalBtn' onClick={cancel}>Cancel</Button>}
                                 {!facilityItem && <Button variant="contained" type="submit" className='facilityModalBtn'>Create</Button>}
 
-                                {facilityItem && <Button variant="contained" className='facilityModalBtn' onClick={handleClose}>Cancel</Button>}
+                                {facilityItem && <Button variant="contained" className='facilityModalBtn' onClick={() => handleClose()}>Cancel</Button>}
                                 {facilityItem && <Button variant="contained" type="submit" className='facilityModalBtn'>Update</Button>}
                             </div>
 
-                            {facilityItem && <Button variant="contained" type="submit" className='facilityModalDeleteBtn' onClick={handleClickOpen}>Delete</Button>}
-                            <DeleteFacilityModal open={openAlert} handleClickClose={handleClickClose} handleClose={handleClose} index={index} />
+                            {facilityItem && <Button variant="contained" className='facilityModalDeleteBtn' onClick={handleClickOpen}>Delete</Button>}
+                            <DeleteFacilityModal open={openAlert} handleClickClose={handleClickClose} handleClose={() => handleClose()} index={index} />
                         </Form>
                     )}
                 </Formik>

@@ -46,8 +46,9 @@ axiosInterceptor.interceptors.response.use(
               return Promise.reject(error);
             }
           });
-          const { accessToken } = rs.data;
-          localStorage.setItem("jwtToken", accessToken);
+          const { jwtToken, refreshToken } = rs.data;
+          localStorage.setItem("jwtToken", jwtToken);
+          localStorage.setItem('refreshToken', refreshToken)
 
           return axiosInterceptor(originalConfig);
         }

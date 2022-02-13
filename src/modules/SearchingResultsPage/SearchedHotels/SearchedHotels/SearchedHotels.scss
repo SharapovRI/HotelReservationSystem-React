@@ -9,7 +9,6 @@ $img_size: 200px;
     margin-top: 16px;
     border-radius: 2px;
     padding: $item_margin;
-    height: 256px;
 }
 
 .hotel_list_item_image {
@@ -28,11 +27,10 @@ $img_size: 200px;
 }
 
 .hotel_list_item_text {
-    display: flex;
+    display: inline-flex;
     flex-flow: column;
     margin-left: $item_margin;
     width: calc(100% - 216px);
-    height: 224px;
     color: #262626;
     font-size: 14px;
     font-weight: 400;

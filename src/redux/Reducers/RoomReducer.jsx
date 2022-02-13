@@ -42,7 +42,8 @@ const roomSlice = createSlice({
             state.createdRooms = rooms.payload;
         },
         removeCreatedRoom: (state, index) => {
-            state.createdRooms.splice(index, 1);
+            console.log(index);
+            state.createdRooms.splice(index.payload, 1);
         },
         updateCreatedRoom: (state, roomState) => {
             const room = roomState.payload.room;

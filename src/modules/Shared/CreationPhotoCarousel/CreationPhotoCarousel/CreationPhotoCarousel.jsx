@@ -2,6 +2,7 @@ import './CreationPhotoCarousel.scss';
 import AddPhotoItem from '../AddPhotoItem/AddPhotoItem/AddPhotoItem';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import PhotoCarouselItem from '../PhotoCarouselItem/PhotoCarouselItem/PhotoCarouselItem';
 
 const CreationPhotoCarousel = ({ photos, setPhotos, withoutAddBtn = false }) => {
 
@@ -11,18 +12,19 @@ const CreationPhotoCarousel = ({ photos, setPhotos, withoutAddBtn = false }) => 
         if (photos?.length > 0) {
             photos.map((item, index) =>
                 list.push(
-                    <ImageListItem key={item.img} className='creationPhoto'>
-                        <img
-                            src={`data:${item?.extension};base64,${item?.data}`}
-                            alt={item.title}
-                            loading="lazy"
-                        />
-                    </ImageListItem>
+                    <PhotoCarouselItem item={item} deletePhoto={() => deletePhoto(index)}/>
                 )
             );
         }
 
         return list;
+    }
+
+    function deletePhoto(index) {
+        let newList = [];
+        Object.assign(newList, photos);
+        newList.splice(index, 1)
+        setPhotos(newList)
     }
 
     return (
