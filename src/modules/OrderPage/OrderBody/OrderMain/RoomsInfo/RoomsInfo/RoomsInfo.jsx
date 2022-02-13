@@ -15,12 +15,16 @@ import checkOrderCreationData from '../../../../../../services/Validation/orderC
 const RoomsInfo = () => {
     const roomSt = useSelector((state) => state.roomReducer?.rooms);
     const orderingRooms = useSelector((state) => state.roomReducer?.selectedRooms);
+    const token = useSelector((state) => state.jwtReducer?.token);
+    
+    const userId = getId(token);
+    
     const [searchParams, setSearchParams] = useSearchParams();
     const [timeIn, setTimeIn] = useState(new Date(0, 0, 0, 14));
     const [totalCost, setTotalCost] = useState(0);
+    const [renderEnd, setRenderEnd] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [renderEnd, setRenderEnd] = useState(false);
 
     useEffect(() => {
         async function getFacilities() {
@@ -78,7 +82,6 @@ const RoomsInfo = () => {
     async function submitOrder() {
         const datein = searchParams.get('checkIn');
         const dateout = searchParams.get('checkOut');
-        const userId = getId(localStorage.getItem("jwtToken"));
         let orders = [];
 
         //добавить возможность выбирать несколько одинаковых фасилитей
@@ -89,7 +92,7 @@ const RoomsInfo = () => {
         }
 
         const payload = {
-            personId: Number(1),
+            personId: Number(userId),
             orders: orders,
             totalCost: totalCost,
         }

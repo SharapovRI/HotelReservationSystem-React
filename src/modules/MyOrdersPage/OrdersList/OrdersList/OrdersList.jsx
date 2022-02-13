@@ -21,7 +21,7 @@ const OrdersList = ( { filter } ) => {
     useEffect(() => {
         async function fetchOrders() {
             if (filter) {
-                filter['userId'] = Number(1);
+                filter['userId'] = Number(userId);
                 const data = await getUserOrders({ ...filter, index: page - 1 });
                 console.log(data);
                 setContent(data.result);
