@@ -43,7 +43,6 @@ const CitiesGroups = () => {
 
     useEffect(() => {
         const cityIds = appState?.map(city => city.id);
-        console.log(cityIds);
         const uniqueIds = getUniqueIds(cityIds);
         const shuffled = uniqueIds?.sort(() => Math.random() - 0.5);
         const randomIds = shuffled?.slice(0, 10);
@@ -52,6 +51,7 @@ const CitiesGroups = () => {
 
     useEffect(async () => {
         const list = [];
+
 
         if (randomCitesIds.length > 0) {
             for (const item of randomCitesIds) {

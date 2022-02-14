@@ -35,6 +35,7 @@ $img_size: 200px;
 
 .cgc_carousel {
     display: flex;    
+    overflow-x: auto;
 }
 
 .cgc_c_item {
