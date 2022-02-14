@@ -56,6 +56,20 @@ axiosInterceptor.interceptors.response.use(
           return Promise.reject(_error);
         }
       }
+      else if (err.response.status === 400 && !originalConfig._retry) {
+        originalConfig._retry = true;
+
+        try {
+          localStorage.setItem("LastPath", window.location.href);
+          localStorage.removeItem("jwtToken");
+          localStorage.removeItem("refreshToken");
+          window.location.href = "/Login";
+          return axiosInterceptor(originalConfig);
+        }
+        catch (_error) {
+          return Promise.reject(_error);
+        }
+      }
     }
 
     if (err.response?.status === 403) {

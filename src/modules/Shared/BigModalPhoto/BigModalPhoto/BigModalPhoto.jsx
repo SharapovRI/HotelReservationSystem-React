@@ -14,9 +14,9 @@ const BigModalPhoto = ({ photo, open, handleClose, deletePhoto }) => {
                         alt={photo.title}
                         loading="lazy" />
                 </div>
-                <div className="big_modal_btn">
+                {deletePhoto && <div className="big_modal_btn">
                     <Button variant="contained" onClick={deletePhoto}>Delete</Button>
-                </div>
+                </div>}
             </div>
         </Modal>
     )
