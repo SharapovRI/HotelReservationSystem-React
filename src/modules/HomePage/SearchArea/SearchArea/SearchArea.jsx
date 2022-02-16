@@ -73,7 +73,6 @@ const SearchArea = ({ setFilter }) => {
             <Formik
                 initialValues={{
                     city: -1,
-                    date: [],
                 }}
                 validate={validateSearchingParameters}
                 onSubmit={searchHotels}
@@ -95,7 +94,7 @@ const SearchArea = ({ setFilter }) => {
                         <div className='searchAreaItem'>
                             <DatePickerRange date={date} setDate={(newValue) => setDate(newValue)} />
                         </div>
-                        <Tooltip open={errors.seats && true} title={errors.seats}>
+                        <Tooltip open={true} title={errors.seats}>
                             <div className='searchAreaItem'>
                                 <TextField id="outlined-basic"
                                     type={'number'}
@@ -103,6 +102,7 @@ const SearchArea = ({ setFilter }) => {
                                     onInput={onSeatsChange}
                                     label="Seats Count"
                                     variant="outlined"
+                                    style={getStyles(errors.city)}
                                 />
                             </div>
                         </Tooltip>

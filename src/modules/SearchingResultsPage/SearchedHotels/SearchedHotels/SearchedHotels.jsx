@@ -23,6 +23,10 @@ const SearchedHotels = ({ filter }) => {
 
     useEffect(() => {
         async function fetchHotels() {
+            console.log(filter);
+            if (filter.cityId !== null) {
+                delete filter.cityId;
+            }
             const data = await getHotels({ ...filter, index: page - 1 });
             setHotels(data.result);
             setPageCount(data.pageCount);

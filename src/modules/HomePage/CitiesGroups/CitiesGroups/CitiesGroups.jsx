@@ -1,14 +1,14 @@
+import './CitiesGroups.scss'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import './CountiesGroups.scss'
 import getHotels from '../../../../api/apiRequests/getHotels';
 import { useNavigate } from 'react-router-dom';
 
-const CountiesGroups = () => {
+const CitiesGroups = () => {
     const [appState, setAppState] = useState([]);
-    const [randomCountriesIds, setRandomCountriesIds] = useState([]);
-    const [randomCountries, setRandomCountries] = useState([]);
+    const [randomCitesIds, setRandomCitesIds] = useState([]);
+    const [randomCities, setRandomCities] = useState([]);
     const [listItems, setListItems] = useState([]);
     const navigate = useNavigate();
 
@@ -42,38 +42,39 @@ const CountiesGroups = () => {
     }, [setAppState]);
 
     useEffect(() => {
-        const countryIds = appState?.map(country => country.countryId);
-        const uniqueIds = getUniqueIds(countryIds);
+        const cityIds = appState?.map(city => city.id);
+        const uniqueIds = getUniqueIds(cityIds);
         const shuffled = uniqueIds?.sort(() => Math.random() - 0.5);
         const randomIds = shuffled?.slice(0, 10);
-        setRandomCountriesIds(randomIds);
+        setRandomCitesIds(randomIds);
     }, [appState]);
 
     useEffect(async () => {
         const list = [];
 
-        if (randomCountriesIds.length > 0) {
-            for (const item of randomCountriesIds) {
-                const hotels = await getHotels({ countryId: item, size: 1, index: 0 });
+
+        if (randomCitesIds.length > 0) {
+            for (const item of randomCitesIds) {
+                const hotels = await getHotels({ cityId: item, size: 1, index: 0 });
                 list.push({hotels, id: item});
             }
         }
-        setRandomCountries(list);
+        setRandomCities(list);
 
-    }, [randomCountriesIds])
+    }, [randomCitesIds])
 
     useEffect(() => {
         const list = [];
-        if (randomCountries?.length > 0) {
-            randomCountries?.map((item, index) => {
+        if (randomCities?.length > 0) {
+            randomCities?.map((item, index) => {
                 item.hotels?.result[0] &&
                     list.push(
                         <div className="cgc_c_item">
-                            <div className="cgc_c_photo" onClick={() => navigate(axios.getUri({ url: `/Hotels`, params: {countryId:item.id} }))}>
+                            <div className="cgc_c_photo" onClick={() => navigate(axios.getUri({ url: `/Hotels`, params: {cityId:item.id} }))}>
                                 <img src={`data:${item.hotels?.result[0].photos[0]?.extension};base64,${item.hotels?.result[0].photos[0]?.data}`} />
                             </div>
                             <div className="cgc_c_discription">
-                                <h3>{item.hotels?.result[0].country}</h3>
+                                <h3>{item.hotels?.result[0].city}</h3>
                                 <span>Searched {item.hotels?.pageCount} variants</span>
                             </div>
                         </div>
@@ -82,11 +83,11 @@ const CountiesGroups = () => {
             );
         }
         setListItems(list);
-    }, [randomCountries]);
+    }, [randomCities]);
 
     return (
         <div className="countriesGroupingContainer">
-            <h2>Grouping by countries</h2>
+            <h2>Grouping by cities</h2>
             <div className="cgc_carousel">
                 {listItems}
             </div>
@@ -94,4 +95,4 @@ const CountiesGroups = () => {
     )
 }
 
-export default CountiesGroups;
+export default CitiesGroups;

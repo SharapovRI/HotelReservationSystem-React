@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { updateSelectedRoom, removeSelectedRoom, removeRooms } from '../../../../../../../redux/Reducers/RoomReducer';
 import SelectedFacilitiesList from '../SelectedFacilitiesList/SelectedFacilitiesList/SelectedFacilitiesList';
 import DeleteDialog from '../DeleteDialog/DeleteDialog/DeleteDialog';
+import PhotosCarousel from '../../../../../../HotelPage/HotelContent/PhotosCarousel/PhotosCarousel/PhotosCarousel';
 
 const RoomSection = ({ room }) => {
     const [open, setOpen] = useState(false);
@@ -61,7 +62,7 @@ const RoomSection = ({ room }) => {
                     <span>Delete</span>
                 </div>
             </div>
-            <CreationPhotoCarousel photos={room.photos} withoutAddBtn={true} />
+            <PhotosCarousel photos={room.photos} />
             <div className="seats_count">
                 <h3>
                     <strong>Seats amount:</strong> {room?.seatsCount} seats

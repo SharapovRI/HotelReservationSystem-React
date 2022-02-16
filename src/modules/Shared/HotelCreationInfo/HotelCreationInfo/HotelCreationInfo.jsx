@@ -145,7 +145,7 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited, hotelPayload }) => 
                                                     }
                                                 }
                                                 }
-                                                getOptionLabel={(option) => option.id + ' ' + option.country + ', ' + option.city}
+                                                getOptionLabel={(option) => option.country + ', ' + option.city}
                                                 renderInput={(params) => (
                                                     <TextField {...params} placeholder="City" variant="standard">
                                                         {(option) => (option.country) + ', ' + option.city}

@@ -6,12 +6,21 @@ $img_size: 200px;
     flex-flow: column;
     align-self: center;
     justify-content: center;
-    margin-top: 5%;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+
+    & > h2 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 32px;
+    }
 }
 
 .cgc_c_photo {
     width: $img_size;
     height: $img_size;
+    cursor: pointer;
 }
 
 .cgc_c_photo img {
@@ -26,6 +35,7 @@ $img_size: 200px;
 
 .cgc_carousel {
     display: flex;    
+    overflow-x: auto;
 }
 
 .cgc_c_item {
@@ -33,6 +43,10 @@ $img_size: 200px;
 }
 
 .cgc_c_discription {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     h3 {
         font-size: 16px;
         font-weight: 700;

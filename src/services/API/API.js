@@ -46,9 +46,24 @@ axiosInterceptor.interceptors.response.use(
               return Promise.reject(error);
             }
           });
-          const { accessToken } = rs.data;
-          localStorage.setItem("jwtToken", accessToken);
+          const { jwtToken, refreshToken } = rs.data;
+          localStorage.setItem("jwtToken", jwtToken);
+          localStorage.setItem('refreshToken', refreshToken)
 
+          return axiosInterceptor(originalConfig);
+        }
+        catch (_error) {
+          return Promise.reject(_error);
+        }
+      }
+      else if (err.response.status === 400 && !originalConfig._retry) {
+        originalConfig._retry = true;
+
+        try {
+          localStorage.setItem("LastPath", window.location.href);
+          localStorage.removeItem("jwtToken");
+          localStorage.removeItem("refreshToken");
+          window.location.href = "/Login";
           return axiosInterceptor(originalConfig);
         }
         catch (_error) {

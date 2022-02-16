@@ -19,7 +19,7 @@ const facilitySlice = createSlice({
             state.createdFacilities = facilities.payload;
         },
         removeCreatedFacility: (state, index) => {
-            state.createdFacilities.splice(index, 1);
+            state.createdFacilities.splice(index.payload, 1);
         },
         updateCreatedFacility: (state, facilityState) => {
 

@@ -3,7 +3,6 @@ import CreatingFacilityModal from '../../CreatingFacilityModal/CreatingFacilityM
 import './CreatingFacilityItem.scss';
 
 const CreatingFacilityItem = ({ facilityItem, index }) => {
-    const [createdFacilities, setCreatedFacilities] = useState([]);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -13,8 +12,7 @@ const CreatingFacilityItem = ({ facilityItem, index }) => {
             <div className='createdFacilityItem' onClick={() => handleOpen()}>
                 <span>{facilityItem.name}</span><div>{`${facilityItem.cost}$`}</div>
             </div>
-            <CreatingFacilityModal open={open} handleClose={handleClose} facilities={createdFacilities}
-                setFacilities={setCreatedFacilities} facilityItem={facilityItem} index={index} />
+            <CreatingFacilityModal open={open} handleClose={handleClose} facilityItem={facilityItem} index={index} />
         </>
     )
 }

@@ -10,6 +10,9 @@ const checkHotelCreationHotelInfoData = (values) => {
     else if (values.hotelName?.length < 3) {
         errors.hotelName = 'The name of the hotel must be longer than two letters'
     }
+    else if (values.hotelName?.length > 50) {
+        errors.hotelName = 'The name of the hotel can\'t be longer than 50 letters'
+    }
 
     if (!values.address) {
         errors.address = 'This field can\'t be empty'

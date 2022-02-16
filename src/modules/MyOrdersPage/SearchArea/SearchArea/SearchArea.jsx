@@ -53,7 +53,7 @@ const SearchArea = ( { setFilter } ) => {
                             setOption={(newValue) => setCity(newValue)}
                             setCountry={(newValue => setCountry(newValue))}
                             boxText={(option) => (option.country) + ', ' + option.city}
-                            getOptionLabel={(option) => option.id + ' ' + option.country + ' ' + option.city}
+                            getOptionLabel={(option) => option.country + ', ' + option.city}
                             labelText='Locates'
                         />
                     </div>
