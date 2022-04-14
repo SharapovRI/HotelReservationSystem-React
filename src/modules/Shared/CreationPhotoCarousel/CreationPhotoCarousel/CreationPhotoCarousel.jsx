@@ -1,7 +1,6 @@
 import './CreationPhotoCarousel.scss';
 import AddPhotoItem from '../AddPhotoItem/AddPhotoItem/AddPhotoItem';
 import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
 import PhotoCarouselItem from '../PhotoCarouselItem/PhotoCarouselItem/PhotoCarouselItem';
 
 const CreationPhotoCarousel = ({ photos, setPhotos, withoutAddBtn = false }) => {

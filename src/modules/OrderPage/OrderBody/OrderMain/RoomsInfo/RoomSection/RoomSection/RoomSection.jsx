@@ -1,5 +1,4 @@
 import './RoomSection.scss';
-import CreationPhotoCarousel from '../../../../../../Shared/CreationPhotoCarousel/CreationPhotoCarousel/CreationPhotoCarousel';
 import { useEffect, useState } from 'react';
 import SelectFacilitiesModal from '../SelectFacilitiesModal/SelectFacilitiesModal/SelectFacilitiesModal';
 import { useDispatch } from 'react-redux';
@@ -27,7 +26,7 @@ const RoomSection = ({ room }) => {
         selectedRoom['cost'] = totalRoomCost;
         selectedRoom['facilities'] = selectedFacilities;
         dispatch(updateSelectedRoom(selectedRoom));
-    }, [selectedFacilities])
+    }, [selectedFacilities, dispatch])
 
     function getTotalRoomCost()
     {
@@ -43,7 +42,7 @@ const RoomSection = ({ room }) => {
         {
             deleteRoom();
         }
-    }, [confirmDelete])
+    }, [confirmDelete, deleteRoom])
 
     function deleteRoom() {
         let selectedRoom = {};
