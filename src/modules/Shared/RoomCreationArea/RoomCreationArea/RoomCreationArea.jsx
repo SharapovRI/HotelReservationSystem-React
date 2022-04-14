@@ -16,14 +16,14 @@ const RoomCreationArea = ({ setRoomPayload }) => {
 
     useEffect(() => {
         dispatch(clearCreatedRooms());
-    }, [setOpen])
+    }, [dispatch])
 
     useEffect(() => {
         const rooms = {
             rooms: roomSt,
         }
         setRoomPayload(rooms);
-    }, [roomSt])
+    }, [roomSt, dispatch, setRoomPayload])
 
     return (
         <>

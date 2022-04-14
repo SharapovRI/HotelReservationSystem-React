@@ -1,6 +1,6 @@
 import './SearchedHotels.scss';
 import Button from '@mui/material/Button';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
 import { useEffect, useState } from 'react';
@@ -23,8 +23,7 @@ const SearchedHotels = ({ filter }) => {
 
     useEffect(() => {
         async function fetchHotels() {
-            console.log(filter);
-            if (filter.cityId !== null) {
+            if (filter.cityId == null) {
                 delete filter.cityId;
             }
             const data = await getHotels({ ...filter, index: page - 1 });
@@ -32,7 +31,7 @@ const SearchedHotels = ({ filter }) => {
             setPageCount(data.pageCount);
         }
 
-        { filter && fetchHotels() }
+        filter && fetchHotels()
     }, [filter, page])
 
     const listItems = () => {
@@ -42,7 +41,7 @@ const SearchedHotels = ({ filter }) => {
                 list.push(
                     <div key={index} className='hotel_list_item'>
                         <div className='hotel_list_item_image'>
-                            <img src={`data:${item.photos[0]?.extension};base64,${item.photos[0]?.data}`} />
+                            <img src={`data:${item.photos[0]?.extension};base64,${item.photos[0]?.data}`} alt='Hotel'/>
                         </div>
                         <div className='hotel_list_item_text'>
                             <div className="hotel_list_item_header">

@@ -1,6 +1,6 @@
 import './SearchingArea.scss'
 
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
 import ComboBox from '../../../Shared/ComboBox/ComboBox'
@@ -40,7 +40,7 @@ const SearchingArea = ({ setFilter }) => {
         setCity(searchParams.get('cityId'))
         setCountry(searchParams.get('countryId'));
         setCalled(true);
-    }, [setCity]);
+    }, [setCity, searchParams]);
 
     useEffect(() => {
         if (called) {

@@ -1,6 +1,6 @@
 import './RoomsInfo.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import RoomSection from '../RoomSection/RoomSection/RoomSection';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -33,14 +33,14 @@ const RoomsInfo = () => {
             dispatch(addFacilities(data));
         }
         getFacilities();
-    }, [setSearchParams])
+    }, [setSearchParams, dispatch, searchParams])
 
     useEffect(() => {
         if (renderEnd && orderingRooms.length < 1) {
             navigate('/')
         }
         setRenderEnd(true);
-    }, [orderingRooms])
+    }, [orderingRooms, navigate, renderEnd])
 
     function getRoomsList() {
         const roomList = [];

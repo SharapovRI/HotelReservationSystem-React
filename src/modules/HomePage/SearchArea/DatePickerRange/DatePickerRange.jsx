@@ -14,8 +14,7 @@ const DatePickerRange = ({ date, setDate }) => {
     if (date[0] && date[1]) {
       const arrival = moment(new Date(date[0])).format(formatString);
       const departure = moment(new Date(date[1])).format(formatString);
-      setDateValue([arrival, departure])
-      console.log(arrival);
+      setDateValue([arrival, departure]);
     }
   }, [date])
 

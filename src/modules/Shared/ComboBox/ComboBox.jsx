@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
-import axios from 'axios';
 import instance from "../../../services/API/API";
 
 import './ComboBox.scss';
@@ -27,8 +26,8 @@ const ComboBox = ({ cityName, cityId, countryId, setOption, setCountry, getOptio
   }, [setAppState]);
 
   useEffect(() => {
-    if (countryId && (cityId == 'null' || cityId == 0) && appState.length > 0) {
-      const currentLocate = appState[appState.findIndex((locate) => locate.countryId == Number(countryId))];
+    if (countryId && (cityId === 'null' || cityId === 0) && appState.length > 0) {
+      const currentLocate = appState[appState.findIndex((locate) => locate.countryId === Number(countryId))];
 
       if (currentLocate) {
         setOption(currentLocate.id);
@@ -53,7 +52,7 @@ const ComboBox = ({ cityName, cityId, countryId, setOption, setCountry, getOptio
         setCurValue(currentLocate);
       }
     };
-  }, [appState, cityName, cityId, countryId])
+  }, [appState, cityName, cityId, countryId, setCountry, setOption])
 
   return (
     <Autocomplete

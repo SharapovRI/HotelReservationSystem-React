@@ -1,5 +1,5 @@
 import './CreatingFacilityModal.scss';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
@@ -15,8 +15,7 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
     const [cost, setCost] = useState(0);
 
     const [openAlert, setAlertOpen] = useState(false);
-    const handleClickOpen = () =>
-    { 
+    const handleClickOpen = () => {
         setAlertOpen(true);
     }
     const handleClickClose = () => setAlertOpen(false);
@@ -28,7 +27,7 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
             setFacilityName(facilityItem.name);
             setCost(facilityItem.cost);
         }
-    }, [setCost]);
+    }, [setCost, facilityItem]);
 
     const onTextChange = (event) => {
         setFacilityName(event.target.value);
@@ -70,8 +69,8 @@ const CreatingFacilityModal = ({ open, handleClose, facilityItem, index }) => {
     }
 
     function actionFacility() {
-        { !facilityItem && createFacility() }
-        { facilityItem && updateFacility() }
+        !facilityItem && createFacility()
+        facilityItem && updateFacility()
     }
 
     function getStyles(errors) {
