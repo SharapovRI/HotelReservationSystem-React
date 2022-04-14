@@ -1,10 +1,12 @@
 import './SelectFacilitiesModal.scss';
 import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -33,7 +35,7 @@ const SelectFacilitiesModal = ({ open, handleClose, setSelectedFacilities }) => 
     useEffect(() => {
         setLeft(facilitiesStore);
         setReservedLeft(facilitiesStore);
-    }, [setLeft, facilitiesStore])
+    }, [setLeft])
 
     function cancelClick() {
         setLeft(reservedLeft);

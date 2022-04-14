@@ -69,7 +69,7 @@ const CitiesGroups = () => {
             randomCities?.map((item, index) => {
                 item.hotels?.result[0] &&
                     list.push(
-                        <div className="cgc_c_item" key={index}>
+                        <div className="cgc_c_item">
                             <div className="cgc_c_photo" onClick={() => navigate(axios.getUri({ url: `/Hotels`, params: {cityId:item.id} }))}>
                                 <img src={`data:${item.hotels?.result[0].photos[0]?.extension};base64,${item.hotels?.result[0].photos[0]?.data}`} />
                             </div>

@@ -1,3 +1,3 @@
-const baseURL = 'http://shroiv-001-site1.etempurl.com/';
+const baseURL = 'https://localhost:44382/';
 
 export default baseURL;

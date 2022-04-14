@@ -1,4 +1,6 @@
 import './AddPhotoItem.scss';
+import Icon from '@mui/material/Icon';
+import Button from '@mui/material/Button';
 
 
 const AddPhotoItem = ({ photos, setPhotos }) => {

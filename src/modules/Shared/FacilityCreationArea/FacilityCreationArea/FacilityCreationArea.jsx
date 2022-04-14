@@ -18,14 +18,14 @@ const FacilityCreationArea = ({setFacilityPayload, facilityPayload}) => {
 
     useEffect(() => {
         dispatch(clearCreatedFacilities());
-    }, [setOpen, dispatch])
+    }, [setOpen])
 
     useEffect(() => {
         const facilities = {
             facilities: facilitiesRedux,
         }
         setFacilityPayload(facilities);
-    }, [facilitiesRedux, setFacilityPayload]);
+    }, [facilitiesRedux]);
 
     function getFacilities() {
         const rowList = [];

@@ -45,7 +45,7 @@ const Header = () => {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            {getRole(token) === 'Admin' &&
+            {getRole(token) == 'Admin' &&
                 <MenuItem onClick={() => {
                     handleMenuClose();
                     navigate('/Admin');
@@ -73,7 +73,7 @@ const Header = () => {
                         </h3>
                     </Link>
 
-                    {localStorage.getItem("jwtToken") ?
+                    {localStorage.getItem("jwtToken") &&
                         <div className='user_name_container'>
                             <UserName />
 
@@ -89,7 +89,7 @@ const Header = () => {
                             </IconButton>
                             {renderMenu}
                         </div>
-                        :
+                        ||
                         <div className='unauth_buttons'>
                             <Link color="inherit" underline="none" href="/Login">
                                 <h3 className=' '>

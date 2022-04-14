@@ -1,11 +1,13 @@
 import './CreatingRoomModal.scss';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
 import CreationPhotoCarousel from '../../../../Shared/CreationPhotoCarousel/CreationPhotoCarousel/CreationPhotoCarousel';
-import { Formik, Form } from 'formik';
-import { addCreatedRoom, updateCreatedRoom } from '../../../../../redux/Reducers/RoomReducer';
+import { Formik, Form, Field } from 'formik';
+import { addCreatedRoom, addRooms, updateCreatedRoom, updateRoomState } from '../../../../../redux/Reducers/RoomReducer';
 import { useDispatch } from 'react-redux';
 import checkRoomCreationData from '../../../../../services/Validation/roomCreationDataValidation';
 import Tooltip from '@mui/material/Tooltip';
@@ -26,7 +28,7 @@ const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
             setCost(roomItem.cost);
             setRoomCount(roomItem.roomCount);
         }
-    }, [roomItem]);
+    }, []);
 
     const onSeatsChange = (event) => {
         if (event.target.value < 1) {
@@ -95,8 +97,8 @@ const CreatingRoomModal = ({ open, handleClose, roomItem, index }) => {
     }
 
     function actionRoom() {
-        !roomItem && createRoom()
-        roomItem && updateRoom()
+        { !roomItem && createRoom() }
+        { roomItem && updateRoom() }
     }
 
     function getStyles(errors) {

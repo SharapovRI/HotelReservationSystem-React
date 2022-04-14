@@ -2,7 +2,7 @@ import './HotelCreationInfo.scss';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CreationPhotoCarousel from '../../../Shared/CreationPhotoCarousel/CreationPhotoCarousel/CreationPhotoCarousel';
@@ -35,7 +35,7 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited, hotelPayload }) => 
                 setCurValue(currentLocate);
             };
         }
-    }, [hotelPayload, appState])
+    }, [hotelPayload])
 
     useEffect(() => {
         const apiUrl = 'https://localhost:44382/Locates';
@@ -98,6 +98,7 @@ const HotelCreationInfo = ({ setHotelPayload, setIsSubmited, hotelPayload }) => 
         <Formik
             initialValues={{
                 password: '',
+                login: '',
             }}
             validate={validateCreatingParameters}
             onSubmit={submit}
